@@ -1,0 +1,19 @@
+{
+  "name": "key-services",
+  "version": "0.1.0",
+  "author": "eShard",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 5000",
+    "build": "next build",
+    "start": "next start -p 5000"
+  },
+  "dependencies": {
+    "@zeit/next-sass": "^1.0.1",
+    "bulma": "^0.9.0",
+    "next": "9.5.1",
+    "node-sass": "^4.14.1",
+    "react": "16.13.1",
+    "react-dom": "16.13.1"
+  }
+}
