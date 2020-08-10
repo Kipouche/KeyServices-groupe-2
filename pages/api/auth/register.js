@@ -1,5 +1,3 @@
-const bcrypt = require('bcrypt');
-const connection = require('../../../lib/db');
 const User = require('../../../lib/user');
 
 const verifyEmail = (email) => {
