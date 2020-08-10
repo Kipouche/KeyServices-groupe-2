@@ -24,7 +24,7 @@ const isLess18ThanYears = (date) => {
   eighteenYearsAgo.setMinutes(0);
   eighteenYearsAgo.setSeconds(0);
   eighteenYearsAgo.setMilliseconds(0);
-  return dateTime.getTime() > eighteenYearsAgo.getTime();
+  return dateTime > eighteenYearsAgo.getTime();
 };
 
 const registerUser = async (
@@ -117,7 +117,7 @@ export default async (req, res) => {
       );
       return res.status(200).json({ sucess: results.insertId });
     } catch (err) {
-      return res.status(401).json({ message: err });
+      return res.status(401).json({ message: err.message });
     }
   } else {
     return res.status(400).json({ message: 'Only method POST exists' });
