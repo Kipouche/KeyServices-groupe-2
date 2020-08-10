@@ -1,22 +1,19 @@
-import Head from 'next/head'
-import Header from '../components/Header'
-import Footer from '../components/Footer'
+import Head from 'next/head';
+import Header from './Header';
+import Footer from './Footer';
 
 const Layout = ({ children }) => {
-
   return (
     <>
       <Head>
         <title>KeyServices</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      <Header></Header>
-      <main className="container">
-          {children}
-      </main>
-      <Footer></Footer>
+      <Header />
+      <main className="container">{children}</main>
+      <Footer />
     </>
-  )
-}
+  );
+};
 
-export default Layout
+export default Layout;

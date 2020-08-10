@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt');
 const connection = require('../../../lib/db');
+const User = require('../../../lib/user');
 
 const verifyEmail = (email) => {
   const regex = /^[a-z0-9_-]+@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/i;
@@ -25,44 +26,6 @@ const isLess18ThanYears = (date) => {
   eighteenYearsAgo.setSeconds(0);
   eighteenYearsAgo.setMilliseconds(0);
   return dateTime > eighteenYearsAgo.getTime();
-};
-
-const registerUser = async (
-  email,
-  password,
-  firstname,
-  lastname,
-  phonenumber,
-  dateofbirth,
-  optinNewsletter
-) => {
-  return new Promise((resolve, reject) => {
-    bcrypt.hash(password, 10, (err, hash) => {
-      if (!err) {
-        connection.query(
-          'INSERT INTO user SET email = ?, password = ?, firstname = ?, lastname = ?, phonenumber = ?, dateofbirth = ?, optinNewsletter = ?',
-          [
-            email,
-            hash,
-            firstname,
-            lastname,
-            phonenumber,
-            dateofbirth,
-            optinNewsletter
-          ],
-          (error, results) => {
-            if (error) {
-              reject(new Error("Couldn't register user"));
-            } else {
-              resolve(results);
-            }
-          }
-        );
-      } else {
-        reject(new Error("Couldn't register user"));
-      }
-    });
-  });
 };
 
 export default async (req, res) => {
@@ -106,7 +69,7 @@ export default async (req, res) => {
         .json({ message: 'User musts be at least 18 years old' });
     }
     try {
-      const results = await registerUser(
+      const results = await User.create(
         email,
         password,
         firstname,

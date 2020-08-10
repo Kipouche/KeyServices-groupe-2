@@ -1,11 +1,12 @@
-import '../styles/styles.sass'
-
-import Layout from '../components/Layout'
+import '../styles/styles.sass';
+import Layout from '../components/Layout';
 
 function MyApp({ Component, pageProps }) {
-  return <Layout>
-    <Component {...pageProps} />
-  </Layout>
+  return (
+    <Layout>
+      <Component {...pageProps} />
+    </Layout>
+  );
 }
 
-export default MyApp
+export default MyApp;

@@ -19,7 +19,11 @@
                 "endOfLine": "auto"
             }
         ],
-        "class-methods-use-this": "off"
+        "class-methods-use-this": "off",
+        "react/prop-types": 0,
+        "react/jsx-filename-extension": "off",
+        "react/react-in-jsx-scope": "off",
+        "react/jsx-props-no-spreading": "off"
     },
     "parserOptions": {
         "ecmaVersion": 11,
