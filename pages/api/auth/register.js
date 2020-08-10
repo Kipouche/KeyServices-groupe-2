@@ -1,5 +1,3 @@
-import { send } from '../../../lib/db';
-
 const connection = require('../../../lib/db');
 const bcrypt = require('bcrypt');
 
@@ -18,54 +16,67 @@ const verifyPhonenumber = (phonenumber) => {
     return regex.test(phonenumber);
 }
 
-export default (req, res) => {
-    const { email, password, firstname, lastname, phonenumber, dateofbirth, optinNewsletter = false } = req.body;
+const isLess18ThanYears = (dateofbirth) => {
+    dateofbirth = new Date(dateofbirth);
+    let eighteenYearsAgo = new Date();
+    
+    eighteenYearsAgo.setFullYear(new Date().getFullYear() - 18);
+    eighteenYearsAgo.setMinutes(0);
+    eighteenYearsAgo.setSeconds(0);
+    eighteenYearsAgo.setMilliseconds(0);
+    return dateofbirth.getTime() > eighteenYearsAgo.getTime();
+}
+
+const registerUser = async (email, password, firstname, lastname, phonenumber, dateofbirth, optinNewsletter) => {
+    return new Promise((resolve, reject) => {
+        bcrypt.hash(password, 10, (err, hash) => {
+            if (!err) {
+                connection.query(
+                    'INSERT INTO user SET email = ?, password = ?, firstname = ?, lastname = ?, phonenumber = ?, dateofbirth = ?, optinNewsletter = ?',
+                    [email, hash, firstname, lastname, phonenumber, dateofbirth, optinNewsletter],
+                    function (error, results, fields) {
+                        if (error) {
+                            reject("Couldn't register user");
+                        } else {
+                            resolve(results);
+                        }
+                    });
+            } else {
+                reject("Couldn't register user");
+            }
+        })
+    })
+
+}
+
+export default async (req, res) => {
+    const { email, password, firstname, lastname, phonenumber, dateofbirth } = req.body;
+    const optinNewsletter = req.body.optinNewsletter === "on" ? true : false;
 
     if (req.method === "POST") {
         if (!email || !password || !firstname || !lastname || !phonenumber || !dateofbirth) {
-            res.statusCode = 401
-            res.setHeader('Content-Type', 'application/json')
-            return res.send(JSON.stringify({ message: 'A field is missing' }))
+            return res.status(401).json({ message: 'A field is missing' });
         } else if (!verifyEmail(email) || email.length > 255 || email.length < 10) {
-            res.statusCode = 401
-            res.setHeader('Content-Type', 'application/json')
-            return res.send(JSON.stringify({ message: 'Invalid email' }))
+            return res.status(401).json({ message: 'Invalid email' });
         } else if (password.length < 8) {
             // ajouter contrainte sur nb de chiffres et de lettres
-            res.statusCode = 401
-            res.setHeader('Content-Type', 'application/json')
-            return res.send(JSON.stringify({ message: 'Password troo short' }))
+            return res.status(401).json({ message: 'Password is too short' });
         } else if (!verifyName(lastname) || !verifyName(firstname)) {
-            res.statusCode = 401
-            res.setHeader('Content-Type', 'application/json')
-            return res.send(JSON.stringify({ message: 'Invalid firstname or lastname' }))
+            return res.status(401).json({ message: 'Invalid firstname or lastname' });
         } else if (!verifyPhonenumber(phonenumber)) {
-            res.statusCode = 401
-            res.setHeader('Content-Type', 'application/json')
-            return res.send(JSON.stringify({ message: 'Invalid phone number' }))
+            return res.status(401).json({ message: 'Invalid phone number' });
+        } else if (isLess18ThanYears(dateofbirth)) {
+            return res.status(401).json({ message: 'User musts be at least 18 years old' });
         } else {
-            bcrypt.hash(password, 10, (err, hash) => {
-                if (!err) {
-                    console.log("dans bcrypt");
-                    connection.query(
-                        'INSERT INTO user SET email = ?, password = ?, firstname = ?, lastname = ?, phonenumber = ?, dateofbirth = ?, optinNewsletter = ?',
-                        [email, hash, firstname, lastname, phonenumber, dateofbirth, optinNewsletter],
-                        function (error, results, fields) {
-                            if (error) {
-                                return res.status(500).json({ message: "Couldn't register user" })
-                            } else {
-                                return res.status(200).json({ sucess: true })
-                            }
-                        });
-                } else {
-                    return res.status(401).json({ message: 'Authentification error' })
-                }
-            })
-            console.log("apres bcrypt");
+            try {
+                let results = await registerUser(email, password, firstname, lastname, phonenumber, dateofbirth, optinNewsletter);
+                return res.status(200).json({ sucess: results.insertId })
+            } catch (err) {
+                console.log(err);
+                return res.status(401).json({ message: err })
+            }
         }
     } else {
-        res.statusCode = 400
-        res.setHeader('Content-Type', 'application/json')
-        return res.send(JSON.stringify({ message: 'Only method POST exists' }))
+        return res.status(400).json({ message: 'Only method POST exists' });
     }
 }
