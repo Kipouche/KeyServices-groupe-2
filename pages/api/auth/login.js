@@ -1,4 +1,20 @@
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken')
+const connection = require('../../../lib/db');
+const User = require('../../../lib/user');
+
+connection();
+
+export default(req, res) => {
+    try {
+        const {email, password} = req.body;
+        if(!email || !password){
+
+        }
+    } catch (error) {
+        
+    }
+}
 
 export default (req, res) => {
     const { email, password } = req.body;
