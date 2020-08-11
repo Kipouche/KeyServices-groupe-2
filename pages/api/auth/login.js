@@ -6,6 +6,13 @@ const User = require('../../../lib/user');
 connection();
 
 export default(req, res) => {
+    /*
+    - vérifier la validité des input (existence, format), importer et utiliser les méthodes de la classe InputValidation 
+    - si valides, récupérer le user par son email en BDD
+    - si existant, utiliser la fonction compare de bcrypt en comparant le mdp en base, et le mdp en clair reçu
+    - si OK, retour 200
+    - Le reste, retour 401
+    */
     try {
         const {email, password} = req.body;
         if(!email || !password){
