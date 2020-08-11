@@ -16,7 +16,8 @@ async function passCompare(password, hashPassword) {
 }
 
 export default async (req, res) => {
-  // Création des contantes pr récupérer le email et password de la page login qui vont etre egal au body de la requete
+  // ajouter le jsonwebtoken sur les cookies de la réponse
+  // vérifier si le user est active ou pas
   const { email, password } = req.body;
 
   if (req.method === 'POST') {
@@ -44,40 +45,4 @@ export default async (req, res) => {
   } else {
     return res.status(405).json({ message: 'Only method POST required' });
   }
-
-  /*
-    - vérifier la validité des input (existence, format), importer et utiliser les méthodes de la classe InputValidation 
-    - si valides, récupérer le user par son email en BDD
-    - si existant, utiliser la fonction compare de bcrypt en comparant le mdp en base, et le mdp en clair reçu
-    - si OK, retour 200
-    - Le reste, retour 401
-    */
 };
-/*
-export default (req, res) => {
-    const { email, password } = req.body;
-    bcrypt.hash(password, 10, (err, hash) => {
-        if (!err) {
-            bcrypt.compare(password, "$2b$10$0vxksGfWYRh4.oyNjvbrP.pwXF2JgGWNYKbtG3x4HIBC2QjzFHfhe", (err, result) => {
-                if (!err && result === true) {
-                    res.statusCode = 200
-                    res.setHeader('Content-Type', 'application/json')
-                    res.end(JSON.stringify({ sucess: true }))
-                } else {
-                    res.statusCode = 401
-                    res.setHeader('Content-Type', 'application/json')
-                    res.end(JSON.stringify({ message: 'Authentification error' }))
-                }
-            })
-
-        } else {
-            res.statusCode = 401
-            res.setHeader('Content-Type', 'application/json')
-            res.end(JSON.stringify({ message: 'Authentification error' }))
-        }
-
-    })
-
-
-}
-*/
