@@ -2,10 +2,33 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken')
 const connection = require('../../../lib/db');
 const User = require('../../../lib/user');
+const InputValidation = require('../../../lib/inputValidation');
 
-connection();
+export default async (req, res) => {
+    // Création des contantes pr récupérer le email et password de la page login qui vont etre egal au body de la requete
+    const {
+        email,
+        password
+    } = req.body;
 
-export default(req, res) => {
+    if (req.method === 'POST') {
+        if(!email || !password){
+            return res.status(401).json({ message: 'A field is missing' });
+        }
+        if (!InputValidation.verifyEmail(email)) {
+            return res.status(401).json({ message: 'Invalid email' });
+        }
+        try {
+            const results = await User.getByEmail(
+              email
+            );
+            return res.status(200).json({ sucess: results.insertId });
+          } catch (err) {
+            return res.status(401).json({ message: err.message });
+          }
+    }
+
+
     /*
     - vérifier la validité des input (existence, format), importer et utiliser les méthodes de la classe InputValidation 
     - si valides, récupérer le user par son email en BDD
@@ -13,14 +36,7 @@ export default(req, res) => {
     - si OK, retour 200
     - Le reste, retour 401
     */
-    try {
-        const {email, password} = req.body;
-        if(!email || !password){
-
-        }
-    } catch (error) {
-        
-    }
+  
 }
 
 export default (req, res) => {
