@@ -1,7 +1,8 @@
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-const User = require('../../../lib/user');
-const InputValidation = require('../../../lib/inputValidation');
+import bcrypt from 'bcrypt';
+import { sign} from 'jsonwebtoken';
+
+import User from '../../../lib/user';
+import InputValidation from '../../../lib/inputValidation';
 
 async function passCompare(password, hashPassword) {
   return new Promise((resolve, reject) => {
@@ -33,14 +34,17 @@ export default async (req, res) => {
         return res.status(401).json({ message: 'Invalid connection' });
       }
       const user = results[0];
+      if (!user.validated){
+        return res.status(401).json({ message: 'Invalid connection' });
+      }
       try {
         await passCompare(password, user.password);
-        const claims = {sub: user.id, myPersonEmail: user.email}; /// ??? failed
-        jwt.sign(claims, '81248b68-d188-47bb-aca3-1201ba51897c');
-        res.json({authToken: jwt});
-        // CHekc JWT token before authorization (secure, httpOnly SameSite to yourr cookies)
-        // Si match request immediatly
-        // Sinon error 401
+        const claims = {
+          sub: user.id,
+          email: user.email
+        };
+        const jwt = sign(claims, process.env.SECRET);
+        console.log(jwt);
         return res.status(200).json({ message: 'Connected' });
       } catch (error) {
         return res.status(401).json({ message: error.message });
