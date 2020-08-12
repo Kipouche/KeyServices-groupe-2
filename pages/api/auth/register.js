@@ -1,5 +1,9 @@
-const User = require('../../../lib/user');
-const InputValidation = require('../../../lib/inputValidation');
+import sha256 from 'sha256';
+
+import User from '../../../lib/user';
+import InputValidation from '../../../lib/inputValidation';
+import Mailer from '../../../lib/mailer/mailer';
+import confirmMail from '../../../lib/mailer/confirmMail';
 
 export default async (req, res) => {
   const {
@@ -51,6 +55,9 @@ export default async (req, res) => {
         dateofbirth,
         optinNewsletter
       );
+      const token = sha256(results.insertId + process.env.SECRET_SHA);
+      const mailBody = confirmMail(results.insertId, token);
+      Mailer.sendMail(email, 'Confirmation of registration for KeyServices', mailBody.html, mailBody.text);
       return res.status(200).json({ sucess: results.insertId });
     } catch (err) {
       return res.status(401).json({ message: err.message });
