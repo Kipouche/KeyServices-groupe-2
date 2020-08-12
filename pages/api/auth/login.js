@@ -1,5 +1,6 @@
 import bcrypt from 'bcrypt';
 import { sign } from 'jsonwebtoken';
+import cookie from 'cookie';
 
 import User from '../../../lib/user';
 import InputValidation from '../../../lib/inputValidation';
@@ -44,13 +45,15 @@ export default async (req, res) => {
           email: user.email
         };
         const jwt = sign(claims, process.env.SECRET, { expiresIn: '24h' });
-        res.setHeader('Set-Cookie', cookie.serialize('auth', jwt, {
-          httpOnly: true,
-          secure: process.env.NODE_ENV !== 'development',
-          sameSite: 'strict',
-          maxAge: 86400,
-          path: '/'
-        })
+        res.setHeader(
+          'Set-Cookie',
+          cookie.serialize('auth', jwt, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV !== 'development',
+            sameSite: 'strict',
+            maxAge: 86400,
+            path: '/'
+          })
         );
         return res.status(200).json({ message: 'Connected' });
       } catch (error) {
