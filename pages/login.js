@@ -1,7 +1,7 @@
 const Login = () => {
   return (
     <section className="section container">
-      <div className="section container is-mobile">
+      <div className="container is-mobile">
         <div className="columns is-vcentered">
           <div className="column has-text-centered">
             <figure className="is-inline-block">
