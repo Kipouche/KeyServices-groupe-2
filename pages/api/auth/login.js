@@ -19,7 +19,7 @@ async function passCompare(password, hashPassword) {
 export default async (req, res) => {
   // ajouter le jsonwebtoken sur les cookies de la réponse
   // vérifier si le user est active ou pas
-  const { email, password } = req.body;
+  const {email, password } = req.body;
 
   if (req.method === 'POST') {
     if (!email || !password) {
