@@ -56,7 +56,7 @@ export default async (req, res) => {
         optinNewsletter
       );
       const token = sha256(results.insertId + process.env.SECRET_SHA);
-      const mailBody = confirmMail(results.insertId, token);
+      const mailBody = confirmMail(results.insertId, token, firstname);
       Mailer.sendMail(email, 'Confirmation of registration for KeyServices', mailBody.html, mailBody.text);
       return res.status(200).json({ sucess: results.insertId });
     } catch (err) {
