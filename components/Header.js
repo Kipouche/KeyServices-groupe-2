@@ -41,6 +41,9 @@ const Header = () => {
             <Link href="/">
               <a className="navbar-item">Home</a>
             </Link>
+            <Link href="/dashboard">
+              <a className="navbar-item">Dashboard</a>
+            </Link>
             <Link href="/pricing">
               <a className="navbar-item">Pricing</a>
             </Link>
@@ -58,6 +61,9 @@ const Header = () => {
                 </Link>
                 <Link href="/login">
                   <a className="button is-link is-outlined">Log in</a>
+                </Link>
+                <Link href="/api/auth/logout">
+                  <a className="button is-link is-outlined">Log out</a>
                 </Link>
               </div>
             </div>

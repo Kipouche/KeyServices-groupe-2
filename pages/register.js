@@ -2,11 +2,12 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react/jsx-indent */
 /* eslint-disable prettier/prettier */
-import { useRouter } from 'next/router';
 import { useState } from 'react';
+import Router from 'next/router';
+
 
 const Register = () => {
-  const router = useRouter();
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [registered, setRegistered] = useState(false);
   const [email, setEmail] = useState('');
@@ -18,6 +19,7 @@ const Register = () => {
   const [terms, setTerms] = useState(false);
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     const res = await fetch('/api/auth/register', {
       method: 'POST',
       headers: {
@@ -32,7 +34,9 @@ const Register = () => {
         phonenumber
       })
     });
+    setLoading(false);
     if (res.status === 200) {
+      setError('');
       setRegistered(true);
     } else {
       const json = await res.json();  
@@ -151,7 +155,7 @@ const Register = () => {
                     <div className="control">
                       <div className="buttons">
                         <button
-                          className="button is-link has-text-white is-fullwidth"
+                          className={`button is-link has-text-white is-fullwidth ${  loading ? 'is-loading' : ''}`}
                           type="submit"
                         >
                           register
@@ -173,5 +177,30 @@ const Register = () => {
     </section>
   );
 };
+
+Register.getInitialProps = async (ctx) => {
+    const { cookie } = ctx.req ? ctx.req.headers : {};
+    const host =
+      process.env.NODE_ENV !== 'development'
+        ? 'https://keyserviceshost.vercel.app/'
+        : 'http://localhost:5000';
+    const res = await fetch(`${host}/api/auth`, {
+      headers: {
+        cookie
+      }
+    });
+  
+    if (res.status === 200 && !ctx.req) {
+      Router.replace('/dashboard');
+    }
+  
+    if (res.status === 200 && ctx.req) {
+      ctx.res.writeHead(302, {
+        Location: '/dashboard'
+      });
+      ctx.res.end();
+    }
+    return { authenticated: false}
+  };
 
 export default Register;
