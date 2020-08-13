@@ -27,14 +27,21 @@ export default async (req, res) => {
     ) {
       return res.status(401).json({ message: 'A field is missing' });
     }
-    if (!InputValidation.verifyEmail(email) || email.length > 255 || email.length < 10) {
+    if (
+      !InputValidation.verifyEmail(email) ||
+      email.length > 255 ||
+      email.length < 10
+    ) {
       return res.status(401).json({ message: 'Invalid email' });
     }
     if (password.length < 8) {
       // ajouter contrainte sur nb de chiffres et de lettres
       return res.status(401).json({ message: 'Password is too short' });
     }
-    if (!InputValidation.verifyName(lastname) || !InputValidation.verifyName(firstname)) {
+    if (
+      !InputValidation.verifyName(lastname) ||
+      !InputValidation.verifyName(firstname)
+    ) {
       return res.status(401).json({ message: 'Invalid firstname or lastname' });
     }
     if (!InputValidation.verifyPhonenumber(phonenumber)) {
@@ -57,7 +64,12 @@ export default async (req, res) => {
       );
       const token = sha256(results.insertId + process.env.SECRET_SHA);
       const mailBody = confirmMail(results.insertId, token, firstname);
-      Mailer.sendMail(email, 'Confirmation of registration for KeyServices', mailBody.html, mailBody.text);
+      Mailer.sendMail(
+        email,
+        'Confirmation of registration for KeyServices',
+        mailBody.html,
+        mailBody.text
+      );
       return res.status(200).json({ sucess: results.insertId });
     } catch (err) {
       return res.status(401).json({ message: err.message });
