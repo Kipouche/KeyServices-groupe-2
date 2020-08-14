@@ -1,0 +1,24 @@
+{
+    "name": "KeyServices",
+    "short_name": "KeyServices",
+    "theme_color": "#071d34",
+    "background_color": "#71cdb1",
+    "display": "minimal-ui",
+    "orientation": "portrait",
+    "scope": "/",
+    "start_url": "/",
+    "icons": [
+        {
+            "src": "/icons/favicon-144x144.png",
+            "sizes": "144x144",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "/icons/favicon-144x144.png",
+            "sizes": "144x144",
+            "type": "image/png",
+            "purpose": "maskable"
+        }
+    ]
+  }
