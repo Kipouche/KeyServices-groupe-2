@@ -1,7 +1,7 @@
 import '../styles/styles.sass';
 import Layout from '../components/Layout';
 
-function MyApp({ Component, pageProps }) {
+function App({ Component, pageProps }) {
   return (
     <Layout>
       <Component {...pageProps} />
@@ -9,4 +9,4 @@ function MyApp({ Component, pageProps }) {
   );
 }
 
-export default MyApp;
+export default App;

@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Router from 'next/router';
 
 /*
  * Added this to toggle the is-active class. See:
@@ -12,10 +13,25 @@ const toggleStyles = () => {
   document.querySelector('#navbarmenu').classList.toggle('is-active');
 };
 
-const Header = () => {
+const Header = (props) => {
+  const logout = async () => {
+    const res = await fetch('/api/auth/logout', {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    if (res.status === 200) {
+      Router.push('/login');
+    }
+  };
   return (
     <header>
-      <nav className="navbar has-shadow is-spaced" role="navigation" aria-label="main navigation">
+      <nav
+        className="navbar has-shadow is-spaced"
+        role="navigation"
+        aria-label="main navigation"
+      >
         <div className="navbar-brand">
           <Link href="/">
             <a className="navbar-item">
@@ -41,9 +57,14 @@ const Header = () => {
             <Link href="/">
               <a className="navbar-item">Home</a>
             </Link>
-            <Link href="/dashboard">
-              <a className="navbar-item">Dashboard</a>
-            </Link>
+            {props.authenticated ? (
+              <Link href="/dashboard">
+                <a className="navbar-item">Dashboard</a>
+              </Link>
+            ) : (
+              []
+            )}
+
             <Link href="/pricing">
               <a className="navbar-item">Pricing</a>
             </Link>
@@ -54,17 +75,27 @@ const Header = () => {
           <div className="navbar-end">
             <div className="navbar-item">
               <div className="buttons">
-                <Link href="/register">
-                  <a className="button is-link has-text-white">
-                    <strong>Register</strong>
+                {!props.authenticated ? (
+                  <>
+                    <Link href="/register">
+                      <a className="button is-link has-text-white">
+                        <strong>Register</strong>
+                      </a>
+                    </Link>
+                    <Link href="/login">
+                      <a className="button is-link is-outlined">Log in</a>
+                    </Link>
+                  </>
+                ) : (
+                  []
+                )}
+                {props.authenticated ? (
+                  <a onClick={logout} className="button is-link is-outlined">
+                    Log out
                   </a>
-                </Link>
-                <Link href="/login">
-                  <a className="button is-link is-outlined">Log in</a>
-                </Link>
-                <Link href="/api/auth/logout">
-                  <a className="button is-link is-outlined">Log out</a>
-                </Link>
+                ) : (
+                  []
+                )}
               </div>
             </div>
           </div>
@@ -73,5 +104,6 @@ const Header = () => {
     </header>
   );
 };
+
 
 export default Header;

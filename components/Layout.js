@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import Header from './Header';
 import Footer from './Footer';
 
 const Layout = ({ children }) => {
@@ -29,6 +28,12 @@ const Layout = ({ children }) => {
           sizes="32x32"
         />
         <link
+          href="/icons/favicon-96x96.png"
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+        />
+        <link
           href="/icons//favicon-144x144.png"
           rel="icon"
           type="image/png"
@@ -37,8 +42,7 @@ const Layout = ({ children }) => {
         <link rel="apple-touch-icon" href="/icons/apple-icon-180x180.png" />
         <meta name="theme-color" content="#317EFB" />
       </Head>
-      <Header />
-      <main>{children}</main>
+      <main className="is-fullwidth">{children}</main>
       <Footer />
     </>
   );

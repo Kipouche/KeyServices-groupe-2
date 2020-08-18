@@ -1,6 +1,9 @@
-const Index = () => {
+import Header from '../components/Header';
+
+const Index = ({ authenticated }) => {
   return (
     <>
+      <Header authenticated={authenticated} />
       <section className="section hero container">
         <div className="columns is-vcentered">
           <div className="column has-text-centered">
@@ -92,7 +95,10 @@ const Index = () => {
           <div className="column has-text-centered">
             <h1 className="title is-3">Lorem ipsum</h1>
             <p className="subtitle">
-              dolor sit amet, consectetur adipiscing elit. Duis interdum quam elit, nec lobortis orci sollicitudin non. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque neque odio, tincidunt in erat et, laoreet volutpat neque.
+              dolor sit amet, consectetur adipiscing elit. Duis interdum quam
+              elit, nec lobortis orci sollicitudin non. Lorem ipsum dolor sit
+              amet, consectetur adipiscing elit. Quisque neque odio, tincidunt
+              in erat et, laoreet volutpat neque.
             </p>
           </div>
         </div>
@@ -100,7 +106,10 @@ const Index = () => {
           <div className="column has-text-centered">
             <h1 className="title is-3">Lorem ipsum</h1>
             <p className="subtitle ">
-              dolor sit amet, consectetur adipiscing elit. Duis interdum quam elit, nec lobortis orci sollicitudin non. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque neque odio, tincidunt in erat et, laoreet volutpat neque.
+              dolor sit amet, consectetur adipiscing elit. Duis interdum quam
+              elit, nec lobortis orci sollicitudin non. Lorem ipsum dolor sit
+              amet, consectetur adipiscing elit. Quisque neque odio, tincidunt
+              in erat et, laoreet volutpat neque.
             </p>
           </div>
           <div className="column">
@@ -118,13 +127,38 @@ const Index = () => {
           <div className="column has-text-centered">
             <h1 className="title is-3">Lorem ipsum</h1>
             <p className="subtitle">
-              dolor sit amet, consectetur adipiscing elit. Duis interdum quam elit, nec lobortis orci sollicitudin non. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque neque odio, tincidunt in erat et, laoreet volutpat neque.
+              dolor sit amet, consectetur adipiscing elit. Duis interdum quam
+              elit, nec lobortis orci sollicitudin non. Lorem ipsum dolor sit
+              amet, consectetur adipiscing elit. Quisque neque odio, tincidunt
+              in erat et, laoreet volutpat neque.
             </p>
           </div>
         </div>
       </section>
     </>
   );
+};
+
+Index.getInitialProps = async (ctx) => {
+  const { cookie } = ctx.req ? ctx.req.headers : {};
+  const host =
+    process.env.NODE_ENV !== 'development'
+      ? 'https://keyserviceshost.vercel.app/'
+      : 'http://localhost:5000';
+  const res = await fetch(`${host}/api/auth`, {
+    headers: {
+      cookie
+    }
+  });
+
+  if (res.status === 401 && !ctx.req) {
+    return { authenticated: false };
+  }
+
+  if (res.status === 401 && ctx.req) {
+    return { authenticated: false };
+  }
+  return { authenticated: true };
 };
 
 export default Index;

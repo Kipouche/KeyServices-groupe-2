@@ -1,11 +1,17 @@
 import Router from 'next/router';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import Header from '../components/Header';
 
-const Login = () => {
+const Login = ({ authenticated }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  useEffect(() => {
+    // Prefetch the dashboard page as the user will go there after the login
+    Router.prefetch('/dashboard')
+  }, [])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -32,73 +38,76 @@ const Login = () => {
   };
 
   return (
-    <section className="section container">
-      <div className="container is-mobile">
-        <div className="columns is-vcentered">
-          <div className="column has-text-centered">
-            <figure className="is-inline-block">
-              <img alt="woman" src="/man.png" />
-            </figure>
-          </div>
-          <div className="column">
-            <div className="">
-              <h1 className="title is-3">Welcome back !</h1>
-              <form onSubmit={handleSubmit}>
-                <div className="field">
-                  <label className="label">email</label>
-                  <div className="control">
-                    <input
-                      onChange={(e) => setEmail(e.target.value)}
-                      value={email}
-                      className="input"
-                      type="email"
-                      name="email"
-                      placeholder="email"
-                      required
-                    />
-                  </div>
-                </div>
-                <div className="field">
-                  <label className="label">password</label>
-                  <div className="control">
-                    <input
-                      onChange={(e) => setPassword(e.target.value)}
-                      value={password}
-                      className="input"
-                      type="password"
-                      name="password"
-                      placeholder="password"
-                      required
-                    />
-                  </div>
-                </div>
-                {error ? (
-                  <div className="has-text-danger">
-                    <p>Error: {error}</p>
-                  </div>
-                ) : (
-                  []
-                )}
-                <div className="field">
-                  <div className="control">
-                    <div className="buttons">
-                      <button
-                        className={`button is-link has-text-white is-fullwidth ${
-                          loading ? 'is-loading' : ''
-                        }`}
-                        type="submit"
-                      >
-                        loading
-                      </button>
+    <>
+      <Header authenticated={authenticated} />
+      <section className="section container">
+        <div className="container is-mobile">
+          <div className="columns is-vcentered">
+            <div className="column has-text-centered is-hidden-mobile">
+              <figure className="is-inline-block">
+                <img alt="woman" src="/man.png" />
+              </figure>
+            </div>
+            <div className="column">
+              <div className="">
+                <h1 className="title is-3">Welcome back !</h1>
+                <form onSubmit={handleSubmit}>
+                  <div className="field">
+                    <label className="label">email</label>
+                    <div className="control">
+                      <input
+                        onChange={(e) => setEmail(e.target.value)}
+                        value={email}
+                        className="input"
+                        type="email"
+                        name="email"
+                        placeholder="email"
+                        required
+                      />
                     </div>
                   </div>
-                </div>
-              </form>
+                  <div className="field">
+                    <label className="label">password</label>
+                    <div className="control">
+                      <input
+                        onChange={(e) => setPassword(e.target.value)}
+                        value={password}
+                        className="input"
+                        type="password"
+                        name="password"
+                        placeholder="password"
+                        required
+                      />
+                    </div>
+                  </div>
+                  {error ? (
+                    <div className="has-text-danger">
+                      <p>Error: {error}</p>
+                    </div>
+                  ) : (
+                    []
+                  )}
+                  <div className="field">
+                    <div className="control">
+                      <div className="buttons">
+                        <button
+                          className={`button is-link has-text-white is-fullwidth ${
+                            loading ? 'is-loading' : ''
+                          }`}
+                          type="submit"
+                        >
+                          Login
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 };
 
@@ -124,7 +133,7 @@ Login.getInitialProps = async (ctx) => {
     });
     ctx.res.end();
   }
-  return { authenticated: false}
+  return { authenticated: false };
 };
 
 export default Login;
