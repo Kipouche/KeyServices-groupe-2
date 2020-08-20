@@ -5,6 +5,7 @@ import DashboardPanel from '../../components/DashboardPanel';
 
 const Profile = ({ authenticated, profile, id }) => {
   const [loading, setLoading] = useState(false);
+  const [validate, setValidate] = useState(false);
   const [error, setError] = useState('');
   const [firstname, setFirstname] = useState(profile.firstname);
   const [lastname, setLastname] = useState(profile.lastname);
@@ -15,7 +16,7 @@ const Profile = ({ authenticated, profile, id }) => {
     e.preventDefault();
     setLoading(true);
     console.log(id);
-    
+
     const res = await fetch(`/api/profile/${id}`, {
       method: 'PUT',
       headers: {
@@ -31,8 +32,11 @@ const Profile = ({ authenticated, profile, id }) => {
     setLoading(false);
     if (res.status === 200) {
       setError('');
+      setValidate(true);
     } else {
-      setError('Error');
+      const errorMessage = await res.json();
+      setError(errorMessage.message);
+      setValidate(false);
     }
   };
 
@@ -102,7 +106,14 @@ const Profile = ({ authenticated, profile, id }) => {
               </div>
               {error ? (
                 <div className="has-text-danger">
-                  <p>Error: {error}</p>
+                  <p>{error}</p>
+                </div>
+              ) : (
+                []
+              )}
+              {validate ? (
+                <div className="has-text-success">
+                  <p>Your profile has been updated</p>
                 </div>
               ) : (
                 []
