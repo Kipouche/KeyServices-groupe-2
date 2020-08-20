@@ -1,6 +1,6 @@
-import authentification from '../../../lib/authentification';
+import { authentification } from '../../../lib/authentification';
 import User from '../../../lib/user';
-import convertTimeGMT2 from '../../../lib/convertTimeGMT2';
+import ConvertTime from '../../../lib/convertTime';
 import InputValidation from '../../../lib/inputValidation';
 
 export default authentification(async (req, res) => {
@@ -8,7 +8,7 @@ export default authentification(async (req, res) => {
   if (req.method === 'GET') {
     try {
       const profile = await User.getByIdClientSide(profileId);
-      [profile[0].dateofbirth] = convertTimeGMT2(profile[0].dateofbirth)
+      [profile[0].dateofbirth] = ConvertTime.timeToGMT2(profile[0].dateofbirth)
         .toISOString()
         .split('T');
       return res.status(200).json(profile);
