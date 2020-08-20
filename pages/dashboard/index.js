@@ -8,7 +8,7 @@ const Dashboard = ({ authenticated }) => {
       <Header authenticated={authenticated} />
       <section className="section">
         <div className="columns">
-          <div className="column is-2">
+          <div className="column is-3">
             <DashboardPanel />
           </div>
           <div className="column auto">

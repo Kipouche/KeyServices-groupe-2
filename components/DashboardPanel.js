@@ -11,7 +11,7 @@ const DashboardPanel = () => {
       <Link href="/dashboard/profile">
         <a className="panel-block">Profile</a>
       </Link>
-      <Link href="/dashboard/profile">
+      <Link href="/dashboard/properties">
         <a className="panel-block">My Properties</a>
       </Link>
       <Link href="/dashboard/rentals">
