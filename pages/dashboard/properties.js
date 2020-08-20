@@ -1,5 +1,6 @@
 import Header from '../../components/Header';
 import DashboardPanel from '../../components/DashboardPanel';
+import PropertyCards from '../../components/PropertyCards';
 
 const Properties = ({ authenticated, properties, id }) => {
   return (
@@ -10,18 +11,7 @@ const Properties = ({ authenticated, properties, id }) => {
           <div className="column is-3">
             <DashboardPanel />
           </div>
-          <div className="columns">
-            {properties.map((property) => {
-              return (
-                <div className="column">
-                  <p>
-                    <strong>Address</strong>
-                    {property.address}
-                  </p>
-                </div>
-              );
-            })}
-          </div>
+          <PropertyCards properties={properties} />
         </div>
       </section>
     </>

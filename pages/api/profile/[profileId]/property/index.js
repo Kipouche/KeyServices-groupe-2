@@ -10,13 +10,13 @@ export default authentification(async (req, res) => {
 
     try {
       const jwt = await verifyJWT(req);
-      if (jwt.sub != profileId) {
+      if (jwt.sub !== parseInt(profileId)) {
         return res.status(401).json({ message: 'Not authorized' });
       }
       const properties = await Property.getByUserId(profileId);
       return res.status(200).json(properties);
     } catch (error) {
-        return res.status(400).json({ message: error.message });
+      return res.status(400).json({ message: error.message });
     }
   }
 });
