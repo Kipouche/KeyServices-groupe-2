@@ -15,7 +15,7 @@ const PropertyCards = ({ properties }) => {
             </div>
         </div>
     })
-    return <div className="columns is-centered is-multiline">{properties}</div>
+    return <div className="column columns is-multiline">{properties}</div>
 }
 
 export default PropertyCards;
