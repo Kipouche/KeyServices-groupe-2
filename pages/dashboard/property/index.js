@@ -1,6 +1,6 @@
-import Header from '../../components/Header';
-import DashboardPanel from '../../components/DashboardPanel';
-import PropertyCards from '../../components/PropertyCards';
+import Header from '../../../components/Header';
+import DashboardPanel from '../../../components/DashboardPanel';
+import PropertyCards from '../../../components/PropertyCards';
 
 const Properties = ({ authenticated, properties, id }) => {
   return (

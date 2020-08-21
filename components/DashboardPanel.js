@@ -11,7 +11,10 @@ const DashboardPanel = () => {
       <Link href="/dashboard/profile">
         <a className="panel-block">Profile</a>
       </Link>
-      <Link href="/dashboard/properties">
+      <Link href="/dashboard/property/add">
+        <a className="panel-block">Add Property</a>
+      </Link>
+      <Link href="/dashboard/property">
         <a className="panel-block">My Properties</a>
       </Link>
       <Link href="/dashboard/rentals">
