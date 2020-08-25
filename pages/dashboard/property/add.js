@@ -17,8 +17,11 @@ const Add = ({ authenticated, id }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+<<<<<<< HEAD
     console.log(e);
     console.log(id);
+=======
+>>>>>>> d6a5dc17e103a8fc945e61b21ba9c0b90df7208c
 
     const res = await fetch(`/api/property`, {
       method: 'POST',
@@ -149,19 +152,32 @@ const Add = ({ authenticated, id }) => {
                   <p>{error}</p>
                 </div>
               ) : (
+<<<<<<< HEAD
                   []
                 )}
+=======
+                []
+              )}
+>>>>>>> d6a5dc17e103a8fc945e61b21ba9c0b90df7208c
               <div className="field">
                 <div className="control">
                   <div className="buttons">
                     <button
                       className={`button is-link has-text-white ${
                         loading ? 'is-loading' : ''
+<<<<<<< HEAD
                         }`}
                       type="submit"
                     >
                       Create
                       </button>
+=======
+                      }`}
+                      type="submit"
+                    >
+                      Create
+                    </button>
+>>>>>>> d6a5dc17e103a8fc945e61b21ba9c0b90df7208c
                   </div>
                 </div>
               </div>
@@ -201,4 +217,8 @@ Add.getInitialProps = async (ctx) => {
   return { authenticated: false };
 };
 
+<<<<<<< HEAD
 export default Add;
+=======
+export default Add;
+>>>>>>> d6a5dc17e103a8fc945e61b21ba9c0b90df7208c
