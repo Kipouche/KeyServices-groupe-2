@@ -1,9 +1,9 @@
 import Router from 'next/router';
 import { useState } from 'react';
 import Header from '../../components/Header';
-import DashboardPanel from '../../components/DashboardPanel';
+import DashboardPanel from '../../components/Dashboard/DashboardPanel';
 
-const Profile = ({ authenticated, profile, id }) => {
+const Profile = ({ authenticated, profile, id, role }) => {
   const [loading, setLoading] = useState(false);
   const [validate, setValidate] = useState(false);
   const [error, setError] = useState('');
@@ -15,7 +15,6 @@ const Profile = ({ authenticated, profile, id }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    console.log(id);
 
     const res = await fetch(`/api/profile/${id}`, {
       method: 'PUT',
@@ -45,9 +44,7 @@ const Profile = ({ authenticated, profile, id }) => {
       <Header authenticated={authenticated} />
       <section className="section">
         <div className="columns">
-          <div className="column is-3">
-            <DashboardPanel />
-          </div>
+          <DashboardPanel role={role} tab="public" />
           <div className="column auto">
             <h1 className="title">Profile</h1>
             <form onSubmit={handleSubmit} className="is-centered">
@@ -170,7 +167,7 @@ Profile.getInitialProps = async (ctx) => {
     });
     if (resProfile.status === 200) {
       const profile = await resProfile.json();
-      return { authenticated: true, profile: profile[0], id: jwt.message.sub };
+      return { authenticated: true, profile: profile[0], id: jwt.message.sub, role: jwt.message.role };
     }
   }
   return { authenticated: false };

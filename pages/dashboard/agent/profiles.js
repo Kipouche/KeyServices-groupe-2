@@ -1,24 +1,24 @@
 import Router from 'next/router';
-
 import Header from '../../../components/Header';
 import DashboardPanel from '../../../components/Dashboard/DashboardPanel';
-import PropertyCards from '../../../components/PropertyCards';
+import ProfilesTable from '../../../components/ProfilesTable';
 
-const Properties = ({ authenticated, properties, id, role }) => {
+const Profiles = ({ authenticated, profiles, id, role }) => {
   return (
     <>
       <Header authenticated={authenticated} />
       <section className="section">
         <div className="columns">
-          <DashboardPanel role={role} tab="public" />
-          <PropertyCards properties={properties} />
+          <DashboardPanel role={role} tab="agent" />
+          <ProfilesTable profiles={profiles} />
+          <div />
         </div>
       </section>
     </>
   );
 };
 
-Properties.getInitialProps = async (ctx) => {
+Profiles.getInitialProps = async (ctx) => {
   const { cookie } = ctx.req ? ctx.req.headers : {};
   const host =
     process.env.NODE_ENV !== 'development'
@@ -41,25 +41,42 @@ Properties.getInitialProps = async (ctx) => {
   }
   if (resAuth.status === 200) {
     const jwt = await resAuth.json();
-    const resProperties = await fetch(
-      `${host}/api/profile/${jwt.message.sub}/property`,
-      {
-        headers: {
-          cookie
-        }
+    if (
+      jwt.message.role !== 'admin' &&
+      jwt.message.role !== 'agent' &&
+      !ctx.req
+    ) {
+      Router.replace('/dashboard');
+      return {};
+    }
+
+    if (
+      jwt.message.role !== 'admin' &&
+      jwt.message.role !== 'agent' &&
+      ctx.req
+    ) {
+      ctx.res.writeHead(302, {
+        Location: '/dashboard'
+      });
+      ctx.res.end();
+      return {};
+    }
+    const resProfiles = await fetch(`${host}/api/agent/profile`, {
+      headers: {
+        cookie
       }
-    );
-    if (resProperties.status === 200) {
-      const properties = await resProperties.json();
+    });
+    if (resProfiles.status === 200) {
+      const profiles = await resProfiles.json();
       return {
         authenticated: true,
-        properties,
+        profiles,
         id: jwt.message.sub,
         role: jwt.message.role
       };
     }
   }
-  return { authenticated: false, properties: [] };
+  return { authenticated: false, users: [] };
 };
 
-export default Properties;
+export default Profiles;

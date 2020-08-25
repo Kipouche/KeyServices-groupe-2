@@ -1,16 +1,14 @@
 import Router from 'next/router';
 import Header from '../../components/Header';
-import DashboardPanel from '../../components/DashboardPanel';
+import DashboardPanel from '../../components/Dashboard/DashboardPanel';
 
-const Dashboard = ({ authenticated }) => {
+const Dashboard = ({ authenticated, id, role }) => {
   return (
     <>
       <Header authenticated={authenticated} />
       <section className="section">
         <div className="columns">
-          <div className="column is-3">
-            <DashboardPanel />
-          </div>
+          <DashboardPanel role={role} tab="public" />
           <div className="column auto">
             <p>Dashboard</p>
           </div>
@@ -33,6 +31,8 @@ Dashboard.getInitialProps = async (ctx) => {
   });
 
   const json = await res.json();
+  console.log(json);
+  
   if (res.status === 401 && !ctx.req) {
     Router.replace('/login');
   }
@@ -43,7 +43,7 @@ Dashboard.getInitialProps = async (ctx) => {
     });
     ctx.res.end();
   }
-  return { authenticated: true };
+  return { authenticated: true, id: json.sub, role: json.message.role };
 };
 
 export default Dashboard;

@@ -1,11 +1,11 @@
 import Router from 'next/router';
 import { useState } from 'react';
 import Header from '../../../components/Header';
-import DashboardPanel from '../../../components/DashboardPanel';
+import DashboardPanel from '../../../components/Dashboard/DashboardPanel';
 
-const Add = ({ authenticated, id }) => {
+const Add = ({ authenticated, id, role }) => {
   const [address, setAddress] = useState('');
-  const [city, setCity] = useState('');
+  const [city, setCity] = useState('paris');
   const [district, setDistrict] = useState();
   const [area, setArea] = useState();
   const [room, setRoom] = useState();
@@ -17,13 +17,8 @@ const Add = ({ authenticated, id }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-<<<<<<< HEAD
-    console.log(e);
-    console.log(id);
-=======
->>>>>>> d6a5dc17e103a8fc945e61b21ba9c0b90df7208c
 
-    const res = await fetch(`/api/property`, {
+    const res = await fetch(`/api/profile/${id}/property`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -53,9 +48,7 @@ const Add = ({ authenticated, id }) => {
       <Header authenticated={authenticated} />
       <section className="section">
         <div className="columns">
-          <div className="column is-3">
-            <DashboardPanel />
-          </div>
+          <DashboardPanel role={role} tab="public" />
           <div className="column auto">
             <h1 className="title">Property</h1>
             <form onSubmit={handleSubmit} className="is-centered">
@@ -72,13 +65,14 @@ const Add = ({ authenticated, id }) => {
                     required
                   />
                 </div>
-                <div className="control">
+                <div className="control is-hidden">
                   <label className="label">City</label>
                   <input
+                    hidden
                     onChange={(e) => setCity(e.target.value)}
                     value={city}
                     className="input"
-                    type="text"
+                    type="hidden"
                     name="city"
                     placeholder="City"
                     required
@@ -152,32 +146,19 @@ const Add = ({ authenticated, id }) => {
                   <p>{error}</p>
                 </div>
               ) : (
-<<<<<<< HEAD
-                  []
-                )}
-=======
                 []
               )}
->>>>>>> d6a5dc17e103a8fc945e61b21ba9c0b90df7208c
               <div className="field">
                 <div className="control">
                   <div className="buttons">
                     <button
                       className={`button is-link has-text-white ${
                         loading ? 'is-loading' : ''
-<<<<<<< HEAD
-                        }`}
-                      type="submit"
-                    >
-                      Create
-                      </button>
-=======
                       }`}
                       type="submit"
                     >
                       Create
                     </button>
->>>>>>> d6a5dc17e103a8fc945e61b21ba9c0b90df7208c
                   </div>
                 </div>
               </div>
@@ -212,13 +193,9 @@ Add.getInitialProps = async (ctx) => {
   }
   if (resAuth.status === 200) {
     const jwt = await resAuth.json();
-    return { authenticated: true, id: jwt.message.sub };
+    return { authenticated: true, id: jwt.message.sub, role: jwt.message.role };
   }
   return { authenticated: false };
 };
 
-<<<<<<< HEAD
 export default Add;
-=======
-export default Add;
->>>>>>> d6a5dc17e103a8fc945e61b21ba9c0b90df7208c

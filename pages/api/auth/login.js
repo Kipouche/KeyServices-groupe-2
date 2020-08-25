@@ -42,7 +42,8 @@ export default async (req, res) => {
         await passCompare(password, user.password);
         const claims = {
           sub: user.id,
-          email: user.email
+          email: user.email,
+          role: user.role
         };
         const jwt = sign(claims, process.env.SECRET, { expiresIn: '24h' });
         res.setHeader(
