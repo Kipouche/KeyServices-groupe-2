@@ -21,7 +21,7 @@ Unvalidated.getInitialProps = async (ctx) => {
   const { cookie } = ctx.req ? ctx.req.headers : {};
   const host =
     process.env.NODE_ENV !== 'development'
-      ? 'https://keyserviceshost.vercel.app/'
+      ? process.env.ROOT_URL
       : 'http://localhost:5000';
   const resAuth = await fetch(`${host}/api/auth`, {
     headers: {
