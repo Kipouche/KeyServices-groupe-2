@@ -1,7 +1,7 @@
 import Router from 'next/router';
 import Header from '../../../../components/Header';
 import DashboardPanel from '../../../../components/Dashboard/DashboardPanel';
-import PropertyCards from '../../../../components/PropertyCards';
+import PropertyTable from '../../../../components/PropertyTable';
 
 const Unvalidated = ({ authenticated, properties, id, role }) => {
   return (
@@ -10,7 +10,7 @@ const Unvalidated = ({ authenticated, properties, id, role }) => {
       <section className="section">
         <div className="columns">
           <DashboardPanel role={role} tab="agent" />
-          <PropertyCards properties={properties} />
+          <PropertyTable properties={properties} />
         </div>
       </section>
     </>

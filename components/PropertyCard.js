@@ -1,12 +1,32 @@
 import Link from 'next/link';
 
-const PropertyCard = ({ id, address, city, district, validated, price }) => (
+const PropertyCard = ({
+  id,
+  title,
+  address,
+  city,
+  district,
+  validated,
+  price
+}) => (
   <div className="card card-homepage">
     <div className="card-image">
       <figure className="card-homepage-image transition image is-square">
-        <Link href="/">
+        <Link href={`/dashboard/property/${id}`}>
           <a>
-            <img src={`/property/1_1.jpg`} alt="property" />
+            {validated ? (
+              <img
+                style={{ objectFit: 'cover' }}
+                src={`/pictures/${id}_0.jpg`}
+                alt="property"
+              />
+            ) : (
+              <img
+                style={{ objectFit: 'cover' }}
+                src="/property/1_1.jpg"
+                alt="property"
+              />
+            )}
           </a>
         </Link>
       </figure>
@@ -19,10 +39,10 @@ const PropertyCard = ({ id, address, city, district, validated, price }) => (
           </figure>
         </div>
         <div className="media-content">
-          <p className="title is-4">Un mgnifique appartement parisien</p>
+          <p className="title is-4">{title || 'To be done'}</p>
           <p className="subtitle is-6">
             Link to
-            <Link href="/">
+            <Link href={`/dashboard/property/${id}`}>
               <a> description</a>
             </Link>
           </p>
