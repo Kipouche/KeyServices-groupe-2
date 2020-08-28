@@ -22,7 +22,7 @@ const ProfilesAdminTable = ({ profiles }) => {
   };
   return (
     <div className="column">
-      <table className="table">
+      <table className="table is-fullwidth">
         <thead>
           <tr>
             <th>id</th>

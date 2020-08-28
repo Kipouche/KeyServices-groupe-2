@@ -31,8 +31,6 @@ Dashboard.getInitialProps = async (ctx) => {
   });
 
   const json = await res.json();
-  console.log(json);
-  
   if (res.status === 401 && !ctx.req) {
     Router.replace('/login');
   }
@@ -40,6 +38,14 @@ Dashboard.getInitialProps = async (ctx) => {
   if (res.status === 401 && ctx.req) {
     ctx.res.writeHead(302, {
       Location: '/login'
+    });
+    ctx.res.end();
+  }
+  if (!ctx.req) {
+    Router.replace('/dashboard/property');
+  } else {
+    ctx.res.writeHead(302, {
+      Location: '/dashboard/property'
     });
     ctx.res.end();
   }

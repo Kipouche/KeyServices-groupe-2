@@ -6,7 +6,7 @@ const PropertyTables = ({ properties }) => {
 
   return (
     <div className="column">
-      <table className="table">
+      <table className="table is-fullwidth">
         <thead>
           <tr>
             <th>id</th>
