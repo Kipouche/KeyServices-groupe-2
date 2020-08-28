@@ -65,21 +65,19 @@ const Add = ({ authenticated, id, role }) => {
                     required
                   />
                 </div>
-                <div className="control is-hidden">
+                <div className="control">
                   <label className="label">City</label>
                   <input
-                    hidden
+                    disabled
                     onChange={(e) => setCity(e.target.value)}
                     value={city}
                     className="input"
-                    type="hidden"
+                    type="text"
                     name="city"
                     placeholder="City"
                     required
                   />
                 </div>
-              </div>
-              <div className="field is-grouped">
                 <div className="control">
                   <label className="label">District</label>
                   <input
@@ -92,6 +90,8 @@ const Add = ({ authenticated, id, role }) => {
                     required
                   />
                 </div>
+              </div>
+              <div className="field is-grouped">
                 <div className="control">
                   <label className="label">Area</label>
                   <input

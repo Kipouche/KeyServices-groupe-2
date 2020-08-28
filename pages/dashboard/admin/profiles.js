@@ -1,7 +1,7 @@
 import Router from 'next/router';
 import Header from '../../../components/Header';
 import DashboardPanel from '../../../components/Dashboard/DashboardPanel';
-import ProfilesTable from '../../../components/ProfilesTable';
+import ProfilesAdminTable from '../../../components/ProfilesAdminTable';
 
 const Profiles = ({ authenticated, profiles, id, role }) => {
   return (
@@ -10,7 +10,7 @@ const Profiles = ({ authenticated, profiles, id, role }) => {
       <section className="section">
         <div className="columns">
           <DashboardPanel role={role} tab="agent" />
-          <ProfilesTable profiles={profiles} />
+          <ProfilesAdminTable profiles={profiles} />
           <div />
         </div>
       </section>
@@ -41,27 +41,19 @@ Profiles.getInitialProps = async (ctx) => {
   }
   if (resAuth.status === 200) {
     const jwt = await resAuth.json();
-    if (
-      jwt.message.role !== 'admin' &&
-      jwt.message.role !== 'agent' &&
-      !ctx.req
-    ) {
+    if (jwt.message.role !== 'admin' && !ctx.req) {
       Router.replace('/dashboard');
       return {};
     }
 
-    if (
-      jwt.message.role !== 'admin' &&
-      jwt.message.role !== 'agent' &&
-      ctx.req
-    ) {
+    if (jwt.message.role !== 'admin' && ctx.req) {
       ctx.res.writeHead(302, {
         Location: '/dashboard'
       });
       ctx.res.end();
       return {};
     }
-    const resProfiles = await fetch(`${host}/api/agent/profile`, {
+    const resProfiles = await fetch(`${host}/api/admin/profile`, {
       headers: {
         cookie
       }

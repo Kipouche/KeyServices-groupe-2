@@ -24,11 +24,17 @@ const savePicture = (data, propertyId, i) => {
   });
 };
 export default async (req, res) => {
-  const { title, description, pictures } = req.body;
+  const { title, description, price, pictures } = req.body;
   const { propertyId } = req.query;
-  if (req.method === 'POST') {
+  if (req.method === 'PUT') {
+    if (!title || !description || !price || !pictures) {
+      return res.status('400').json({ message: 'A field is missing' });
+    }
+    if (!Number.isInteger(price)){
+      return res.status('400').json({ message: 'Invalid price number' });
+    }
     try {
-      await Property.completeInfos(propertyId, title, description);
+      await Property.completeInfos(propertyId, title, description, price);
       pictures.map(async (picture, i) => {
         await savePicture(picture, propertyId, i);
       });

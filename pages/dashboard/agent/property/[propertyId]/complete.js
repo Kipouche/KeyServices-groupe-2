@@ -5,6 +5,7 @@ import DashboardPanel from '../../../../../components/Dashboard/DashboardPanel';
 
 const Complete = ({ authenticated, id, role, propertyId }) => {
   const [title, setTitle] = useState('');
+  const [price, setPrice] = useState(0);
   const [description, setDescription] = useState('');
   const [pictures, setPictures] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -29,13 +30,14 @@ const Complete = ({ authenticated, id, role, propertyId }) => {
     setLoading(true);
 
     const res = await fetch(`/api/agent/property/${propertyId}/complete`, {
-      method: 'POST',
+      method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
         title,
         description,
+        price: parseInt(price, 10),
         pictures
       })
     });
@@ -69,6 +71,18 @@ const Complete = ({ authenticated, id, role, propertyId }) => {
                     type="text"
                     name="title"
                     placeholder="Title"
+                    required
+                  />
+                </div>
+                <div className="control">
+                  <label className="label">Price</label>
+                  <input
+                    onChange={(e) => setPrice(e.target.value)}
+                    value={price}
+                    className="input"
+                    type="number"
+                    name="price"
+                    placeholder="Price"
                     required
                   />
                 </div>

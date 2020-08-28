@@ -5,7 +5,7 @@ const PropertyCards = ({ properties }) => {
     return (
       <div
         key={property.id}
-        className="column is-half-tablet is-one-third-desktop is-full-mobile"
+        className="column is-half-tablet is-one-quarter-desktop is-full-mobile"
       >
         <div>
           <PropertyCard

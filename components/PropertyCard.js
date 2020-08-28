@@ -34,12 +34,12 @@ const PropertyCard = ({
     <div className="card-content">
       <div className="media">
         <div className="media-left">
-          <figure className="image is-48x48">
+          <figure className="image is-24x24">
             <img src="/logo-square.png" alt="property" />
           </figure>
         </div>
         <div className="media-content">
-          <p className="title is-4">{title || 'To be done'}</p>
+          <p className="title is-5">{title || 'To be done'}</p>
           <p className="subtitle is-6">
             Link to
             <Link href={`/dashboard/property/${id}`}>
