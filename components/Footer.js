@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 const Footer = () => {
   return (
     <footer className="footer">
@@ -12,7 +14,9 @@ const Footer = () => {
               <a>Pricing</a>
             </p>
             <p>
-              <a>Who are we ?</a>
+              <Link href="/whoarewe">
+                <a>Qui sommes nous ?</a>
+              </Link>
             </p>
             <p>
               <a>Confidentiality</a>
@@ -30,12 +34,11 @@ const Footer = () => {
               <a href="mailto:keyservices.contact@keyservices.com">keyservices.contact@keyservices.com</a>
             </p>
             <p>
-              <a href="tel:+330000000000">00 00 00 00 00</a>
+              <a href="tel:+33199173032">01 99 17 30 32</a>
             </p>
             <p>138 Boulevard Diderot 75012 Paris</p>
           </div>
         </div>
-
       </div>
     </footer>
   );
