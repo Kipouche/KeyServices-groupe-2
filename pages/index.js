@@ -14,7 +14,7 @@ const Index = ({ authenticated }) => {
           <div className="column">
             <h1 className="title is-1">KeyServices</h1>
             <p className="subtitle is-3">
-              Hosting guests will no longer require any effort.
+              Louer votre bien ne demande plus d&apos;efforts.
             </p>
           </div>
         </div>

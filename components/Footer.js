@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 const Footer = () => {
   return (
     <footer className="footer">
@@ -15,13 +17,14 @@ const Footer = () => {
               <a>Who are we ?</a>
             </p>
             <p>
-              <a>Confidentiality</a>
+              <Link href="/legalite#ml">
+                <a>Mentions légales</a>
+              </Link>
             </p>
             <p>
-              <a>Legal Notice</a>
-            </p>
-            <p>
-              <a>Terms of use</a>
+              <Link href="/legalite#cgu">
+                <a>Conditions générales d&apos;utilisation</a>
+              </Link>
             </p>
           </div>
           <div className="column">
