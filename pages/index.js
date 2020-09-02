@@ -47,7 +47,7 @@ const Index = ({ authenticated }) => {
               <figure className="image is-64x64 is-inline-block">
                 <img alt="airbnb logo" src="/clean.png" />
               </figure>
-              <div className="column is-full">
+              <div className="column is-full mt-3">
                 <p>
                   Ne vous embêtez plus avec le ménage, notre équipe
                   d&apos;entretien est là pour vous.
@@ -58,7 +58,7 @@ const Index = ({ authenticated }) => {
               <figure className="image is-64x64 is-inline-block">
                 <img alt="airbnb logo" src="/fix.png" />
               </figure>
-              <div className="column is-full">
+              <div className="column is-full mt-3">
                 <p>
                   Un problème avec votre location ? Une question ? Notre équipe
                   reste à votre écoute 24h/24 et 7j/7.
