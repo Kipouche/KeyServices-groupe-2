@@ -1,36 +1,36 @@
-import User from '../../../lib/user';
 import InputValidation from '../../../lib/inputValidation';
+import Mailer from '../../../lib/mailer/mailer';
+// import confirmMail from '../../../lib/mailer/confirmMail';
 
 export default async (req, res) => {
-  // ajouter le jsonwebtoken sur les cookies de la réponse
-  // vérifier si le user est active ou pas
-  const { email, password } = req.body;
+  const { email, name, subject, message } = req.body;
 
   if (req.method === 'POST') {
-    if (!email || !password) {
+    if (!email || !name || !subject || !message) {
       return res.status(401).json({ message: 'A field is missing' });
     }
-    if (!InputValidation.verifyEmail(email)) {
+    if (
+      !InputValidation.verifyEmail(email) ||
+      email.length > 255 ||
+      email.length < 10
+    ) {
       return res.status(401).json({ message: 'Invalid email' });
     }
+    if (!InputValidation.verifyName(name)) {
+      return res.status(401).json({ message: 'Invalid name' });
+    }
     try {
-      const results = await User.getByEmail(email);
-      if (results.length === 0) {
-        return res.status(401).json({ message: 'Invalid connection' });
-      }
-      const user = results[0];
-      if (!user.validated) {
-        return res.status(401).json({ message: 'Invalid connection' });
-      }
-      try {
-        return res.status(200).json({ message: 'Connected' });
-      } catch (error) {
-        return res.status(401).json({ message: error.message });
-      }
+      Mailer.sendContactMail(
+        email,
+        'Confirmation of registration for KeyServices',
+        '<html><body><p>je sais pas ce que je met ici</p></body></html>',
+        message
+      );
+      return res.status(200).json({ sucess: 'ok' });
     } catch (err) {
       return res.status(401).json({ message: err.message });
     }
   } else {
-    return res.status(405).json({ message: 'Only method POST required' });
+    return res.status(400).json({ message: 'Only method POST exists' });
   }
 };
