@@ -9,9 +9,9 @@ const Footer = () => {
             <h2>KeyServices</h2>
           </div>
           <div className="column">
-            <h3>About KeyServices</h3>
+            <h3>À propos de KeyServices</h3>
             <p>
-              <a>Pricing</a>
+              <a>Tarifs</a>
             </p>
             <p>
               <Link href="/whoarewe">
@@ -19,13 +19,14 @@ const Footer = () => {
               </Link>
             </p>
             <p>
-              <a>Confidentiality</a>
+              <Link href="/legalite#ml">
+                <a>Mentions légales</a>
+              </Link>
             </p>
             <p>
-              <a>Legal Notice</a>
-            </p>
-            <p>
-              <a>Terms of use</a>
+              <Link href="/legalite#cgu">
+                <a>Conditions générales d&apos;utilisation</a>
+              </Link>
             </p>
           </div>
           <div className="column">
