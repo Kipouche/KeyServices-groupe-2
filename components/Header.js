@@ -71,6 +71,9 @@ const Header = (props) => {
             <Link href="/contact">
               <a className="navbar-item">Contactez-nous</a>
             </Link>
+            <Link href="/whoarewe">
+              <a className="navbar-item">Qui sommes nous ?</a>
+            </Link>
           </div>
           <div className="navbar-end">
             <div className="navbar-item">
