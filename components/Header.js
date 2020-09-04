@@ -55,7 +55,7 @@ const Header = (props) => {
         <div id="navbarmenu" className="navbar-menu">
           <div className="navbar-start">
             <Link href="/">
-              <a className="navbar-item">Home</a>
+              <a className="navbar-item">Accueil</a>
             </Link>
             {props.authenticated ? (
               <Link href="/dashboard">
@@ -66,10 +66,13 @@ const Header = (props) => {
             )}
 
             <Link href="/pricing">
-              <a className="navbar-item">Pricing</a>
+              <a className="navbar-item">Tarifs</a>
             </Link>
             <Link href="/contact">
-              <a className="navbar-item">Contact us</a>
+              <a className="navbar-item">Contactez-nous</a>
+            </Link>
+            <Link href="/whoarewe">
+              <a className="navbar-item">Qui sommes nous ?</a>
             </Link>
           </div>
           <div className="navbar-end">
@@ -79,11 +82,11 @@ const Header = (props) => {
                   <>
                     <Link href="/register">
                       <a className="button is-link has-text-white">
-                        <strong>Register</strong>
+                        <strong>Inscription</strong>
                       </a>
                     </Link>
                     <Link href="/login">
-                      <a className="button is-link is-outlined">Log in</a>
+                      <a className="button is-link is-outlined">Connexion</a>
                     </Link>
                   </>
                 ) : (
