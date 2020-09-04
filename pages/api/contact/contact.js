@@ -1,6 +1,5 @@
 import InputValidation from '../../../lib/inputValidation';
 import Mailer from '../../../lib/mailer/mailer';
-// import confirmMail from '../../../lib/mailer/confirmMail';
 
 export default async (req, res) => {
   const { email, name, subject, message } = req.body;
@@ -22,9 +21,8 @@ export default async (req, res) => {
     try {
       Mailer.sendContactMail(
         email,
-        'Confirmation of registration for KeyServices',
-        '<html><body><p>je sais pas ce que je met ici</p></body></html>',
-        message
+        subject,
+        `<html><body><p>Bonjour KeyServices Contact, vous avez un nouveau message de : ${name}, voici son adresse : ${email} et son message : ${message}</p></body></html>`
       );
       return res.status(200).json({ sucess: 'ok' });
     } catch (err) {

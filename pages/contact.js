@@ -12,7 +12,7 @@ const Contact = ({ authenticated }) => {
 
   useEffect(() => {
     // Prefetch the dashboard page as the user will go there after the login
-    Router.prefetch('/index');
+    Router.prefetch('/');
   }, []);
 
   const handleSubmit = async (e) => {
@@ -33,7 +33,7 @@ const Contact = ({ authenticated }) => {
     setLoading(false);
     if (res.status === 200) {
       setError('');
-      Router.push('/index');
+      Router.push('/');
     }
     if (res.status === 401) {
       const json = await res.json();
@@ -159,12 +159,12 @@ Contact.getInitialProps = async (ctx) => {
   });
 
   if (res.status === 200 && !ctx.req) {
-    Router.replace('/index');
+    Router.replace('/');
   }
 
   if (res.status === 200 && ctx.req) {
     ctx.res.writeHead(302, {
-      Location: '/index'
+      Location: '/'
     });
     ctx.res.end();
   }
