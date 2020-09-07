@@ -66,7 +66,7 @@ const Header = (props) => {
             )}
 
             <Link href="/pricing">
-              <a className="navbar-item">Tarifs</a>
+              <a className="navbar-item">Tarif</a>
             </Link>
             <Link href="/contact">
               <a className="navbar-item">Contactez-nous</a>

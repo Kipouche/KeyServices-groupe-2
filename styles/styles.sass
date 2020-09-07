@@ -25,3 +25,25 @@ $input-shadow: none;
 $footer-background-color: $blue;
 $footer-color: $beige-lighter;
 @import "../node_modules/bulma/bulma.sass";
+
+.pricing-list
+    list-style: none;
+    li.on
+        padding-left: 35px;
+        margin-bottom: 10px;
+        background: url("/check.png") left center no-repeat;
+    li.off
+        padding-left: 35px;
+        margin-bottom: 10px;
+        background: url("/cross.png") left center no-repeat;
+    
+@media screen and (max-width: 768px)
+    .pricing-center
+        margin: 10px 0 10px 0 !important;
+
+@media screen and (max-width: 440px)
+    .pricing-nav
+        width: 90%;
+
+     
+    

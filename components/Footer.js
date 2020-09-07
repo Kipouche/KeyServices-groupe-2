@@ -11,7 +11,9 @@ const Footer = () => {
           <div className="column">
             <h3>À propos de KeyServices</h3>
             <p>
-              <a>Tarifs</a>
+              <Link href="/pricing">
+                <a>Tarif</a>
+              </Link>
             </p>
             <p>
               <Link href="/whoarewe">
