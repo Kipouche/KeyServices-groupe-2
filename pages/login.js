@@ -10,8 +10,8 @@ const Login = ({ authenticated }) => {
 
   useEffect(() => {
     // Prefetch the dashboard page as the user will go there after the login
-    Router.prefetch('/dashboard')
-  }, [])
+    Router.prefetch('/dashboard');
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

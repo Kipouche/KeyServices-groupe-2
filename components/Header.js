@@ -69,7 +69,7 @@ const Header = (props) => {
               <a className="navbar-item">Tarif</a>
             </Link>
             <Link href="/contact">
-              <a className="navbar-item">Contactez-nous</a>
+              <a className="navbar-item">Contact</a>
             </Link>
             <Link href="/whoarewe">
               <a className="navbar-item">Qui sommes nous ?</a>
