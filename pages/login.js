@@ -50,10 +50,10 @@ const Login = ({ authenticated }) => {
             </div>
             <div className="column">
               <div className="">
-                <h1 className="title is-3">Welcome back !</h1>
+                <h1 className="title is-3">Nous sommes ravis de vous revoir !</h1>
                 <form onSubmit={handleSubmit}>
                   <div className="field">
-                    <label className="label">email</label>
+                    <label className="label">E-mail</label>
                     <div className="control">
                       <input
                         onChange={(e) => setEmail(e.target.value)}
@@ -61,13 +61,13 @@ const Login = ({ authenticated }) => {
                         className="input"
                         type="email"
                         name="email"
-                        placeholder="email"
+                        placeholder="E-mail"
                         required
                       />
                     </div>
                   </div>
                   <div className="field">
-                    <label className="label">password</label>
+                    <label className="label">Mot de passe</label>
                     <div className="control">
                       <input
                         onChange={(e) => setPassword(e.target.value)}
@@ -75,7 +75,7 @@ const Login = ({ authenticated }) => {
                         className="input"
                         type="password"
                         name="password"
-                        placeholder="password"
+                        placeholder="Mot de passe"
                         required
                       />
                     </div>
@@ -96,7 +96,7 @@ const Login = ({ authenticated }) => {
                           }`}
                           type="submit"
                         >
-                          Login
+                          Connexion
                         </button>
                       </div>
                     </div>
