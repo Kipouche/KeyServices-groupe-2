@@ -66,7 +66,7 @@ export default async (req, res) => {
       const mailBody = confirmMail(results.insertId, token, firstname);
       Mailer.sendMail(
         email,
-        'Confirmation of registration for KeyServices',
+        'Confirmation de votre inscription chez KeyServices',
         mailBody.html,
         mailBody.text
       );
