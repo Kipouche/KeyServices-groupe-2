@@ -59,7 +59,7 @@ const Complete = ({ authenticated, id, role, propertyId }) => {
         <div className="columns">
           <DashboardPanel role={role} tab="public" />
           <div className="column auto">
-            <h1 className="title">Bien complet</h1>
+            <h1 className="title">Compléter bien</h1>
             <form onSubmit={handleSubmit} className="is-centered">
               <div className="field">
                 <div className="control">
@@ -70,7 +70,7 @@ const Complete = ({ authenticated, id, role, propertyId }) => {
                     className="input"
                     type="text"
                     name="title"
-                    placeholder="Title"
+                    placeholder="Titre"
                     required
                   />
                 </div>
@@ -82,7 +82,7 @@ const Complete = ({ authenticated, id, role, propertyId }) => {
                     className="input"
                     type="number"
                     name="price"
-                    placeholder="Price"
+                    placeholder="Prix"
                     required
                   />
                 </div>
@@ -108,7 +108,7 @@ const Complete = ({ authenticated, id, role, propertyId }) => {
                       multiple
                     />
                     <span className="file-cta">
-                      <span className="file-label">Choisir un fichier...</span>
+                      <span className="file-label">Choisir une photo...</span>
                     </span>
                   </label>
                 </div>

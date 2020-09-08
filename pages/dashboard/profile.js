@@ -57,7 +57,7 @@ const Profile = ({ authenticated, profile, id, role }) => {
                     className="input"
                     type="text"
                     name="firstname"
-                    placeholder="firstname"
+                    placeholder="Prénom"
                     required
                   />
                 </div>
@@ -69,7 +69,7 @@ const Profile = ({ authenticated, profile, id, role }) => {
                     className="input"
                     type="text"
                     name="lastname"
-                    placeholder="lastname"
+                    placeholder="Nom"
                     required
                   />
                 </div>
@@ -96,7 +96,7 @@ const Profile = ({ authenticated, profile, id, role }) => {
                     pattern="(0|\+33)[1-9]( *[0-9]{2}){4}"
                     type="tel"
                     name="phonenumber"
-                    placeholder="phone number"
+                    placeholder="Numéro de téléphone"
                     required
                   />
                 </div>

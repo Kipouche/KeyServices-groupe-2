@@ -61,7 +61,7 @@ const Add = ({ authenticated, id, role }) => {
                     className="input"
                     type="text"
                     name="address"
-                    placeholder="Address"
+                    placeholder="Adresse"
                     required
                   />
                 </div>
@@ -74,7 +74,7 @@ const Add = ({ authenticated, id, role }) => {
                     className="input"
                     type="text"
                     name="city"
-                    placeholder="City"
+                    placeholder="Ville"
                     required
                   />
                 </div>
@@ -86,7 +86,7 @@ const Add = ({ authenticated, id, role }) => {
                     className="input"
                     type="number"
                     name="district"
-                    placeholder="District"
+                    placeholder="Arrondissement"
                     required
                   />
                 </div>
@@ -100,7 +100,7 @@ const Add = ({ authenticated, id, role }) => {
                     className="input"
                     type="number"
                     name="area"
-                    placeholder="Area"
+                    placeholder="Surface"
                     required
                   />
                 </div>
@@ -112,7 +112,7 @@ const Add = ({ authenticated, id, role }) => {
                     className="input"
                     type="number"
                     name="room"
-                    placeholder="Room"
+                    placeholder="Chambre"
                     required
                   />
                 </div>
@@ -124,7 +124,7 @@ const Add = ({ authenticated, id, role }) => {
                     className="input"
                     type="number"
                     name="bed"
-                    placeholder="Bed"
+                    placeholder="Lit"
                     required
                   />
                 </div>
@@ -136,7 +136,7 @@ const Add = ({ authenticated, id, role }) => {
                     className="input"
                     type="number"
                     name="bathroom"
-                    placeholder="Bathroom"
+                    placeholder="Salle de bain"
                     required
                   />
                 </div>

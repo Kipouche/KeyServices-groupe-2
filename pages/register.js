@@ -69,7 +69,7 @@ const Register = ({ authenticated }) => {
                           className="input"
                           type="text"
                           name="firstname"
-                          placeholder="firstname"
+                          placeholder="Prénom"
                           required
                         />
                       </div>
@@ -83,7 +83,7 @@ const Register = ({ authenticated }) => {
                           className="input"
                           type="text"
                           name="lastname"
-                          placeholder="lastname"
+                          placeholder="Nom"
                           required
                         />
                       </div>
@@ -97,7 +97,7 @@ const Register = ({ authenticated }) => {
                           className="input"
                           type="email"
                           name="email"
-                          placeholder="email"
+                          placeholder="Email"
                           required
                         />
                       </div>
@@ -111,7 +111,7 @@ const Register = ({ authenticated }) => {
                           className="input"
                           type="password"
                           name="password"
-                          placeholder="password"
+                          placeholder="Mot de passe"
                           required
                         />
                       </div>
@@ -140,7 +140,7 @@ const Register = ({ authenticated }) => {
                           pattern="(0|\+33)[1-9]( *[0-9]{2}){4}"
                           type="tel"
                           name="phonenumber"
-                          placeholder="phone number"
+                          placeholder="Numéro de téléphone"
                           required
                         />
                       </div>
