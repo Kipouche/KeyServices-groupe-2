@@ -28,7 +28,7 @@ const FilterSearch = ({ handleSubmit }) => {
         <div className="field">
           <div className="control">
             <label className="label">
-              District: {district || ''}
+              Arrondissement: {district || ''}
             </label>
             <input
               style={{ width: '100%' }}
@@ -44,7 +44,7 @@ const FilterSearch = ({ handleSubmit }) => {
         <div className="field">
           <div className="control">
             <label className="label">
-              Minimum Area: {area}
+              Surface minimum: {area}
             </label>
             <input
               style={{ width: '100%' }}
@@ -60,7 +60,7 @@ const FilterSearch = ({ handleSubmit }) => {
         <div className="field">
           <div className="control">
             <label className="label">
-              Minimum Bed: {bed}
+              Lit minimum: {bed}
             </label>
             <input
               style={{ width: '100%' }}
@@ -76,7 +76,7 @@ const FilterSearch = ({ handleSubmit }) => {
         <div className="field">
           <div className="control">
             <label className="label">
-              Minimum Room: {room}
+              Chambre minimum: {room}
             </label>
             <input
               style={{ width: '100%' }}
@@ -92,7 +92,7 @@ const FilterSearch = ({ handleSubmit }) => {
         <div className="field">
           <div className="control">
             <label className="label">
-              Minimum Bathroom: {bathroom}
+              Salle de bain minimum: {bathroom}
             </label>
             <input
               style={{ width: '100%' }}
@@ -108,7 +108,7 @@ const FilterSearch = ({ handleSubmit }) => {
         <div className="field">
           <div className="control">
             <label className="label">
-              Minimum Price: {priceMin}
+              Prix minimum: {priceMin}
             </label>
             <input
               style={{ width: '100%' }}
@@ -124,7 +124,7 @@ const FilterSearch = ({ handleSubmit }) => {
         <div className="field">
           <div className="control">
             <label className="label">
-              Maximum Price: {priceMax}
+              Prix maximum: {priceMax}
             </label>
             <input
               style={{ width: '100%' }}
@@ -141,7 +141,7 @@ const FilterSearch = ({ handleSubmit }) => {
           <div className="control">
             <div className="buttons">
               <button className="button is-primary  has-text-white  is-fullwidth" type="submit">
-                Filter
+                Filtrer
               </button>
             </div>
           </div>

@@ -57,11 +57,11 @@ const Register = ({ authenticated }) => {
             </div>
             <div className="column">
               <div className="">
-                <h1 className="title is-3">Join us !</h1>
+                <h1 className="title is-3">Rejoignez nous !</h1>
                 {!registered ? (
                   <form onSubmit={handleSubmit}>
                     <div className="field">
-                      <label className="label">firstname</label>
+                      <label className="label">Prénom</label>
                       <div className="control">
                         <input
                           onChange={(e) => setFirstname(e.target.value)}
@@ -75,7 +75,7 @@ const Register = ({ authenticated }) => {
                       </div>
                     </div>
                     <div className="field">
-                      <label className="label">lastname</label>
+                      <label className="label">Nom</label>
                       <div className="control">
                         <input
                           onChange={(e) => setLastname(e.target.value)}
@@ -89,7 +89,7 @@ const Register = ({ authenticated }) => {
                       </div>
                     </div>
                     <div className="field">
-                      <label className="label">email</label>
+                      <label className="label">Email</label>
                       <div className="control">
                         <input
                           onChange={(e) => setEmail(e.target.value)}
@@ -103,7 +103,7 @@ const Register = ({ authenticated }) => {
                       </div>
                     </div>
                     <div className="field">
-                      <label className="label">password</label>
+                      <label className="label">Mot de passe</label>
                       <div className="control">
                         <input
                           onChange={(e) => setPassword(e.target.value)}
@@ -117,7 +117,7 @@ const Register = ({ authenticated }) => {
                       </div>
                     </div>
                     <div className="field">
-                      <label className="label">Date of birth</label>
+                      <label className="label">Date de naissance</label>
                       <div className="control">
                         <input
                           onChange={(e) => setDateofbirth(e.target.value)}
@@ -131,7 +131,7 @@ const Register = ({ authenticated }) => {
                       </div>
                     </div>
                     <div className="field">
-                      <label className="label">Phone number</label>
+                      <label className="label">Numéro de téléphone</label>
                       <div className="control">
                         <input
                           onChange={(e) => setPhonenumber(e.target.value)}
@@ -155,13 +155,13 @@ const Register = ({ authenticated }) => {
                             name="optinNewsletter"
                             required
                           />{' '}
-                          I agree to the <a href="/">terms and conditions</a>
+                          j'ai lu et j'accepte les <a href="/">termes et conditions</a>
                         </label>
                       </div>
                     </div>
                     {error ? (
                       <div className="has-text-danger">
-                        <p>Error: {error}</p>
+                        <p>Erreur: {error}</p>
                       </div>
                     ) : (
                       []
@@ -175,7 +175,7 @@ const Register = ({ authenticated }) => {
                             }`}
                             type="submit"
                           >
-                            register
+                            S'inscrire
                           </button>
                         </div>
                       </div>
@@ -184,11 +184,10 @@ const Register = ({ authenticated }) => {
                 ) : (
                   <div className="notification is-link">
                     <p>
-                      Thank you for joining <b>KeyServices</b>.
+                      Merci d'avoir rejoint <b>KeyServices</b>.
                     </p>
                     <p>
-                      An email has been sent to your address to verify your
-                      account.
+                      Un email a été envoyé pour valider votre compte.
                     </p>
                   </div>
                 )}

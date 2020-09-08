@@ -25,29 +25,29 @@ const ProfilesAdminTable = ({ profiles }) => {
       <table className="table">
         <thead>
           <tr>
-            <th>id</th>
-            <th>email</th>
-            <th>role</th>
-            <th>firstname</th>
-            <th>lastname</th>
-            <th>date of birth</th>
-            <th>phone number</th>
-            <th>created at</th>
-            <th>modify role</th>
+            <th>Id</th>
+            <th>Email</th>
+            <th>Rôle</th>
+            <th>Prénom</th>
+            <th>Nom</th>
+            <th>Date de naissance</th>
+            <th>Numéro de téléphone</th>
+            <th>Créé le</th>
+            <th>Modifier rôle</th>
             <th></th>
           </tr>
         </thead>
         <tfoot>
           <tr>
-            <th>id</th>
-            <th>email</th>
-            <th>role</th>
-            <th>firstname</th>
-            <th>lastname</th>
-            <th>date of birth</th>
-            <th>phone number</th>
-            <th>created at</th>
-            <th>modify role</th>
+            <th>Id</th>
+            <th>Email</th>
+            <th>Rôle</th>
+            <th>Prénom</th>
+            <th>Nom</th>
+            <th>Date de naissance</th>
+            <th>Numéro de téléphone</th>
+            <th>Créé le</th>
+            <th>Modifier rôle</th>
             <th></th>
           </tr>
         </tfoot>

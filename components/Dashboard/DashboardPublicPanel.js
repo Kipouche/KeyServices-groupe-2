@@ -9,7 +9,7 @@ const DashboardPublicPanel = () => {
       <PublicPanel />
       <div className="panel-block">
         <button className="button is-link is-outlined is-fullwidth">
-          Reset Password
+        Réinitialiser le mot de passe
         </button>
       </div>
     </nav>

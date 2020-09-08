@@ -46,11 +46,11 @@ const Profile = ({ authenticated, profile, id, role }) => {
         <div className="columns">
           <DashboardPanel role={role} tab="public" />
           <div className="column auto">
-            <h1 className="title">Profile</h1>
+            <h1 className="title">Profil</h1>
             <form onSubmit={handleSubmit} className="is-centered">
               <div className="field is-grouped">
                 <div className="control">
-                  <label className="label">firstname</label>
+                  <label className="label">Prénom</label>
                   <input
                     onChange={(e) => setFirstname(e.target.value)}
                     value={firstname}
@@ -62,7 +62,7 @@ const Profile = ({ authenticated, profile, id, role }) => {
                   />
                 </div>
                 <div className="control">
-                  <label className="label">lastname</label>
+                  <label className="label">Nom</label>
                   <input
                     onChange={(e) => setLastname(e.target.value)}
                     value={lastname}
@@ -76,7 +76,7 @@ const Profile = ({ authenticated, profile, id, role }) => {
               </div>
               <div className="field is-grouped">
                 <div className="control">
-                  <label className="label">Date of birth</label>
+                  <label className="label">Date de naissance</label>
                   <input
                     onChange={(e) => setDateofbirth(e.target.value)}
                     value={dateofbirth}
@@ -88,7 +88,7 @@ const Profile = ({ authenticated, profile, id, role }) => {
                   />
                 </div>
                 <div className="control">
-                  <label className="label">Phone number</label>
+                  <label className="label">Numéro de téléphone</label>
                   <input
                     onChange={(e) => setPhonenumber(e.target.value)}
                     value={phonenumber}
@@ -110,7 +110,7 @@ const Profile = ({ authenticated, profile, id, role }) => {
               )}
               {validate ? (
                 <div className="has-text-success">
-                  <p>Your profile has been updated</p>
+                  <p>Votre profil a été mis à jour</p>
                 </div>
               ) : (
                 []
@@ -124,7 +124,7 @@ const Profile = ({ authenticated, profile, id, role }) => {
                       }`}
                       type="submit"
                     >
-                      update
+                      Mettre à jour
                     </button>
                   </div>
                 </div>

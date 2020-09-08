@@ -5,7 +5,7 @@ import DashboardPanel from '../../../components/Dashboard/DashboardPanel';
 
 const Add = ({ authenticated, id, role }) => {
   const [address, setAddress] = useState('');
-  const [city, setCity] = useState('paris');
+  const [city, setCity] = useState('Paris');
   const [district, setDistrict] = useState();
   const [area, setArea] = useState();
   const [room, setRoom] = useState();
@@ -50,11 +50,11 @@ const Add = ({ authenticated, id, role }) => {
         <div className="columns">
           <DashboardPanel role={role} tab="public" />
           <div className="column auto">
-            <h1 className="title">Property</h1>
+            <h1 className="title">Bien</h1>
             <form onSubmit={handleSubmit} className="is-centered">
               <div className="field is-grouped">
                 <div className="control">
-                  <label className="label">Address</label>
+                  <label className="label">Adresse</label>
                   <input
                     onChange={(e) => setAddress(e.target.value)}
                     value={address}
@@ -66,7 +66,7 @@ const Add = ({ authenticated, id, role }) => {
                   />
                 </div>
                 <div className="control">
-                  <label className="label">City</label>
+                  <label className="label">Ville</label>
                   <input
                     disabled
                     onChange={(e) => setCity(e.target.value)}
@@ -79,7 +79,7 @@ const Add = ({ authenticated, id, role }) => {
                   />
                 </div>
                 <div className="control">
-                  <label className="label">District</label>
+                  <label className="label">Arrondissement</label>
                   <input
                     onChange={(e) => setDistrict(parseInt(e.target.value, 10))}
                     value={district}
@@ -93,7 +93,7 @@ const Add = ({ authenticated, id, role }) => {
               </div>
               <div className="field is-grouped">
                 <div className="control">
-                  <label className="label">Area</label>
+                  <label className="label">Surface</label>
                   <input
                     onChange={(e) => setArea(parseInt(e.target.value, 10))}
                     value={area}
@@ -105,7 +105,7 @@ const Add = ({ authenticated, id, role }) => {
                   />
                 </div>
                 <div className="control">
-                  <label className="label">Room</label>
+                  <label className="label">Chambre</label>
                   <input
                     onChange={(e) => setRoom(parseInt(e.target.value, 10))}
                     value={room}
@@ -117,7 +117,7 @@ const Add = ({ authenticated, id, role }) => {
                   />
                 </div>
                 <div className="control">
-                  <label className="label">Bed</label>
+                  <label className="label">Lit</label>
                   <input
                     onChange={(e) => setBed(parseInt(e.target.value, 10))}
                     value={bed}
@@ -129,7 +129,7 @@ const Add = ({ authenticated, id, role }) => {
                   />
                 </div>
                 <div className="control">
-                  <label className="label">Bathroom</label>
+                  <label className="label">Salle de bain</label>
                   <input
                     onChange={(e) => setBathroom(parseInt(e.target.value, 10))}
                     value={bathroom}
@@ -157,7 +157,7 @@ const Add = ({ authenticated, id, role }) => {
                       }`}
                       type="submit"
                     >
-                      Create
+                      Créer
                     </button>
                   </div>
                 </div>

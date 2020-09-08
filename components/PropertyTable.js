@@ -9,25 +9,25 @@ const PropertyTables = ({ properties }) => {
       <table className="table">
         <thead>
           <tr>
-            <th>id</th>
-            <th>address</th>
-            <th>city</th>
-            <th>district</th>
-            <th>m2</th>
-            <th>bed</th>
-            <th>bathroom</th>
+            <th>Id</th>
+            <th>adresse</th>
+            <th>Ville</th>
+            <th>Arrondissement</th>
+            <th>m²</th>
+            <th>Lit</th>
+            <th>Salle de bain</th>
             <td></td>
           </tr>
         </thead>
         <tfoot>
           <tr>
-            <th>id</th>
-            <th>address</th>
-            <th>city</th>
-            <th>district</th>
-            <th>m2</th>
-            <th>bed</th>
-            <th>bathroom</th>
+            <th>Id</th>
+            <th>adresse</th>
+            <th>Ville</th>
+            <th>Arrondissement</th>
+            <th>m²</th>
+            <th>Lit</th>
+            <th>Salle de bain</th>
             <td></td>
           </tr>
         </tfoot>
@@ -47,7 +47,7 @@ const PropertyTables = ({ properties }) => {
                     href="/dashboard/agent/property/[propertyId]/complete"
                     as={`/dashboard/agent/property/${property.id}/complete`}
                   >
-                    <a>complete</a>
+                    <a>compléter</a>
                   </Link>
                 </td>
               </tr>

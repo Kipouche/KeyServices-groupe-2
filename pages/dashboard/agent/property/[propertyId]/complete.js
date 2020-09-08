@@ -59,11 +59,11 @@ const Complete = ({ authenticated, id, role, propertyId }) => {
         <div className="columns">
           <DashboardPanel role={role} tab="public" />
           <div className="column auto">
-            <h1 className="title">Complete Property</h1>
+            <h1 className="title">Bien complet</h1>
             <form onSubmit={handleSubmit} className="is-centered">
               <div className="field">
                 <div className="control">
-                  <label className="label">Title</label>
+                  <label className="label">Titre</label>
                   <input
                     onChange={(e) => setTitle(e.target.value)}
                     value={title}
@@ -75,7 +75,7 @@ const Complete = ({ authenticated, id, role, propertyId }) => {
                   />
                 </div>
                 <div className="control">
-                  <label className="label">Price</label>
+                  <label className="label">Prix</label>
                   <input
                     onChange={(e) => setPrice(e.target.value)}
                     value={price}
@@ -87,7 +87,7 @@ const Complete = ({ authenticated, id, role, propertyId }) => {
                   />
                 </div>
                 <div className="control">
-                  <label className="label">Description of the property</label>
+                  <label className="label">Description du bien</label>
                   <textarea
                     rows="10"
                     onChange={(e) => setDescription(e.target.value)}
@@ -108,7 +108,7 @@ const Complete = ({ authenticated, id, role, propertyId }) => {
                       multiple
                     />
                     <span className="file-cta">
-                      <span className="file-label">Choose a file…</span>
+                      <span className="file-label">Choisir un fichier...</span>
                     </span>
                   </label>
                 </div>
@@ -138,7 +138,7 @@ const Complete = ({ authenticated, id, role, propertyId }) => {
                       }`}
                       type="submit"
                     >
-                      Submit
+                      Envoi
                     </button>
                   </div>
                 </div>

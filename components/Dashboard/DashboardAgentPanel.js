@@ -31,7 +31,7 @@ const DashboardAgentPanel = ({ tab }) => {
           type="button"
           className="button is-link is-outlined is-fullwidth"
         >
-          Reset Password
+          Réinitialiser le mot de passe
         </button>
       </div>
     </nav>
