@@ -5,7 +5,7 @@ import cookie from 'cookie';
 import User from '../../../lib/user';
 import InputValidation from '../../../lib/inputValidation';
 
-async function passCompare(password, hashPassword) {
+async function passwordCompare(password, hashPassword) {
   return new Promise((resolve, reject) => {
     bcrypt.compare(password, hashPassword, (err, result) => {
       if (!err && result === true) {
@@ -39,7 +39,7 @@ export default async (req, res) => {
         return res.status(401).json({ message: 'Invalid connection' });
       }
       try {
-        await passCompare(password, user.password);
+        await passwordCompare(password, user.password);
         const claims = {
           sub: user.id,
           email: user.email,

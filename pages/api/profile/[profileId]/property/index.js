@@ -11,7 +11,7 @@ export default authentification(async (req, res) => {
   if (req.method === 'GET') {
     try {
       const jwt = await verifyJWT(req);
-      if (jwt.sub !== parseInt(profileId)) {
+      if (jwt.sub !== parseInt(profileId, 10)) {
         return res.status(401).json({ message: 'Not authorized' });
       }
       const properties = await Property.getByUserId(profileId);

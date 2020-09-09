@@ -2,8 +2,6 @@ import sha256 from 'sha256';
 import User from '../../../lib/user';
 
 export default async (req, res) => {
-  console.log(req.cookies);
-  
   const { id, token } = req.query;
   if (!id || !token) {
     return res.status(401).json({ message: 'A parameter is missing' });

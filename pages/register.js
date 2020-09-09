@@ -154,14 +154,14 @@ const Register = ({ authenticated }) => {
                             type="checkbox"
                             name="optinNewsletter"
                             required
-                          />{' '}
+                          />
                           J'accepte les <a href="/">conditions d'utilisations</a>
                         </label>
                       </div>
                     </div>
                     {error ? (
                       <div className="has-text-danger">
-                        <p>Error: {error}</p>
+                        <p>Erreur: {error}</p>
                       </div>
                     ) : (
                       []
@@ -184,10 +184,10 @@ const Register = ({ authenticated }) => {
                 ) : (
                   <div className="notification is-link">
                     <p>
-                      Merci de nous rejoindre !<b>KeyServices</b>.
+                      Merci d&apos;avoir rejoint <b>KeyServices</b>.
                     </p>
                     <p>
-                      Un Email a été envoyé à votre adresse mail pour vérifier et valider votre compte.
+                      Un email de confirmation vous a été envoyé, merci de bien vouloir confirmer votre adresse mail.
                     </p>
                   </div>
                 )}

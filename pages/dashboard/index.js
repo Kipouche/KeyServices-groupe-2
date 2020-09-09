@@ -31,8 +31,6 @@ Dashboard.getInitialProps = async (ctx) => {
   });
 
   const json = await res.json();
-  console.log(json);
-  
   if (res.status === 401 && !ctx.req) {
     Router.replace('/login');
   }
