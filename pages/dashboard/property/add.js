@@ -50,23 +50,23 @@ const Add = ({ authenticated, id, role }) => {
         <div className="columns">
           <DashboardPanel role={role} tab="public" />
           <div className="column auto">
-            <h1 className="title">Property</h1>
+            <h1 className="title">Bien</h1>
             <form onSubmit={handleSubmit} className="is-centered">
               <div className="field is-grouped">
                 <div className="control">
-                  <label className="label">Address</label>
+                  <label className="label">Adresse</label>
                   <input
                     onChange={(e) => setAddress(e.target.value)}
                     value={address}
                     className="input"
                     type="text"
                     name="address"
-                    placeholder="Address"
+                    placeholder="Adresse"
                     required
                   />
                 </div>
                 <div className="control">
-                  <label className="label">City</label>
+                  <label className="label">Ville</label>
                   <input
                     disabled
                     onChange={(e) => setCity(e.target.value)}
@@ -74,69 +74,69 @@ const Add = ({ authenticated, id, role }) => {
                     className="input"
                     type="text"
                     name="city"
-                    placeholder="City"
+                    placeholder="Ville"
                     required
                   />
                 </div>
                 <div className="control">
-                  <label className="label">District</label>
+                  <label className="label">Arrondissement</label>
                   <input
                     onChange={(e) => setDistrict(parseInt(e.target.value, 10))}
                     value={district}
                     className="input"
                     type="number"
                     name="district"
-                    placeholder="District"
+                    placeholder="Arrondissement"
                     required
                   />
                 </div>
               </div>
               <div className="field is-grouped">
                 <div className="control">
-                  <label className="label">Area</label>
+                  <label className="label">Surface</label>
                   <input
                     onChange={(e) => setArea(parseInt(e.target.value, 10))}
                     value={area}
                     className="input"
                     type="number"
                     name="area"
-                    placeholder="Area"
+                    placeholder="Surface"
                     required
                   />
                 </div>
                 <div className="control">
-                  <label className="label">Room</label>
+                  <label className="label">Chambre</label>
                   <input
                     onChange={(e) => setRoom(parseInt(e.target.value, 10))}
                     value={room}
                     className="input"
                     type="number"
                     name="room"
-                    placeholder="Room"
+                    placeholder="Chambre"
                     required
                   />
                 </div>
                 <div className="control">
-                  <label className="label">Bed</label>
+                  <label className="label">Lit</label>
                   <input
                     onChange={(e) => setBed(parseInt(e.target.value, 10))}
                     value={bed}
                     className="input"
                     type="number"
                     name="bed"
-                    placeholder="Bed"
+                    placeholder="Lit"
                     required
                   />
                 </div>
                 <div className="control">
-                  <label className="label">Bathroom</label>
+                  <label className="label">Salle de bain</label>
                   <input
                     onChange={(e) => setBathroom(parseInt(e.target.value, 10))}
                     value={bathroom}
                     className="input"
                     type="number"
                     name="bathroom"
-                    placeholder="Bathroom"
+                    placeholder="Salle de bain"
                     required
                   />
                 </div>
@@ -157,7 +157,7 @@ const Add = ({ authenticated, id, role }) => {
                       }`}
                       type="submit"
                     >
-                      Create
+                      Créer
                     </button>
                   </div>
                 </div>

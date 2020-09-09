@@ -94,7 +94,7 @@ const Header = (props) => {
                 )}
                 {props.authenticated ? (
                   <a onClick={logout} className="button is-link is-outlined">
-                    Log out
+                    Déconnexion
                   </a>
                 ) : (
                   []
