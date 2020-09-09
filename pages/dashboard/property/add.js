@@ -5,7 +5,7 @@ import DashboardPanel from '../../../components/Dashboard/DashboardPanel';
 
 const Add = ({ authenticated, id, role }) => {
   const [address, setAddress] = useState('');
-  const [city, setCity] = useState('Paris');
+  const [city, setCity] = useState('paris');
   const [district, setDistrict] = useState();
   const [area, setArea] = useState();
   const [room, setRoom] = useState();
