@@ -4,14 +4,9 @@ const DashboardPublicPanel = () => {
   return (
     <nav className="">
       <p className="panel-tabs">
-        <a className="is-active">Public</a>
+        <a className="is-active">Publique</a>
       </p>
       <PublicPanel />
-      <div className="panel-block">
-        <button className="button is-link is-outlined is-fullwidth">
-        Réinitialiser le mot de passe
-        </button>
-      </div>
     </nav>
   );
 };

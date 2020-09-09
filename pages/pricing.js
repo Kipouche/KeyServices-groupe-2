@@ -22,85 +22,27 @@ const Pricing = ({ authenticated }) => {
       <section className="section hero container">
         <p className="subtitle has-text-centered py-6">
           Notre système est basé sur une tarification simple, nous vous
-          reversons 80% du revenu généré par la location. Ce tarif de base
-          correspond à notre offre &quot;Basic&quot;. À cela vous pouvez ajouter
-          différentes options telles que détaillées ci-dessous. Vous pouvez
-          ainsi vous orienter vers une offre &quot;Standard&quot;, moyennant un
-          supplément de 50€ par mois ou vers l&apos;offre premium, moyennant un
-          supplément de 150€ par mois selon vos besoins.
+          reversons 80% du revenu généré par votre location.
         </p>
       </section>
-      <section>
-        <div className="hero is-link columns is-vcentered has-text-white py-6">
-          <nav className="columns column is-11 pricing-nav py-6">
-            <div className="column is-multiline is-centered has-text-centered is-mobile box mb-0">
-              <h1 className="title is-3">Basic</h1>
-              <ul className="pricing-list has-text-left">
-                <li className="on">
-                  <p>Création de votre annonce sur AirBnB</p>
-                </li>
-                <li className="on">
-                  Application mobile pour gérer vos réservations
-                </li>
-                <li className="on">
-                  Photos professionnelles de votre logement
-                </li>
-                <li className="on">Assistance 24h/24 et 7j/7</li>
-                <li className="off">Accueil des voyageurs</li>
-                <li className="off">Récupération des clés en main propre</li>
-                <li className="off">États des lieux entrants et sortants</li>
-                <li className="off">
-                  Ménage éffectué par nos agents d&apos;entretien
-                </li>
-                <li className="off">Linge de maison et autres</li>
-              </ul>
-            </div>
-            <div className="column is-multiline is-centered has-text-centered is-mobile box ml-4 mr-4 mb-0 pricing-center">
-              <h1 className="title is-3">Standard</h1>
-              <ul className="pricing-list has-text-left">
-                <li className="on">
-                  <p>Création de votre annonce sur AirBnB</p>
-                </li>
-                <li className="on">
-                  Application mobile pour gérer vos réservations
-                </li>
-                <li className="on">
-                  Photos professionnelles de votre logement
-                </li>
-                <li className="on">Assistance 24h/24 et 7j/7</li>
-                <li className="on">Accueil des voyageurs</li>
-                <li className="on">Récupération des clés en main propre</li>
-                <li className="on">États des lieux entrants et sortants</li>
-                <li className="off">
-                  Ménage éffectué par nos agents d&apos;entretien
-                </li>
-                <li className="off">Linge de maison et autres</li>
-              </ul>
-            </div>
-            <div className="column is-multiline is-centered has-text-centered is-mobile box">
-              <h1 className="title is-3">Premium</h1>
-              <ul className="pricing-list has-text-left">
-                <li className="on">
-                  <p>Création de votre annonce sur AirBnB</p>
-                </li>
-                <li className="on">
-                  Application mobile pour gérer vos réservations
-                </li>
-                <li className="on">
-                  Photos professionnelles de votre logement
-                </li>
-                <li className="on">Assistance 24h/24 et 7j/7</li>
-                <li className="on">Accueil des voyageurs</li>
-                <li className="on">Récupération des clés en main propre</li>
-                <li className="on">États des lieux entrants et sortants</li>
-                <li className="on">
-                  Ménage éffectué par nos agents d&apos;entretien
-                </li>
-                <li className="on">Linge de maison et autres</li>
-              </ul>
-            </div>
-          </nav>
-        </div>
+      <section className="section container">
+        <h1 className="title is-2 has-text-centered pt-6">
+          Comment ça <nobr>marche ?</nobr>
+        </h1>
+        <p className="subtitle has-text-centered py-6">
+          Vous nous confiez votre bien, nous nous chargeons du reste. 
+          Un photographe professionnel viendra chez vous afin de 
+          photographier votre bien sous ses meilleurs angles. 
+          Nous publierons ensuite des annonces sur les sites de locations
+           les plus réputés. Vous choisissez via votre espace client les 
+           dates auxquelles vous souhaitez louer votre bien. Une fois 
+           votre logement réservé, un mail vous sera envoyé, nous nous 
+           occupons du ménage, de l'état des lieux entrants ainsi que 
+           de la remise des clés. Une fois la location terminée nous 
+           récupérons les clés, effectuons un état des lieux sortant, 
+           le ménage puis un versement automatique équivalement à 80% 
+           des revenus générés sera effectué sur votre <nobr>compte en banque.</nobr>
+        </p>
       </section>
     </>
   );

@@ -9,7 +9,7 @@ const Profiles = ({ authenticated, profiles, id, role }) => {
       <Header authenticated={authenticated} />
       <section className="section">
         <div className="columns">
-          <DashboardPanel role={role} tab="agent" />
+          <DashboardPanel role={role} tab="admin" />
           <ProfilesAdminTable profiles={profiles} />
           <div />
         </div>

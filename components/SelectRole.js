@@ -4,10 +4,6 @@ const SelectRole = ({ id, role }) => {
   const [roleState, setRoleState] = useState(role);
   const handleSelect = (e) => {
     setRoleState(e.target.value);
-    console.log(e.target.value);
-    
-    console.log(role);
-
     const res = fetch(`/api/admin/profile/${id}/role`, {
       method: 'PUT',
       headers: {

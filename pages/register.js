@@ -57,7 +57,7 @@ const Register = ({ authenticated }) => {
             </div>
             <div className="column">
               <div className="">
-                <h1 className="title is-3">Rejoignez nous !</h1>
+                <h1 className="title is-3">Rejoignez-nous !</h1>
                 {!registered ? (
                   <form onSubmit={handleSubmit}>
                     <div className="field">
@@ -155,7 +155,7 @@ const Register = ({ authenticated }) => {
                             name="optinNewsletter"
                             required
                           />{' '}
-                          j'ai lu et j'accepte les <a href="/">termes et conditions</a>
+                          J'ai lu et j'accepte les <a href="/">termes et conditions</a>
                         </label>
                       </div>
                     </div>
@@ -184,10 +184,10 @@ const Register = ({ authenticated }) => {
                 ) : (
                   <div className="notification is-link">
                     <p>
-                      Merci d'avoir rejoint <b>KeyServices</b>.
+                      Merci d&apos;avoir rejoint <b>KeyServices</b>.
                     </p>
                     <p>
-                      Un email a été envoyé pour valider votre compte.
+                      Un email de confirmation vous a été envoyé, merci de bien vouloir confirmer votre adresse mail.
                     </p>
                   </div>
                 )}

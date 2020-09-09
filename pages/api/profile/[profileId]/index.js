@@ -1,10 +1,11 @@
-import { authentification } from '../../../lib/authentification';
-import User from '../../../lib/user';
-import ConvertTime from '../../../lib/convertTime';
-import InputValidation from '../../../lib/inputValidation';
+import { authentification } from '../../../../lib/authentification';
+import User from '../../../../lib/user';
+import ConvertTime from '../../../../lib/convertTime';
+import InputValidation from '../../../../lib/inputValidation';
 
 export default authentification(async (req, res) => {
   const { profileId } = req.query;
+
   if (req.method === 'GET') {
     try {
       const profile = await User.getByIdClientSide(profileId);
@@ -13,7 +14,7 @@ export default authentification(async (req, res) => {
         .split('T');
       return res.status(200).json(profile);
     } catch (error) {
-      return res.status(405).json({ message: error });
+      return res.status(405).json({ message: error.message });
     }
   }
   if (req.method === 'DELETE') {
@@ -28,15 +29,12 @@ export default authentification(async (req, res) => {
       !InputValidation.verifyName(lastname) ||
       !InputValidation.verifyName(firstname)
     ) {
-      console.log('Invalid firstname or lastname');
       return res.status(401).json({ message: 'Invalid firstname or lastname' });
     }
     if (!InputValidation.verifyPhonenumber(phonenumber)) {
-      console.log('Invalid phone number');
       return res.status(401).json({ message: 'Invalid phone number' });
     }
     if (InputValidation.isLess18ThanYears(dateofbirth)) {
-      console.log('User musts be at least 18 years old');
       return res
         .status(401)
         .json({ message: 'User musts be at least 18 years old' });

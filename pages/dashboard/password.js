@@ -1,36 +1,32 @@
 import Router from 'next/router';
 import { useState } from 'react';
-import Link from 'next/link';
 import Header from '../../components/Header';
 import DashboardPanel from '../../components/Dashboard/DashboardPanel';
 
-const Profile = ({ authenticated, profile, id, role }) => {
+const Profile = ({ authenticated, id, role }) => {
   const [loading, setLoading] = useState(false);
   const [validate, setValidate] = useState(false);
   const [error, setError] = useState('');
-  const [firstname, setFirstname] = useState(profile ? profile.firstname : '');
-  const [lastname, setLastname] = useState(profile ? profile.lastname : '');
-  const [dateofbirth, setDateofbirth] = useState(
-    profile ? profile.dateofbirth : ''
-  );
-  const [phonenumber, setPhonenumber] = useState(
-    profile ? profile.phonenumber : ''
-  );
+  const [actualPassword, setActualPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+    if (newPassword !== confirmPassword){
+      setError('Les mots de passes ne sont pas identiques');
+      setValidate(false);
+    }
 
-    const res = await fetch(`/api/profile/${id}`, {
+    const res = await fetch(`/api/profile/${id}/password`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        firstname,
-        lastname,
-        dateofbirth,
-        phonenumber
+        actualPassword,
+        newPassword
       })
     });
     setLoading(false);
@@ -50,58 +46,43 @@ const Profile = ({ authenticated, profile, id, role }) => {
       <section className="section">
         <div className="columns">
           <DashboardPanel role={role} tab="public" />
-          <div className="column auto">
-            <h1 className="title">Profil</h1>
+          <div className="column">
+            <h1 className="title">Changer le mot de passe</h1>
             <form onSubmit={handleSubmit} className="is-centered">
               <div className="field is-grouped">
                 <div className="control">
-                  <label className="label">Prénom</label>
+                  <label className="label">Actuel</label>
                   <input
-                    onChange={(e) => setFirstname(e.target.value)}
-                    value={firstname}
+                    onChange={(e) => setActualPassword(e.target.value)}
+                    value={actualPassword}
                     className="input"
-                    type="text"
-                    name="firstname"
-                    placeholder="Prénom"
+                    type="password"
+                    name="actualPassword"
+                    placeholder="mot de passe actuel"
                     required
                   />
                 </div>
                 <div className="control">
-                  <label className="label">Nom</label>
+                  <label className="label">Nouveau</label>
                   <input
-                    onChange={(e) => setLastname(e.target.value)}
-                    value={lastname}
+                    onChange={(e) => setNewPassword(e.target.value)}
+                    value={newPassword}
                     className="input"
-                    type="text"
-                    name="lastname"
-                    placeholder="Nom"
-                    required
-                  />
-                </div>
-              </div>
-              <div className="field is-grouped">
-                <div className="control">
-                  <label className="label">Date de naissance</label>
-                  <input
-                    onChange={(e) => setDateofbirth(e.target.value)}
-                    value={dateofbirth}
-                    className="input"
-                    type="date"
-                    name="dateofbirth"
-                    placeholder="jj/mm/aaaa"
+                    type="password"
+                    name="newPassword"
+                    placeholder="nouveau mot de passe"
                     required
                   />
                 </div>
                 <div className="control">
-                  <label className="label">Numéro de téléphone</label>
+                  <label className="label">Confirmer</label>
                   <input
-                    onChange={(e) => setPhonenumber(e.target.value)}
-                    value={phonenumber}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    value={confirmPassword}
                     className="input"
-                    pattern="(0|\+33)[1-9]( *[0-9]{2}){4}"
-                    type="tel"
-                    name="phonenumber"
-                    placeholder="Numéro de téléphone"
+                    type="password"
+                    name="confirmPassword"
+                    placeholder="confirmer mot de passe"
                     required
                   />
                 </div>
@@ -115,7 +96,7 @@ const Profile = ({ authenticated, profile, id, role }) => {
               )}
               {validate ? (
                 <div className="has-text-success">
-                  <p>Votre profil a été mis à jour</p>
+                  <p>Le mot de passe a été modifié</p>
                 </div>
               ) : (
                 []
@@ -129,16 +110,8 @@ const Profile = ({ authenticated, profile, id, role }) => {
                       }`}
                       type="submit"
                     >
-                      Mettre à jour
+                      Enregister
                     </button>
-                    <Link href="/dashboard/password">
-                      <button
-                        type="button"
-                        className="button is-link is-outlined"
-                      >
-                        Modifier Mot de Passe
-                      </button>
-                    </Link>
                   </div>
                 </div>
               </div>
@@ -173,20 +146,11 @@ Profile.getInitialProps = async (ctx) => {
   }
   if (resAuth.status === 200) {
     const jwt = await resAuth.json();
-    const resProfile = await fetch(`${host}/api/profile/${jwt.message.sub}`, {
-      headers: {
-        cookie
-      }
-    });
-    if (resProfile.status === 200) {
-      const profile = await resProfile.json();
-      return {
-        authenticated: true,
-        profile: profile[0],
-        id: jwt.message.sub,
-        role: jwt.message.role
-      };
-    }
+    return {
+      authenticated: true,
+      id: jwt.message.sub,
+      role: jwt.message.role
+    };
   }
   return { authenticated: false };
 };
