@@ -41,14 +41,6 @@ Dashboard.getInitialProps = async (ctx) => {
     });
     ctx.res.end();
   }
-  if (!ctx.req) {
-    Router.replace('/dashboard/property');
-  } else {
-    ctx.res.writeHead(302, {
-      Location: '/dashboard/property'
-    });
-    ctx.res.end();
-  }
   return { authenticated: true, id: json.sub, role: json.message.role };
 };
 

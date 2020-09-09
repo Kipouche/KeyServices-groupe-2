@@ -2,7 +2,6 @@ import ConvertTime from '../lib/convertTime';
 import Link from 'next/link';
 
 const PropertyTables = ({ properties }) => {
-  console.log(properties);
 
   return (
     <div className="column">

@@ -2,7 +2,7 @@
     "name": "KeyServices",
     "short_name": "KeyServices",
     "theme_color": "#071d34",
-    "background_color": "#71cdb1",
+    "background_color": "#FFFFFF",
     "display": "standalone",
     "orientation": "portrait",
     "scope": "/",

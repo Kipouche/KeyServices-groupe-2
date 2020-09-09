@@ -4,8 +4,8 @@ import PublicPanel from './PublicPanel';
 import AgentPanel from './AgentPanel';
 import AdminPanel from './AdminPanel';
 
-const DashboardAgentPanel = () => {
-  const [panel, setPanel] = useState('public');
+const DashboardAgentPanel = ({ tab }) => {
+  const [panel, setPanel] = useState(tab);
 
   return (
     <nav className="">
@@ -15,7 +15,7 @@ const DashboardAgentPanel = () => {
           type="button"
           className={panel === 'public' ? 'is-active' : ''}
         >
-          Public
+          Publique
         </a>
         <a
           onClick={() => setPanel('agent')}
@@ -29,20 +29,12 @@ const DashboardAgentPanel = () => {
           type="button"
           className={panel === 'admin' ? 'is-active' : ''}
         >
-          Admin
+          Administrateur
         </a>
       </p>
       {panel === 'public' ? <PublicPanel /> : []}
       {panel === 'agent' ? <AgentPanel /> : []}
       {panel === 'admin' ? <AdminPanel /> : []}
-      <div className="panel-block">
-        <button
-          type="button"
-          className="button is-link is-outlined is-fullwidth"
-        >
-          Reset Password
-        </button>
-      </div>
     </nav>
   );
 };
