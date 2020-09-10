@@ -61,7 +61,7 @@ const Register = ({ authenticated }) => {
                 {!registered ? (
                   <form onSubmit={handleSubmit}>
                     <div className="field">
-                      <label className="label">Prénom</label>
+                      <label className="label">Prénom
                       <div className="control">
                         <input
                           onChange={(e) => setFirstname(e.target.value)}
@@ -69,13 +69,14 @@ const Register = ({ authenticated }) => {
                           className="input"
                           type="text"
                           name="firstname"
-                          placeholder="Prénom"
+                          placeholder="Entrez votre prénom"
                           required
                         />
                       </div>
+                      </label>
                     </div>
                     <div className="field">
-                      <label className="label">Nom</label>
+                      <label className="label">Nom
                       <div className="control">
                         <input
                           onChange={(e) => setLastname(e.target.value)}
@@ -83,13 +84,14 @@ const Register = ({ authenticated }) => {
                           className="input"
                           type="text"
                           name="lastname"
-                          placeholder="Nom"
+                          placeholder="Entrez votre nom"
                           required
                         />
                       </div>
+                      </label>
                     </div>
                     <div className="field">
-                      <label className="label">Email</label>
+                      <label className="label">Email
                       <div className="control">
                         <input
                           onChange={(e) => setEmail(e.target.value)}
@@ -97,13 +99,14 @@ const Register = ({ authenticated }) => {
                           className="input"
                           type="email"
                           name="email"
-                          placeholder="Email"
+                          placeholder="Entrez votre adresse mail"
                           required
                         />
                       </div>
+                      </label>
                     </div>
                     <div className="field">
-                      <label className="label">Mot de passe</label>
+                      <label className="label">Mot de passe
                       <div className="control">
                         <input
                           onChange={(e) => setPassword(e.target.value)}
@@ -111,13 +114,14 @@ const Register = ({ authenticated }) => {
                           className="input"
                           type="password"
                           name="password"
-                          placeholder="Mot de passe"
+                          placeholder="Choisissez votre mot de passe"
                           required
                         />
                       </div>
+                      </label>
                     </div>
                     <div className="field">
-                      <label className="label">Date de naissance</label>
+                      <label className="label">Date de naissance
                       <div className="control">
                         <input
                           onChange={(e) => setDateofbirth(e.target.value)}
@@ -129,9 +133,10 @@ const Register = ({ authenticated }) => {
                           required
                         />
                       </div>
+                      </label>
                     </div>
                     <div className="field">
-                      <label className="label">Numéro de téléphone</label>
+                      <label className="label">Numéro de téléphone
                       <div className="control">
                         <input
                           onChange={(e) => setPhonenumber(e.target.value)}
@@ -140,10 +145,11 @@ const Register = ({ authenticated }) => {
                           pattern="(0|\+33)[1-9]( *[0-9]{2}){4}"
                           type="tel"
                           name="phonenumber"
-                          placeholder="Numéro de téléphone"
+                          placeholder="Entrez votre numéro de téléphone"
                           required
                         />
                       </div>
+                      </label>
                     </div>
                     <div className="field">
                       <div className="control">

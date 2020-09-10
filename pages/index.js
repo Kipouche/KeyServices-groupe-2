@@ -24,7 +24,7 @@ const Index = ({ authenticated }) => {
           <nav className="columns column is-three-quarters">
             <div className="column is-multiline is-centered has-text-centered is-mobile">
               <figure className="image is-64x64 is-inline-block">
-                <img alt="airbnb logo" src="/airbnb.png" />
+                <img alt="logo airbnb" src="/airbnb.png" />
               </figure>
               <div className="column is-full mt-3">
                 <p>
@@ -35,7 +35,7 @@ const Index = ({ authenticated }) => {
             </div>
             <div className="column is-multiline is-centered has-text-centered is-mobile">
               <figure className="image is-64x64 is-inline-block">
-                <img alt="airbnb logo" src="/smart-key.png" />
+                <img alt="dessin clef" src="/smart-key.png" />
               </figure>
               <div className="column is-full mt-3">
                 <p>
@@ -45,7 +45,7 @@ const Index = ({ authenticated }) => {
             </div>
             <div className="column is-multiline is-centered has-text-centered is-mobile">
               <figure className="image is-64x64 is-inline-block">
-                <img alt="airbnb logo" src="/clean.png" />
+                <img alt="dessin balai" src="/clean.png" />
               </figure>
               <div className="column is-full mt-3">
                 <p>
@@ -56,7 +56,7 @@ const Index = ({ authenticated }) => {
             </div>
             <div className="column is-multiline is-centered has-text-centered is-mobile">
               <figure className="image is-64x64 is-inline-block">
-                <img alt="airbnb logo" src="/fix.png" />
+                <img alt="dessin outils" src="/fix.png" />
               </figure>
               <div className="column is-full mt-3">
                 <p>
@@ -69,9 +69,9 @@ const Index = ({ authenticated }) => {
         </div>
       </section>
       <section className="section container">
-        <h1 className="title is-2 has-text-centered pt-6">
+        <h2 className="title is-2 has-text-centered pt-6">
           Pourquoi nous choisir ?
-        </h1>
+        </h2>
         <div className="columns is-variable is-8 is-vcentered py-5">
           <div className="column">
             <figure>
@@ -79,7 +79,7 @@ const Index = ({ authenticated }) => {
             </figure>
           </div>
           <div className="column has-text-centered">
-            <h1 className="title is-3">La transparence</h1>
+            <h3 className="title is-3">La transparence</h3>
             <p className="subtitle">
               Grace à notre mode de fonctionnement 100% transparent, vous pouvez
               connaître toutes les informations liées à votre bien à tout
@@ -93,7 +93,7 @@ const Index = ({ authenticated }) => {
         </div>
         <div className="columns is-variable is-8 is-vcentered py-5">
           <div className="column has-text-centered">
-            <h1 className="title is-3">L&apos;expertise</h1>
+            <h3 className="title is-3">L&apos;expertise</h3>
             <p className="subtitle ">
               Une équipe d&apos;expert se tiens à votre disposition pour
               répondre à vos attentes à tous moments. De la simple information à
@@ -114,7 +114,7 @@ const Index = ({ authenticated }) => {
             </figure>
           </div>
           <div className="column has-text-centered">
-            <h1 className="title is-3">La tranquilité</h1>
+            <h3 className="title is-3">La tranquilité</h3>
             <p className="subtitle">
               Ne soyez plus stressé par la location de votre bien. Vous
               n&apos;avez qu&apos;à renseigner les dates durant lesquelles vous
@@ -125,13 +125,13 @@ const Index = ({ authenticated }) => {
         </div>
       </section>
       <section className="section">
-        <h1 className="title is-2 has-text-centered">
+        <h2 className="title is-2 has-text-centered">
           Rejoignez-nous sur les réseaux
-        </h1>
+        </h2>
         <nav className="level container">
           <div className="column is-multiline is-centered has-text-centered is-mobile">
             <figure className="image is-64x64 is-inline-block">
-              <img alt="airbnb logo" src="/twitter.png" />
+              <img alt="logo twitter" src="/twitter.png" />
             </figure>
             <div className="mt-4">
               <p className="heading">Twitter</p>
@@ -140,7 +140,7 @@ const Index = ({ authenticated }) => {
           </div>
           <div className="column is-multiline is-centered has-text-centered is-mobile">
             <figure className="image is-64x64 is-inline-block">
-              <img alt="airbnb logo" src="/facebook.png" />
+              <img alt="logo facebook" src="/facebook.png" />
             </figure>
             <div className="mt-4">
               <p className="heading">Facebook</p>
@@ -149,7 +149,7 @@ const Index = ({ authenticated }) => {
           </div>
           <div className="column is-multiline is-centered has-text-centered is-mobile">
             <figure className="image is-64x64 is-inline-block">
-              <img alt="airbnb logo" src="/instagram.png" />
+              <img alt="logo instagram" src="/instagram.png" />
             </figure>
             <div className="mt-4">
               <p className="heading">Instagram</p>
@@ -158,7 +158,7 @@ const Index = ({ authenticated }) => {
           </div>
           <div className="column is-multiline is-centered has-text-centered is-mobile">
             <figure className="image is-64x64 is-inline-block">
-              <img alt="airbnb logo" src="/linkedin.png" />
+              <img alt="logo linkedin" src="/linkedin.png" />
             </figure>
             <div className="mt-4">
               <p className="heading">Linkedin</p>

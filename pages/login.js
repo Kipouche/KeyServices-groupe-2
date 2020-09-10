@@ -50,10 +50,10 @@ const Login = ({ authenticated }) => {
             </div>
             <div className="column">
               <div className="">
-                <h1 className="title is-3">Welcome back !</h1>
+                <h1 className="title is-3">Nous sommes heureux de vous revoir !</h1>
                 <form onSubmit={handleSubmit}>
                   <div className="field">
-                    <label className="label">email</label>
+                    <label className="label">E-mail
                     <div className="control">
                       <input
                         onChange={(e) => setEmail(e.target.value)}
@@ -61,13 +61,14 @@ const Login = ({ authenticated }) => {
                         className="input"
                         type="email"
                         name="email"
-                        placeholder="email"
+                        placeholder="Entrez votre adresse mail"
                         required
                       />
                     </div>
+                    </label>
                   </div>
                   <div className="field">
-                    <label className="label">password</label>
+                    <label className="label">Mot de passe
                     <div className="control">
                       <input
                         onChange={(e) => setPassword(e.target.value)}
@@ -75,10 +76,11 @@ const Login = ({ authenticated }) => {
                         className="input"
                         type="password"
                         name="password"
-                        placeholder="password"
+                        placeholder="Entrez votre mot de passe"
                         required
                       />
                     </div>
+                    </label>
                   </div>
                   {error ? (
                     <div className="has-text-danger">
@@ -96,7 +98,7 @@ const Login = ({ authenticated }) => {
                           }`}
                           type="submit"
                         >
-                          Login
+                          Se connecter
                         </button>
                       </div>
                     </div>
