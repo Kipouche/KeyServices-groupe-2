@@ -1,4 +1,4 @@
-import Property from '../../../lib/property';
+import Property from '../../../../lib/property';
 
 export default async (req, res) => {
   const { propertyId } = req.query;
