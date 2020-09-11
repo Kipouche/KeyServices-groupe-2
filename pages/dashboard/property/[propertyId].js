@@ -1,8 +1,34 @@
 import Router from 'next/router';
+import GoogleMapReact from 'google-map-react';
 import Header from '../../../components/Header';
 import DashboardPanel from '../../../components/Dashboard/DashboardPanel';
 
 const Property = ({ authenticated, id, property, role }) => {
+  const handleApiLoaded = (map, maps, address) => {
+    const geocoder = new maps.Geocoder();
+    geocoder.geocode({ address }, (results, status) => {
+      if (status === 'OK') {
+        map.setCenter(results[0].geometry.location);
+        const marker = new maps.Marker({
+          position: results[0].geometry.location,
+          map,
+          animation: maps.Animation.DROP,
+          title: { address },
+          label: 'A'
+        });
+        return marker;
+      }
+      return `Geocode was not successful for the following reason: ${status}`;
+    });
+  };
+
+  const defaultProps = {
+    center: {
+      lat: 48.8,
+      lng: 2.4
+    },
+    zoom: 11
+  };
   return (
     <>
       <Header authenticated={authenticated} />
@@ -20,6 +46,24 @@ const Property = ({ authenticated, id, property, role }) => {
             <div className="section">
               <h1 className="title">{property.title}</h1>
               <p>{property.description}</p>
+            </div>
+            <div className="container is-fluid">
+              <GoogleMapReact
+                style={{ height: `500px` }}
+                bootstrapURLKeys={{
+                  key: 'AIzaSyCOCwLWsDgniFY8vUK0igKTk_qB1WtGCCk'
+                }}
+                defaultCenter={defaultProps.center}
+                defaultZoom={defaultProps.zoom}
+                yesIWantToUseGoogleMapApiInternals
+                onGoogleApiLoaded={({ map, maps }) =>
+                  handleApiLoaded(
+                    map,
+                    maps,
+                    `${property.address} ${property.district}`
+                  )
+                }
+              />
             </div>
           </div>
         </div>
