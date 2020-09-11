@@ -70,7 +70,7 @@ export default async (req, res) => {
         mailBody.html,
         mailBody.text
       );
-      return res.status(200).json({ sucess: results.insertId });
+      return res.status(200).json({ success: results.insertId });
     } catch (err) {
       return res.status(401).json({ message: err.message });
     }
