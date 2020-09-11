@@ -43,7 +43,8 @@ export default async (req, res) => {
         const claims = {
           sub: user.id,
           email: user.email,
-          role: user.role
+          role: user.role,
+          firstname: user.firstname
         };
         const jwt = sign(claims, process.env.SECRET, { expiresIn: '24h' });
         res.setHeader(

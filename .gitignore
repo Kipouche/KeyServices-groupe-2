@@ -5,8 +5,8 @@
 /.pnp
 .pnp.js
 package-lock.json
-/public/pictures/
-
+public/pictures/*
+public/avatar/*
 # testing
 /coverage
 

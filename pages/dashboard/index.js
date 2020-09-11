@@ -2,13 +2,13 @@ import Router from 'next/router';
 import Header from '../../components/Header';
 import DashboardPanel from '../../components/Dashboard/DashboardPanel';
 
-const Dashboard = ({ authenticated, id, role }) => {
+const Dashboard = ({ authenticated, id, role, jwt }) => {
   return (
     <>
       <Header authenticated={authenticated} />
       <section className="section">
         <div className="columns">
-          <DashboardPanel role={role} tab="public" />
+          <DashboardPanel role={role} tab="public" firstname={jwt.firstname} />
           <div className="column auto">
             <p>Dashboard</p>
           </div>
@@ -30,7 +30,7 @@ Dashboard.getInitialProps = async (ctx) => {
     }
   });
 
-  const json = await res.json();
+  const jwt = await res.json();
   if (res.status === 401 && !ctx.req) {
     Router.replace('/login');
   }
@@ -41,7 +41,17 @@ Dashboard.getInitialProps = async (ctx) => {
     });
     ctx.res.end();
   }
-  return { authenticated: true, id: json.sub, role: json.message.role };
+  if (!ctx.req) {
+    Router.replace('/dashboard/profile');
+  }
+
+  if (ctx.req) {
+    ctx.res.writeHead(302, {
+      Location: '/dashboard/profile'
+    });
+    ctx.res.end();
+  }
+  return { authenticated: true, id: jwt.sub, role: jwt.message.role, jwt: jwt.message };
 };
 
 export default Dashboard;

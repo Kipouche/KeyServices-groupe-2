@@ -23,7 +23,7 @@ const FilterSearch = ({ handleSubmit }) => {
   };
 
   return (
-    <div className="section box">
+    <div className="notification ">
       <form onSubmit={handleSubmitForm}>
         <div className="field">
           <div className="control">

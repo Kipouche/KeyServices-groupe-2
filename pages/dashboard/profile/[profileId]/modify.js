@@ -1,10 +1,10 @@
 import Router from 'next/router';
 import { useState } from 'react';
 import Link from 'next/link';
-import Header from '../../components/Header';
-import DashboardPanel from '../../components/Dashboard/DashboardPanel';
+import Header from '../../../../components/Header';
+import DashboardPanel from '../../../../components/Dashboard/DashboardPanel';
 
-const Profile = ({ authenticated, profile, id, role }) => {
+const Profile = ({ authenticated, profile, id, role, jwt }) => {
   const [loading, setLoading] = useState(false);
   const [validate, setValidate] = useState(false);
   const [error, setError] = useState('');
@@ -21,7 +21,7 @@ const Profile = ({ authenticated, profile, id, role }) => {
     e.preventDefault();
     setLoading(true);
 
-    const res = await fetch(`/api/profile/${id}`, {
+    const res = await fetch(`/api/profile/${profile.id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
@@ -49,7 +49,7 @@ const Profile = ({ authenticated, profile, id, role }) => {
       <Header authenticated={authenticated} />
       <section className="section">
         <div className="columns">
-          <DashboardPanel role={role} tab="public" />
+          <DashboardPanel role={role} tab="modify" firstname={jwt.firstname} />
           <div className="column auto">
             <h1 className="title">Profil</h1>
             <form onSubmit={handleSubmit} className="is-centered">
@@ -173,7 +173,20 @@ Profile.getInitialProps = async (ctx) => {
   }
   if (resAuth.status === 200) {
     const jwt = await resAuth.json();
-    const resProfile = await fetch(`${host}/api/profile/${jwt.message.sub}`, {
+    if (!ctx.req && jwt.message.role !== 'admin') {
+      Router.replace('/dashboard');
+      return { authenticated: false };
+    }
+
+    if (ctx.req && jwt.message.role !== 'admin') {
+      ctx.res.writeHead(302, {
+        Location: '/dashboard'
+      });
+      ctx.res.end();
+      return { authenticated: false };
+    }
+    const { profileId } = ctx.query;
+    const resProfile = await fetch(`${host}/api/profile/${profileId}`, {
       headers: {
         cookie
       }
@@ -184,7 +197,8 @@ Profile.getInitialProps = async (ctx) => {
         authenticated: true,
         profile: profile[0],
         id: jwt.message.sub,
-        role: jwt.message.role
+        role: jwt.message.role,
+        jwt: jwt.message
       };
     }
   }

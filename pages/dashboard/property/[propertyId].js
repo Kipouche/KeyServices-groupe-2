@@ -3,7 +3,7 @@ import GoogleMapReact from 'google-map-react';
 import Header from '../../../components/Header';
 import DashboardPanel from '../../../components/Dashboard/DashboardPanel';
 
-const Property = ({ authenticated, id, property, role }) => {
+const Property = ({ authenticated, id, property, role, jwt }) => {
   const handleApiLoaded = (map, maps, address) => {
     const geocoder = new maps.Geocoder();
     geocoder.geocode({ address }, (results, status) => {
@@ -34,12 +34,12 @@ const Property = ({ authenticated, id, property, role }) => {
       <Header authenticated={authenticated} />
       <section className="section">
         <div className="columns">
-          <DashboardPanel role={role} tab="public" />
+          <DashboardPanel role={role} tab="property" firstname={jwt.firstname}/>
           <div className="column auto">
             <figure className="image is-3by1">
               <img
                 style={{ objectFit: 'cover' }}
-                src={`/pictures/${property.id}_1.jpg`}
+                src={`/pictures/${property.id}_0.jpg`}
                 alt="preview"
               />
             </figure>
@@ -103,7 +103,8 @@ Property.getInitialProps = async (ctx) => {
       authenticated: true,
       id: json.sub,
       property,
-      role: json.message.role
+      role: json.message.role,
+      jwt: json.message
     };
   }
   if (!ctx.req) {
@@ -116,6 +117,9 @@ Property.getInitialProps = async (ctx) => {
     });
     ctx.res.end();
   }
+  return {
+    authenticated: false
+  };
 };
 
 export default Property;

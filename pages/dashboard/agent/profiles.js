@@ -3,13 +3,13 @@ import Header from '../../../components/Header';
 import DashboardPanel from '../../../components/Dashboard/DashboardPanel';
 import ProfilesTable from '../../../components/ProfilesTable';
 
-const Profiles = ({ authenticated, profiles, id, role }) => {
+const Profiles = ({ authenticated, profiles, id, role, jwt }) => {
   return (
     <>
       <Header authenticated={authenticated} />
       <section className="section">
         <div className="columns">
-          <DashboardPanel role={role} tab="agent" />
+          <DashboardPanel role={role} tab="clients" firstname={jwt.firstname} />
           <ProfilesTable profiles={profiles} />
           <div />
         </div>
@@ -71,6 +71,7 @@ Profiles.getInitialProps = async (ctx) => {
       return {
         authenticated: true,
         profiles,
+        jwt: jwt.message,
         id: jwt.message.sub,
         role: jwt.message.role
       };

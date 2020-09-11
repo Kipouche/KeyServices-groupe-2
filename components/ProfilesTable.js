@@ -8,24 +8,24 @@ const ProfilesTable = ({ profiles }) => {
           <tr>
             <th>Id</th>
             <th>Email</th>
-            <th>Rôle</th>
             <th>Prénom</th>
             <th>Nom</th>
             <th>Date de naissance</th>
             <th>Numéro de téléphone</th>
             <th>Créé le</th>
+            <th>Accéder au profil</th>
           </tr>
         </thead>
         <tfoot>
           <tr>
             <th>Id</th>
             <th>Email</th>
-            <th>Rôle</th>
             <th>Prénom</th>
             <th>Nom</th>
             <th>Date de naissance</th>
             <th>Numéro de téléphone</th>
             <th>Créé le</th>
+            <th>Accéder au profil</th>
           </tr>
         </tfoot>
         <tbody>

@@ -1,8 +1,9 @@
 import PublicPanel from './PublicPanel';
 
-const DashboardPublicPanel = () => {
+const DashboardPublicPanel = ({ firstname }) => {
   return (
-    <nav className="">
+    <nav className="panel">
+      <p className="panel-heading">Bonjour, {firstname}</p>
       <p className="panel-tabs">
         <a className="is-active">Publique</a>
       </p>
