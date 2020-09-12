@@ -14,9 +14,14 @@ export const config = {
 const saveAvatar = (data, id) => {
   const base64Data = data.replace(/^data:([A-Za-z-+/]+);base64,/, '');
   return new Promise((resolve) => {
-    writeFile(`public/avatar/${id}.jpg`, base64Data, 'base64', (err) => {
-      if (!err) resolve();
-    });
+    writeFile(
+      `${process.env.ROOOT}/public/avatar/${id}.jpg`,
+      base64Data,
+      'base64',
+      (err) => {
+        if (!err) resolve();
+      }
+    );
   });
 };
 

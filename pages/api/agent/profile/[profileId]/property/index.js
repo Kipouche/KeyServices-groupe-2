@@ -18,7 +18,7 @@ const savePicture = (data, propertyId, i) => {
   const base64Data = data.replace(/^data:([A-Za-z-+/]+);base64,/, '');
   return new Promise((resolve) => {
     writeFile(
-      `public/pictures/${propertyId}_${i}.jpg`,
+      `${process.env.ROOOT}/public/pictures/${propertyId}_${i}.jpg`,
       base64Data,
       'base64',
       (err) => {
