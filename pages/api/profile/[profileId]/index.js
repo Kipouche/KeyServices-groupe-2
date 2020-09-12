@@ -24,7 +24,6 @@ export default authentification(async (req, res, jwt) => {
     return res.status(200).json({ profile: true });
   }
   if (req.method === 'PUT') {
-    const { avatar } = req.body;
     if (jwt.sub !== parseInt(profileId, 10)) {
       return res.status(401).json({ message: 'Not authorized' });
     }

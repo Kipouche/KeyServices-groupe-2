@@ -3,6 +3,13 @@ import { authentification } from '../../../../lib/authentification';
 import User from '../../../../lib/user';
 import ConvertTime from '../../../../lib/convertTime';
 //import InputValidation from '../../../../lib/inputValidation';
+export const config = {
+  api: {
+    bodyParser: {
+      sizeLimit: '10mb'
+    }
+  }
+};
 
 const saveAvatar = (data, id) => {
   const base64Data = data.replace(/^data:([A-Za-z-+/]+);base64,/, '');

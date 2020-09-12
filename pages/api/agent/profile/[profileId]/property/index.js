@@ -6,6 +6,14 @@ import {
   verifyJWT
 } from '../../../../../../lib/authentification';
 
+export const config = {
+  api: {
+    bodyParser: {
+      sizeLimit: '50mb'
+    }
+  }
+};
+
 const savePicture = (data, propertyId, i) => {
   const base64Data = data.replace(/^data:([A-Za-z-+/]+);base64,/, '');
   return new Promise((resolve) => {
