@@ -1,10 +1,10 @@
 import Router from 'next/router';
 
-const Profile = () => {
-  return <div>Profile</div>;
+const Agenda = () => {
+  return <div>Agenda</div>;
 };
 
-Profile.getInitialProps = async (ctx) => {
+Agenda.getInitialProps = async (ctx) => {
   const { cookie } = ctx.req ? ctx.req.headers : {};
   const host =
     process.env.NODE_ENV !== 'development'
@@ -28,12 +28,12 @@ Profile.getInitialProps = async (ctx) => {
   if (resAuth.status === 200) {
     const jwt = await resAuth.json();
     if (!ctx.req) {
-      Router.replace(`/dashboard/profile/${jwt.message.sub}`);
+      Router.replace(`/dashboard/profile/${jwt.message.sub}/agenda`);
     }
 
     if (ctx.req) {
       ctx.res.writeHead(302, {
-        Location: `/dashboard/profile/${jwt.message.sub}`
+        Location: `/dashboard/profile/${jwt.message.sub}/agenda`
       });
       ctx.res.end();
     }
@@ -41,4 +41,4 @@ Profile.getInitialProps = async (ctx) => {
   return { redirected: true}
 };
 
-export default Profile;
+export default Agenda;

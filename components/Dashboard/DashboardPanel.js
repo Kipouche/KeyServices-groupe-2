@@ -21,6 +21,9 @@ const DashboardPanel = ({ role, tab, firstname }) => {
               <a className={tab === 'modify' ? 'is-active' : ''}>Modifier Profil</a>
             </Link>
           </li>
+          <Link href="/dashboard/profile/agenda">
+            <a className={tab === 'agenda' ? 'is-active' : ''}>Agenda</a>
+          </Link>
           <li>
             <Link href="/dashboard/rentals">
               <a className={tab === 'rentals' ? 'is-active' : ''}>Locations</a>

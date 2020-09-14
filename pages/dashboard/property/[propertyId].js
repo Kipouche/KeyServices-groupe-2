@@ -4,6 +4,19 @@ import Header from '../../../components/Header';
 import DashboardPanel from '../../../components/Dashboard/DashboardPanel';
 
 const Property = ({ authenticated, id, property, role, jwt }) => {
+  const currentDate = '2018-11-01';
+  const schedulerData = [
+    {
+      startDate: '2018-11-01T09:45',
+      endDate: '2018-11-01T11:00',
+      title: 'Meeting'
+    },
+    {
+      startDate: '2018-11-01T12:00',
+      endDate: '2018-11-01T13:30',
+      title: 'Go to a gym'
+    }
+  ];
   const handleApiLoaded = (map, maps, address) => {
     const geocoder = new maps.Geocoder();
     geocoder.geocode({ address }, (results, status) => {
@@ -34,7 +47,11 @@ const Property = ({ authenticated, id, property, role, jwt }) => {
       <Header authenticated={authenticated} />
       <section className="section">
         <div className="columns">
-          <DashboardPanel role={role} tab="property" firstname={jwt.firstname}/>
+          <DashboardPanel
+            role={role}
+            tab="property"
+            firstname={jwt.firstname}
+          />
           <div className="column auto">
             <figure className="image is-3by1">
               <img
@@ -96,7 +113,7 @@ Property.getInitialProps = async (ctx) => {
     });
     ctx.res.end();
   }
-  const resProperty = await fetch(`${host}/api/property/${propertyId}`);
+  const resProperty = await fetch(`${host}/api/agent/property/${propertyId}`);
   if (resProperty.status === 200) {
     const property = await resProperty.json();
     return {

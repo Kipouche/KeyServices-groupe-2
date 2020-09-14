@@ -15,7 +15,7 @@ const saveAvatar = (data, id) => {
   const base64Data = data.replace(/^data:([A-Za-z-+/]+);base64,/, '');
   return new Promise((resolve) => {
     writeFile(
-      `${process.env.ROOOT}/public/avatar/${id}.jpg`,
+      `${process.env.ROOT}/public/avatar/${id}.jpg`,
       base64Data,
       'base64',
       (err) => {
@@ -28,23 +28,6 @@ const saveAvatar = (data, id) => {
 export default authentification(async (req, res, jwt) => {
   const { profileId } = req.query;
 
-  if (req.method === 'GET') {
-    try {
-      if (jwt.sub !== parseInt(profileId, 10) && jwt.role === 'member') {
-        return res.status(401).json({ message: 'Not authorized' });
-      }
-      const profile = await User.getByIdClientSide(profileId);
-      [profile[0].dateofbirth] = ConvertTime.timeToGMT2(profile[0].dateofbirth)
-        .toISOString()
-        .split('T');
-      return res.status(200).json(profile);
-    } catch (error) {
-      return res.status(405).json({ message: error.message });
-    }
-  }
-  if (req.method === 'DELETE') {
-    return res.status(200).json({ profile: true });
-  }
   if (req.method === 'PUT') {
     const { avatar } = req.body;
     if (jwt.sub !== parseInt(profileId, 10)) {
