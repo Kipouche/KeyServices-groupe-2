@@ -55,25 +55,27 @@ const Contact = ({ authenticated }) => {
             </div>
             <div className="column">
               <div className="">
-                <h1 className="title is-1">Contactez nous !</h1>
+                <h1 className="title is-1">Contactez-nous !</h1>
                 {!sent ? (
                   <form onSubmit={handleSubmit}>
                     <div className="field">
-                      <label className="label">Nom</label>
-                      <div className="control">
-                        <input
-                          onChange={(e) => setName(e.target.value)}
-                          value={name}
-                          className="input"
-                          type="text"
-                          name="name"
-                          placeholder="Nom"
-                          required
-                        />
-                      </div>
+                      <label className="label">
+                        Nom
+                        <div className="control">
+                          <input
+                            onChange={(e) => setName(e.target.value)}
+                            value={name}
+                            className="input"
+                            type="text"
+                            name="name"
+                            placeholder="Entrez votre nom"
+                            required
+                          />
+                        </div>
+                      </label>
                     </div>
                     <div className="field">
-                      <label className="label">Adresse e-mail</label>
+                      <label className="label">Adresse e-mail
                       <div className="control">
                         <input
                           onChange={(e) => setEmail(e.target.value)}
@@ -81,13 +83,14 @@ const Contact = ({ authenticated }) => {
                           className="input"
                           type="email"
                           name="email"
-                          placeholder="Email"
+                          placeholder="Entrez votre e-mail"
                           required
                         />
                       </div>
+                      </label>
                     </div>
                     <div className="field">
-                      <label className="label">Objet</label>
+                      <label className="label">Objet
                       <div className="control">
                         <input
                           onChange={(e) => setSubject(e.target.value)}
@@ -95,13 +98,14 @@ const Contact = ({ authenticated }) => {
                           className="input"
                           type="text"
                           name="objet"
-                          placeholder="Objet"
+                          placeholder="Entrez la nature de votre demande"
                           required
                         />
                       </div>
+                      </label>
                     </div>
                     <div className="field">
-                      <label className="label">Message</label>
+                      <label className="label">Message
                       <div className="control">
                         <input
                           onChange={(e) => setMessage(e.target.value)}
@@ -109,10 +113,11 @@ const Contact = ({ authenticated }) => {
                           className="textarea"
                           type="text"
                           name="message"
-                          placeholder="Message"
+                          placeholder="Entrez votre message"
                           required
                         />
                       </div>
+                      </label>
                     </div>
                     {error ? (
                       <div className="has-text-danger">
@@ -143,7 +148,7 @@ const Contact = ({ authenticated }) => {
                   <div className="notification is-link">
                     <h1>Merci de nous avoir contactés !</h1>
                     <p>
-                      Nous nous efforçons à vous répondre dans les plus brefs
+                      Nous nous efforçons de vous répondre dans les plus brefs
                       délais.
                     </p>
                   </div>

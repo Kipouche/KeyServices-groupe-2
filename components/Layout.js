@@ -10,7 +10,7 @@ const Layout = ({ children }) => {
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta
           name="viewport"
-          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=5"
         />
         <meta name="description" content="Hosting website for airbnb rentals" />
         <meta name="keywords" content="hosting, airbnb, rent, host, services" />

@@ -21,9 +21,9 @@ const SelectRole = ({ id, role }) => {
   return (
     <div className="select">
       <select name="role" value={roleState} onChange={handleSelect}>
-        <option value="member">member</option>
-        <option value="agent">agent</option>
-        <option value="admin">admin</option>
+        <option value="member">Membre</option>
+        <option value="agent">Agent</option>
+        <option value="admin">Admin</option>
       </select>
     </div>
   );

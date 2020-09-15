@@ -3,11 +3,14 @@ import User from '../../../../lib/user';
 import ConvertTime from '../../../../lib/convertTime';
 import InputValidation from '../../../../lib/inputValidation';
 
-export default authentification(async (req, res) => {
+export default authentification(async (req, res, jwt) => {
   const { profileId } = req.query;
 
   if (req.method === 'GET') {
     try {
+      if (jwt.sub !== parseInt(profileId, 10) && jwt.role === 'member') {
+        return res.status(401).json({ message: 'Not authorized' });
+      }
       const profile = await User.getByIdClientSide(profileId);
       [profile[0].dateofbirth] = ConvertTime.timeToGMT2(profile[0].dateofbirth)
         .toISOString()
@@ -21,6 +24,9 @@ export default authentification(async (req, res) => {
     return res.status(200).json({ profile: true });
   }
   if (req.method === 'PUT') {
+    if (jwt.sub !== parseInt(profileId, 10)) {
+      return res.status(401).json({ message: 'Not authorized' });
+    }
     const { firstname, lastname, phonenumber, dateofbirth } = req.body;
     if (!firstname || !lastname || !phonenumber || !dateofbirth) {
       return res.status(401).json({ message: 'A field is missing' });

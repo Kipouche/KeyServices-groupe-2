@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Header from '../../components/Header';
 import DashboardPanel from '../../components/Dashboard/DashboardPanel';
 
-const Profile = ({ authenticated, id, role }) => {
+const Profile = ({ authenticated, id, role, jwt }) => {
   const [loading, setLoading] = useState(false);
   const [validate, setValidate] = useState(false);
   const [error, setError] = useState('');
@@ -45,7 +45,7 @@ const Profile = ({ authenticated, id, role }) => {
       <Header authenticated={authenticated} />
       <section className="section">
         <div className="columns">
-          <DashboardPanel role={role} tab="public" />
+          <DashboardPanel role={role} tab="public" firstname={jwt.firstname} />
           <div className="column">
             <h1 className="title">Changer le mot de passe</h1>
             <form onSubmit={handleSubmit} className="is-centered">
@@ -149,7 +149,8 @@ Profile.getInitialProps = async (ctx) => {
     return {
       authenticated: true,
       id: jwt.message.sub,
-      role: jwt.message.role
+      role: jwt.message.role,
+      jwt: jwt.message
     };
   }
   return { authenticated: false };

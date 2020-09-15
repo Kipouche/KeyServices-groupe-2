@@ -1,21 +1,31 @@
 import Property from '../../../../lib/property';
 import { verifyJWT } from '../../../../lib/authentification';
+import InputValidation from '../../../../lib/inputValidation';
 
 export default async (req, res) => {
+  // ajouter la vérif des input + sécurité Agent
   if (req.method === 'GET') {
-    const { type } = req.query;
-    try {
-      const jwt = await verifyJWT(req);      
-      if (jwt.role !== 'agent' && jwt.role !== 'admin') {          
-        return res.status(401).json({ message: 'Not authorized' });
-      }
-      let properties = [];
-      if (type === 'unvalidated') properties = await Property.getUnvalidatedProperties();
-      else properties = await Property.getAll();
-      return res.status(200).json(properties);
-    } catch (error) {        
-      return res.status(400).json({ message: error.message });
-    }
+    const {
+      area,
+      district,
+      bed,
+      room,
+      bathroom,
+      priceMin,
+      priceMax
+    } = req.query;
+
+    const properties = await Property.getByFilter(
+      area,
+      bed,
+      room,
+      bathroom,
+      priceMin,
+      priceMax,
+      district
+    );
+    return res.status(200).json(properties);
   }
-  return res.status(400).json({ message: 'Method is not allowed' });
+
+  return res.send('ok');
 };

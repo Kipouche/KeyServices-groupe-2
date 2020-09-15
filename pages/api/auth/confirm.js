@@ -1,7 +1,6 @@
-import sha256 from 'sha256';
-import User from '../../../lib/user';
-
-export default async (req, res) => {
+let sha256 = require('sha256');
+let User = require('../../../lib/user');
+module.exports = async (req, res) => {
   const { id, token } = req.query;
   if (!id || !token) {
     return res.status(401).json({ message: 'A parameter is missing' });

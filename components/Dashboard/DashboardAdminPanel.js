@@ -4,11 +4,12 @@ import PublicPanel from './PublicPanel';
 import AgentPanel from './AgentPanel';
 import AdminPanel from './AdminPanel';
 
-const DashboardAgentPanel = ({ tab }) => {
+const DashboardAgentPanel = ({ tab, firstname }) => {
   const [panel, setPanel] = useState(tab);
 
   return (
-    <nav className="">
+    <nav className="panel">
+      <p className="panel-heading">Bonjour, {firstname}</p>
       <p className="panel-tabs">
         <a
           onClick={() => setPanel('public')}

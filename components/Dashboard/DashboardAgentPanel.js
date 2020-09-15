@@ -3,12 +3,13 @@ import { useState } from 'react';
 import PublicPanel from './PublicPanel';
 import AgentPanel from './AgentPanel';
 
-const DashboardAgentPanel = ({ tab }) => {
+const DashboardAgentPanel = ({ tab, firstname }) => {
   const [panel, setPanel] = useState(tab);
 
   return (
-    <nav className="">
-      <p className="panel-tabs is-boxed">
+    <nav className="panel">
+      <p className="panel-heading">Bonjour, {firstname}</p>
+      <p className="panel-tabs">
         <a
           onClick={() => setPanel('public')}
           type="button"

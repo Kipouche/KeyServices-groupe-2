@@ -6,24 +6,26 @@ const ProfilesTable = ({ profiles }) => {
       <table className="table is-fullwidth">
         <thead>
           <tr>
-            <th>id</th>
-            <th>email</th>
-            <th>firstname</th>
-            <th>lastname</th>
-            <th>date of birth</th>
-            <th>phone number</th>
-            <th>created at</th>
+            <th>Id</th>
+            <th>Email</th>
+            <th>Prénom</th>
+            <th>Nom</th>
+            <th>Date de naissance</th>
+            <th>Numéro de téléphone</th>
+            <th>Créé le</th>
+            <th>Accéder au profil</th>
           </tr>
         </thead>
         <tfoot>
           <tr>
-            <th>id</th>
-            <th>email</th>
-            <th>firstname</th>
-            <th>lastname</th>
-            <th>date of birth</th>
-            <th>phone number</th>
-            <th>created at</th>
+            <th>Id</th>
+            <th>Email</th>
+            <th>Prénom</th>
+            <th>Nom</th>
+            <th>Date de naissance</th>
+            <th>Numéro de téléphone</th>
+            <th>Créé le</th>
+            <th>Accéder au profil</th>
           </tr>
         </tfoot>
         <tbody>

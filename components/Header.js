@@ -35,7 +35,7 @@ const Header = (props) => {
         <div className="navbar-brand">
           <Link href="/">
             <a className="navbar-item">
-              <img alt="logo" src="/logo.png" />
+              <img alt="logo KeyServices" src="/logo.png" />
             </a>
           </Link>
           <button
@@ -94,7 +94,7 @@ const Header = (props) => {
                 )}
                 {props.authenticated ? (
                   <a onClick={logout} className="button is-link is-outlined">
-                    Log out
+                    Déconnexion
                   </a>
                 ) : (
                   []

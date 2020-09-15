@@ -3,19 +3,19 @@ import Link from 'next/link';
 const PublicPanel = () => (
   <>
     <Link href="/dashboard/profile">
-      <a className="panel-block">Profile</a>
+      <a className="panel-block">Profil</a>
     </Link>
     <Link href="/dashboard/property/add">
-      <a className="panel-block">Add Property</a>
+      <a className="panel-block">Ajouter un bien</a>
     </Link>
     <Link href="/dashboard/property">
-      <a className="panel-block">My Properties</a>
+      <a className="panel-block">Mes biens</a>
     </Link>
     <Link href="/dashboard/rentals">
-      <a className="panel-block">Rentals</a>
+      <a className="panel-block">Locations</a>
     </Link>
     <Link href="/explore">
-      <a className="panel-block">Explore</a>
+      <a className="panel-block">Explorer</a>
     </Link>
   </>
 );
