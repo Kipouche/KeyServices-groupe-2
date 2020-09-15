@@ -56,7 +56,7 @@ const Property = ({ authenticated, id, property, role, jwt }) => {
             <figure className="image is-3by1">
               <img
                 style={{ objectFit: 'cover' }}
-                src={`/pictures/${property.id}_0.jpg`}
+                src={`https://keyservices.s3.eu-west-3.amazonaws.com/pictures/${property.id}_0.jpg`}
                 alt="preview"
               />
             </figure>

@@ -1,4 +1,5 @@
 import { writeFile } from 'fs';
+import AWS from 'aws-sdk';
 import Property from '../../../../../../lib/property';
 import InputValidation from '../../../../../../lib/inputValidation';
 import {
@@ -12,6 +13,29 @@ export const config = {
       sizeLimit: '50mb'
     }
   }
+};
+
+const uploadFileToAWS = (data, propertyId, i) => {
+  const base64Data = data.replace(/^data:([A-Za-z-+/]+);base64,/, '');
+  const fileContent = Buffer.from(base64Data, 'base64');
+  const s3 = new AWS.S3({
+    accessKeyId: process.env.AWSAccessKeyId,
+    secretAccessKey: process.env.AWSSecretKey
+  });
+  // Setting up S3 upload parameters
+  const params = {
+    Bucket: process.env.S3_BUCKET,
+    Key: `pictures/${propertyId}_${i}.jpg`, // File name you want to save as in S3
+    Body: fileContent
+  };
+
+  // Uploading files to the bucket
+  s3.upload(params, (err, data) => {
+    if (err) {
+      throw err;
+    }
+    console.log(`File uploaded successfully. ${data.Location}`);
+  });
 };
 
 const savePicture = (data, propertyId, i) => {
@@ -101,6 +125,7 @@ export default authentification(async (req, res) => {
       );
       pictures.map(async (picture, i) => {
         await savePicture(picture, result.insertId, i);
+        uploadFileToAWS(picture, result.insertId, i);
       });
       return res.status(200).json({ id: result.insertId });
     } catch (error) {

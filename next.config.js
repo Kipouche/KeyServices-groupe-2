@@ -6,7 +6,10 @@ if (process.env.NODE_ENV === 'development') {
     env: {
       SECRET: '84f929ab-2819-4f37-aa1f-98e4d7cae451',
       SECRET_SHA: '0e259e21-dce4-4d39-b37d-d183deee828e',
-      ROOT: __dirname
+      ROOT: __dirname,
+      S3_BUCKET: 'keyservices',
+      AWSAccessKeyId: 'AKIAIMRHXUI5OXNDKHTA',
+      AWSSecretKey: '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'
     },
     pwa: {
       dest: 'public'
@@ -19,7 +22,10 @@ if (process.env.NODE_ENV === 'development') {
         SECRET: '84f929ab-2819-4f37-aa1f-98e4d7cae451',
         SECRET_SHA: '0e259e21-dce4-4d39-b37d-d183deee828e',
         ROOT_URL: 'https://f2i-dev18-km-jl-js-gg.herokuapp.com',
-        ROOT: __dirname
+        ROOT: __dirname,
+        S3_BUCKET: 'keyservices',
+        AWSAccessKeyId: 'AKIAIMRHXUI5OXNDKHTA',
+        AWSSecretKey: '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'
       },
       pwa: {
         dest: 'public'

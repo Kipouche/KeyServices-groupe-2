@@ -21,6 +21,8 @@ export default async (req, res) => {
     return res.json(result);
   }
   if (req.method === 'PUT') {
+      console.log('hello');
+      
     const result = await Period.update(periodId, startDate, endDate);
     return res.json({ success: 'updated' });
   }

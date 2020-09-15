@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 const ProfileCard = ({ profile, displayChangePicture }) => {
   const [source, setSource] = useState(
-    profile.avatar ? `/avatar/${profile.id}.jpg` : '/avatar.png'
+    profile.avatar ? `https://keyservices.s3.eu-west-3.amazonaws.com/avatar/${profile.id}.jpg` : '/avatar.png'
   );
 
   const handlePictureChange = async (data) => {

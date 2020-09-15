@@ -1,8 +1,8 @@
 import { writeFile } from 'fs';
+import AWS from 'aws-sdk';
 import { authentification } from '../../../../lib/authentification';
 import User from '../../../../lib/user';
-import ConvertTime from '../../../../lib/convertTime';
-//import InputValidation from '../../../../lib/inputValidation';
+
 export const config = {
   api: {
     bodyParser: {
@@ -25,6 +25,29 @@ const saveAvatar = (data, id) => {
   });
 };
 
+const uploadFileToAWS = (data, id) => {
+  const base64Data = data.replace(/^data:([A-Za-z-+/]+);base64,/, '');
+  const fileContent = Buffer.from(base64Data, 'base64');
+  const s3 = new AWS.S3({
+    accessKeyId: process.env.AWSAccessKeyId,
+    secretAccessKey: process.env.AWSSecretKey
+  });
+  // Setting up S3 upload parameters
+  const params = {
+    Bucket: process.env.S3_BUCKET,
+    Key: `avatar/${id}.jpg`, // File name you want to save as in S3
+    Body: fileContent
+  };
+
+  // Uploading files to the bucket
+  s3.upload(params, function (err, data) {
+    if (err) {
+      throw err;
+    }
+    console.log(`File uploaded successfully. ${data.Location}`);
+  });
+};
+
 export default authentification(async (req, res, jwt) => {
   const { profileId } = req.query;
 
@@ -37,9 +60,12 @@ export default authentification(async (req, res, jwt) => {
       return res.status(400).json({ message: 'A field is missing' });
     }
     await saveAvatar(avatar, profileId);
+    uploadFileToAWS(avatar, profileId);
     try {
       await User.updateAvatar(profileId);
-      return res.status(200).json({ message: `${process.env.ROOT}/public/avatar/${profileId }.jpg` });
+      return res.status(200).json({
+        message: `${process.env.ROOT}/public/avatar/${profileId}.jpg`
+      });
     } catch (error) {
       return res.status(400).json({ message: error.message });
     }
