@@ -39,7 +39,7 @@ export default authentification(async (req, res, jwt) => {
     await saveAvatar(avatar, profileId);
     try {
       await User.updateAvatar(profileId);
-      return res.status(200).json({ message: 'Successfull updating profile' });
+      return res.status(200).json({ message: `${process.env.ROOT}/public/avatar/${profileId }.jpg` });
     } catch (error) {
       return res.status(400).json({ message: error.message });
     }
