@@ -124,7 +124,7 @@ export default authentification(async (req, res) => {
         price
       );
       pictures.map(async (picture, i) => {
-        await savePicture(picture, result.insertId, i);
+        //await savePicture(picture, result.insertId, i);
         uploadFileToAWS(picture, result.insertId, i);
       });
       return res.status(200).json({ id: result.insertId });

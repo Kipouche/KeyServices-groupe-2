@@ -59,7 +59,7 @@ export default authentification(async (req, res, jwt) => {
     if (!avatar) {
       return res.status(400).json({ message: 'A field is missing' });
     }
-    await saveAvatar(avatar, profileId);
+    //await saveAvatar(avatar, profileId);
     uploadFileToAWS(avatar, profileId);
     try {
       await User.updateAvatar(profileId);
