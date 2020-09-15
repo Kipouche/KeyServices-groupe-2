@@ -36,7 +36,8 @@ const uploadFileToAWS = (data, id) => {
   const params = {
     Bucket: process.env.S3_BUCKET,
     Key: `avatar/${id}.jpg`, // File name you want to save as in S3
-    Body: fileContent
+    Body: fileContent,
+    ACL: 'public-read'
   };
 
   // Uploading files to the bucket
