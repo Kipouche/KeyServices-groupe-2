@@ -2,7 +2,9 @@ import { useState } from 'react';
 
 const ProfileCard = ({ profile, displayChangePicture }) => {
   const [source, setSource] = useState(
-    profile.avatar ? `https://keyservices.s3.eu-west-3.amazonaws.com/avatar/${profile.id}.jpg` : '/avatar.png'
+    profile.avatar
+      ? `https://keyservices.s3.eu-west-3.amazonaws.com/avatar/${profile.id}.jpg`
+      : '/avatar.png'
   );
 
   const handlePictureChange = async (data) => {
@@ -38,22 +40,25 @@ const ProfileCard = ({ profile, displayChangePicture }) => {
           <img src={source} alt="profile" style={{ objectFit: 'cover' }} />
         </figure>
       </div>
-      { displayChangePicture ? 
-          <div className="field mx-3 my-3">
-            <div className="file is-small is-primary">
-              <label className="file-label">
-                <input
-                  onChange={changeAvatar}
-                  className="file-input"
-                  type="file"
-                  name="avatar"
-                />
-                <span className="file-cta">
-                  <span className="file-label">Changer votre avatar</span>
-                </span>
-              </label>
-            </div>
-          </div> : [] }
+      {displayChangePicture ? (
+        <div className="field mx-3 my-3">
+          <div className="file is-small is-primary">
+            <label className="file-label">
+              <input
+                onChange={changeAvatar}
+                className="file-input"
+                type="file"
+                name="avatar"
+              />
+              <span className="file-cta">
+                <span className="file-label">Changer votre avatar</span>
+              </span>
+            </label>
+          </div>
+        </div>
+      ) : (
+        []
+      )}
       <div className="card-content">
         <div className="media">
           <div className="media-content">
