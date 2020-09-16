@@ -22,8 +22,7 @@ export default async (req, res) => {
       !salledebain ||
       !chambres ||
       !cuisine ||
-      !salleamanger ||
-      !message
+      !salleamanger
     ) {
       return res.status(400).json({ message: 'A field is missing' });
     }
