@@ -1,8 +1,8 @@
-import Period from '../../../../../lib/period';
-import { verifyJWT } from '../../../../../lib/authentification';
+import Rent from '../../../../../../lib/rent';
+import { verifyJWT } from '../../../../../../lib/authentification';
 
 export default async (req, res) => {
-  const { profileId, periodId } = req.query;
+  const { profileId, rentId } = req.query;
   const { startDate, endDate } = req.body;
 
   /*
@@ -17,15 +17,15 @@ export default async (req, res) => {
   }*/
 
   if (req.method === 'GET') {
-    const result = await Period.getByUserId(periodId);
+    const result = await Rent.getById(rentId);
     return res.json(result);
   }
   if (req.method === 'PUT') {
-    const result = await Period.update(periodId, startDate, endDate);
+    const result = await Rent.update(rentId, startDate, endDate);
     return res.json({ success: 'updated' });
   }
   if (req.method === 'DELETE') {
-    const result = await Period.deleteById(periodId);
+    const result = await Rent.deleteById(rentId);
     return res.json({ success: 'deleted' });
   }
   return res.json({ message: 'Method not allowed' });

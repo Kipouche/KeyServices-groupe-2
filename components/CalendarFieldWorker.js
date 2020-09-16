@@ -16,7 +16,8 @@ import {
   EditRecurrenceMenu,
   AllDayPanel,
   DateNavigator,
-  TodayButton
+  TodayButton,
+  Resources
 } from '@devexpress/dx-react-scheduler-material-ui';
 import { connectProps } from '@devexpress/dx-react-core';
 import {
@@ -36,9 +37,6 @@ import IconButton from '@material-ui/core/IconButton';
 import AddIcon from '@material-ui/icons/Add';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
-
-import LocationOn from '@material-ui/icons/LocationOn';
-import Notes from '@material-ui/icons/Notes';
 import Close from '@material-ui/icons/Close';
 import CalendarToday from '@material-ui/icons/CalendarToday';
 import Create from '@material-ui/icons/Create';
@@ -130,6 +128,8 @@ class AppointmentFormContainerBasic extends React.PureComponent {
       ...this.getAppointmentData(),
       ...this.getAppointmentChanges()
     };
+    console.log(this.props);
+
     const profileId = this.props.properties.find(
       (property) => property.id === this.state.selectedProperty
     ).user_id;
@@ -137,7 +137,7 @@ class AppointmentFormContainerBasic extends React.PureComponent {
       commitChanges({ [type]: appointment.id });
     } else if (type === 'changed') {
       const res = await fetch(
-        `/api/profile/${profileId}/period/${appointment.id}`,
+        `/api/fieldworker/profile/${this.props.profileId}/todo/${appointment.id}`,
         {
           method: 'PUT',
           headers: {
@@ -145,28 +145,31 @@ class AppointmentFormContainerBasic extends React.PureComponent {
           },
           body: JSON.stringify({
             startDate: convertTime.timeToGMT2(appointment.startDate),
-            endDate: convertTime.timeToGMT2(appointment.endDate)
+            endDate: convertTime.timeToGMT2(appointment.endDate),
+            task: appointment.tache
           })
         }
       );
       commitChanges({ [type]: { [appointment.id]: appointment } });
     } else {
       const res = await fetch(
-        `/api/profile/${profileId}/property/${this.state.selectedProperty}/period`,
+        `/api/fieldworker/profile/${this.props.profileId}/property/${this.state.selectedProperty}/todo`,
         {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
+            task: appointment.tache,
             startDate: convertTime.timeToGMT2(appointment.startDate),
             endDate: convertTime.timeToGMT2(appointment.endDate)
           })
         }
       );
-      appointment.title = this.props.properties.find(
+      appointment.title = appointment.tache;
+      appointment.address = this.props.properties.find(
         (property) => property.id === this.state.selectedProperty
-      ).address;
+      ).id;
       commitChanges({ [type]: appointment });
     }
     this.setState({
@@ -248,9 +251,13 @@ class AppointmentFormContainerBasic extends React.PureComponent {
           </div>
           <div className={classes.content}>
             <div className={classes.wrapper}>
+              <Create className={classes.icon} color="action" />
+              <TextField {...textEditorProps('tache')} />
+            </div>
+            <div className={classes.wrapper}>
               <CalendarToday className={classes.icon} color="action" />
               <TextField
-                {...textEditorProps('title')}
+                {...textEditorProps('propriete')}
                 color="action"
                 label="Propriétés"
                 value={this.state.selectedProperty}
@@ -330,24 +337,32 @@ const styles = (theme) => ({
 class Demo extends React.PureComponent {
   constructor(props) {
     super(props);
-    const periodsMap = props.periods.map((period) => {
+    console.log('todouz', props.todos);
+    console.log('role', props.role);
+
+    const todosMap = props.todos.map((todo) => {
       return {
-        title: props.properties.find(
-          (property) => property.id === period.property_id
-        ).address,
-        startDate: new Date(period.startDate),
-        endDate: new Date(period.endDate),
-        id: period.id,
-        propertyId: period.property_id,
+        title: todo.task,
+        tache: todo.task,
+        startDate: new Date(todo.startDate),
+        endDate: new Date(todo.endDate),
+        id: todo.id,
+        address: props.properties.find(
+          (property) => property.id === todo.property_id
+        ).id,
+        propertyId: todo.property_id,
         profileId: props.properties.find(
-          (property) => property.id === period.property_id
+          (property) => property.id === todo.property_id
         ).user_id
       };
     });
 
+    console.log('todosmap', todosMap);
+
     this.state = {
-      data: periodsMap,
+      data: todosMap,
       properties: props.properties,
+      profileId: props.profileId,
       currentDate: new Date().toISOString().slice(0, 10),
       confirmationVisible: false,
       editingFormVisible: false,
@@ -355,10 +370,31 @@ class Demo extends React.PureComponent {
       editingAppointment: undefined,
       previousAppointment: undefined,
       addedAppointment: {},
-      startDayHour: 9,
+      startDayHour: 8,
       endDayHour: 19,
-      isNewAppointment: false
+      isNewAppointment: false,
+      mainResourceName: 'address',
+      resources: [
+        {
+          fieldName: 'address',
+          title: 'Adresse',
+          instances: props.properties.map((property) => {
+            return {
+              id: property.id,
+              text: property.address
+            };
+          })
+        }
+      ]
     };
+    console.log(
+      props.properties.map((property) => {
+        return {
+          id: property.id,
+          text: property.address
+        };
+      })
+    );
 
     this.toggleConfirmationVisible = this.toggleConfirmationVisible.bind(this);
     this.commitDeletedAppointment = this.commitDeletedAppointment.bind(this);
@@ -380,7 +416,8 @@ class Demo extends React.PureComponent {
         isNewAppointment,
         previousAppointment,
         properties,
-        periods
+        todos,
+        profileId
       } = this.state;
 
       const currentAppointment =
@@ -405,7 +442,8 @@ class Demo extends React.PureComponent {
         onEditingAppointmentChange: this.onEditingAppointmentChange,
         cancelAppointment,
         properties,
-        periods
+        todos,
+        profileId
       };
     });
   }
@@ -447,7 +485,7 @@ class Demo extends React.PureComponent {
 
   async commitDeletedAppointment() {
     console.log('prop');
-    const propertyId = this.props.periods.find(
+    const propertyId = this.props.todos.find(
       (period) => period.id === this.state.deletedAppointmentId
     ).property_id;
     const profileId = this.props.properties.find(
@@ -462,7 +500,7 @@ class Demo extends React.PureComponent {
       return { data: nextData, deletedAppointmentId: null };
     });
     const res = await fetch(
-      `/api/profile/${profileId}/period/${this.state.deletedAppointmentId}`,
+      `/api/fieldworker/profile/${this.props.profileId}/todo/${this.state.deletedAppointmentId}`,
       {
         method: 'DELETE',
         headers: {
@@ -505,7 +543,10 @@ class Demo extends React.PureComponent {
       startDayHour,
       endDayHour,
       properties,
-      periods
+      todos,
+      profileId,
+      resources,
+      mainResourceName
     } = this.state;
     const { classes } = this.props;
 
@@ -518,21 +559,35 @@ class Demo extends React.PureComponent {
             onEditingAppointmentChange={this.onEditingAppointmentChange}
             onAddedAppointmentChange={this.onAddedAppointmentChange}
           />
-          <MonthView />
           <WeekView startDayHour={startDayHour} endDayHour={endDayHour} />
+          <MonthView />
           <AllDayPanel />
           <EditRecurrenceMenu />
           <Appointments />
-          <AppointmentTooltip showOpenButton showCloseButton showDeleteButton />
+          {this.props.role === 'fieldworker' ? (
+            <AppointmentTooltip />
+          ) : (
+            <AppointmentTooltip
+              showOpenButton
+              showCloseButton
+              showDeleteButton
+            />
+          )}
+          <Resources data={resources} mainResourceName={mainResourceName} />
           <Toolbar />
           <ViewSwitcher />
           <DateNavigator />
           <TodayButton />
-          <AppointmentForm
-            overlayComponent={this.appointmentForm}
-            visible={editingFormVisible}
-            onVisibilityChange={this.toggleEditingFormVisibility}
-          />
+          {this.props.role === 'fieldworker' ? (
+            []
+          ) : (
+            <AppointmentForm
+              readOnly
+              overlayComponent={this.appointmentForm}
+              visible={editingFormVisible}
+              onVisibilityChange={this.toggleEditingFormVisibility}
+            />
+          )}
           <DragDropProvider />
         </Scheduler>
 

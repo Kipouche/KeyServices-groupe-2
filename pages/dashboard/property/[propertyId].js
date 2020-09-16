@@ -2,21 +2,10 @@ import Router from 'next/router';
 import GoogleMapReact from 'google-map-react';
 import Header from '../../../components/Header';
 import DashboardPanel from '../../../components/Dashboard/DashboardPanel';
+import PropertyAgentMenu from '../../../components/PropertyAgentMenu';
+import PropertyFieldWorkerMenu from '../../../components/PropertyFieldWorkerMenu';
 
-const Property = ({ authenticated, id, property, role, jwt }) => {
-  const currentDate = '2018-11-01';
-  const schedulerData = [
-    {
-      startDate: '2018-11-01T09:45',
-      endDate: '2018-11-01T11:00',
-      title: 'Meeting'
-    },
-    {
-      startDate: '2018-11-01T12:00',
-      endDate: '2018-11-01T13:30',
-      title: 'Go to a gym'
-    }
-  ];
+const Property = ({ authenticated, id, property, profile, role, jwt }) => {
   const handleApiLoaded = (map, maps, address) => {
     const geocoder = new maps.Geocoder();
     geocoder.geocode({ address }, (results, status) => {
@@ -60,9 +49,31 @@ const Property = ({ authenticated, id, property, role, jwt }) => {
                 alt="preview"
               />
             </figure>
-            <div className="section">
-              <h1 className="title">{property.title}</h1>
-              <p>{property.description}</p>
+            <div className="section columns">
+              <div className="column">
+                <h1 className="title">{property.title}</h1>
+                <p>{property.description}</p>
+              </div>
+              <div className="column">
+                {role === 'agent' || role === 'admin' ? (
+                  <PropertyAgentMenu
+                    id={id}
+                    property={property}
+                    profile={profile}
+                  />
+                ) : (
+                  []
+                )}
+                {role === 'fieldworker' ? (
+                  <PropertyFieldWorkerMenu
+                    id={id}
+                    property={property}
+                    profile={profile}
+                  />
+                ) : (
+                  []
+                )}
+              </div>
             </div>
             <div className="container is-fluid">
               <GoogleMapReact
@@ -113,13 +124,24 @@ Property.getInitialProps = async (ctx) => {
     });
     ctx.res.end();
   }
-  const resProperty = await fetch(`${host}/api/agent/property/${propertyId}`);
+  const resProperty = await fetch(`${host}/api/agent/property/${propertyId}`, {
+    headers: {
+      cookie
+    }
+  });
   if (resProperty.status === 200) {
     const property = await resProperty.json();
+    const resProfile = await fetch(`${host}/api/profile/${property.user_id}`, {
+      headers: {
+        cookie
+      }
+    });
+    const profile = await resProfile.json();
     return {
       authenticated: true,
-      id: json.sub,
+      id: json.message.sub,
       property,
+      profile: profile[0],
       role: json.message.role,
       jwt: json.message
     };

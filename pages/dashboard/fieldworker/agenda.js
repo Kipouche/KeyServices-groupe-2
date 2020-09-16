@@ -28,17 +28,17 @@ Agenda.getInitialProps = async (ctx) => {
   if (resAuth.status === 200) {
     const jwt = await resAuth.json();
     if (!ctx.req) {
-      Router.replace(`/dashboard/profile/${jwt.message.sub}/agenda`);
+      Router.replace(`/dashboard/fieldworker/profile/${jwt.message.sub}/agenda`);
     }
 
     if (ctx.req) {
       ctx.res.writeHead(302, {
-        Location: `/dashboard/profile/${jwt.message.sub}/agenda`
+        Location: `/dashboard/fieldworker/profile/${jwt.message.sub}/agenda`
       });
       ctx.res.end();
     }
   }
-  return { redirected: true }
+  return { redirected: true };
 };
 
 export default Agenda;

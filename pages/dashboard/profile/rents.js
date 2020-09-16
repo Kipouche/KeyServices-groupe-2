@@ -28,12 +28,12 @@ Agenda.getInitialProps = async (ctx) => {
   if (resAuth.status === 200) {
     const jwt = await resAuth.json();
     if (!ctx.req) {
-      Router.replace(`/dashboard/profile/${jwt.message.sub}/agenda`);
+      Router.replace(`/dashboard/profile/${jwt.message.sub}/rents`);
     }
 
     if (ctx.req) {
       ctx.res.writeHead(302, {
-        Location: `/dashboard/profile/${jwt.message.sub}/agenda`
+        Location: `/dashboard/profile/${jwt.message.sub}/rents`
       });
       ctx.res.end();
     }

@@ -137,7 +137,9 @@ class AppointmentFormContainerBasic extends React.PureComponent {
       commitChanges({ [type]: appointment.id });
     } else if (type === 'changed') {
       const res = await fetch(
-        `/api/profile/${profileId}/period/${appointment.id}`,
+        `/api/agent/profile/${this.props.profileId}/rent/${
+          appointment.rentId ? appointment.rentId : appointment.id
+        }`,
         {
           method: 'PUT',
           headers: {
@@ -152,7 +154,7 @@ class AppointmentFormContainerBasic extends React.PureComponent {
       commitChanges({ [type]: { [appointment.id]: appointment } });
     } else {
       const res = await fetch(
-        `/api/profile/${profileId}/property/${this.state.selectedProperty}/period`,
+        `/api/agent/profile/${this.props.profileId}/property/${this.state.selectedProperty}/rent`,
         {
           method: 'POST',
           headers: {
@@ -164,6 +166,10 @@ class AppointmentFormContainerBasic extends React.PureComponent {
           })
         }
       );
+      const result = await res.json();
+      appointment.rentId = result.success;
+      console.log('a', appointment);
+      
       appointment.title = this.props.properties.find(
         (property) => property.id === this.state.selectedProperty
       ).address;
@@ -250,7 +256,7 @@ class AppointmentFormContainerBasic extends React.PureComponent {
             <div className={classes.wrapper}>
               <CalendarToday className={classes.icon} color="action" />
               <TextField
-                {...textEditorProps('title')}
+                {...textEditorProps('propriete')}
                 color="action"
                 label="Propriétés"
                 value={this.state.selectedProperty}
@@ -330,24 +336,25 @@ const styles = (theme) => ({
 class Demo extends React.PureComponent {
   constructor(props) {
     super(props);
-    const periodsMap = props.periods.map((period) => {
+    console.log(props.rents);
+
+    const rentsMap = props.rents.map((rent) => {
       return {
         title: props.properties.find(
-          (property) => property.id === period.property_id
+          (property) => property.id === rent.property_id
         ).address,
-        startDate: new Date(period.startDate),
-        endDate: new Date(period.endDate),
-        id: period.id,
-        propertyId: period.property_id,
-        profileId: props.properties.find(
-          (property) => property.id === period.property_id
-        ).user_id
+        startDate: new Date(rent.startDate),
+        endDate: new Date(rent.endDate),
+        id: rent.id,
+        propertyId: rent.property_id,
+        profileId: props.profileId
       };
     });
 
     this.state = {
-      data: periodsMap,
+      data: rentsMap,
       properties: props.properties,
+      profileId: props.profileId,
       currentDate: new Date().toISOString().slice(0, 10),
       confirmationVisible: false,
       editingFormVisible: false,
@@ -380,7 +387,8 @@ class Demo extends React.PureComponent {
         isNewAppointment,
         previousAppointment,
         properties,
-        periods
+        profileId,
+        rents
       } = this.state;
 
       const currentAppointment =
@@ -405,7 +413,8 @@ class Demo extends React.PureComponent {
         onEditingAppointmentChange: this.onEditingAppointmentChange,
         cancelAppointment,
         properties,
-        periods
+        profileId,
+        rents
       };
     });
   }
@@ -446,23 +455,22 @@ class Demo extends React.PureComponent {
   }
 
   async commitDeletedAppointment() {
-    console.log('prop');
-    const propertyId = this.props.periods.find(
-      (period) => period.id === this.state.deletedAppointmentId
-    ).property_id;
-    const profileId = this.props.properties.find(
-      (property) => property.id === propertyId
-    ).user_id;
+    const appointment = this.state.data.filter((e) => e.id === this.state.deletedAppointmentId)[0];
     this.setState((state) => {
       const { data, deletedAppointmentId } = state;
       const nextData = data.filter(
         (appointment) => appointment.id !== deletedAppointmentId
       );
-
       return { data: nextData, deletedAppointmentId: null };
     });
+    console.log(appointment);
+    
     const res = await fetch(
-      `/api/profile/${profileId}/period/${this.state.deletedAppointmentId}`,
+      `/api/agent/profile/${this.props.profileId}/rent/${
+        appointment.rentId
+          ? appointment.rentId
+          : this.state.deletedAppointmentId
+      }`,
       {
         method: 'DELETE',
         headers: {
@@ -505,7 +513,8 @@ class Demo extends React.PureComponent {
       startDayHour,
       endDayHour,
       properties,
-      periods
+      profileId,
+      rents
     } = this.state;
     const { classes } = this.props;
 

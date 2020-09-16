@@ -35,7 +35,6 @@ const uploadFileToAWS = (data, propertyId, i) => {
     if (err) {
       throw err;
     }
-    console.log(`File uploaded successfully. ${data.Location}`);
   });
 };
 

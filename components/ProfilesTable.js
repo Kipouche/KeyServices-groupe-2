@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import ConvertTime from '../lib/convertTime';
 
 const ProfilesTable = ({ profiles }) => {
@@ -36,9 +37,29 @@ const ProfilesTable = ({ profiles }) => {
                 <td>{profile.email}</td>
                 <td>{profile.firstname}</td>
                 <td>{profile.lastname}</td>
-                <td>{ConvertTime.timeToGMT2(profile.dateofbirth).toISOString().split('T')[0]}</td>
+                <td>
+                  {
+                    ConvertTime.timeToGMT2(profile.dateofbirth)
+                      .toISOString()
+                      .split('T')[0]
+                  }
+                </td>
                 <td>{profile.phonenumber}</td>
-                <td>{ConvertTime.timeToGMT2(profile.created_at).toISOString().split('T')[0]}</td>
+                <td>
+                  {
+                    ConvertTime.timeToGMT2(profile.created_at)
+                      .toISOString()
+                      .split('T')[0]
+                  }
+                </td>
+                <td>
+                  <Link
+                    href="/dashboard/profile/[profileId]"
+                    as={`/dashboard/profile/${profile.id}`}
+                  >
+                    <a>accéder</a>
+                  </Link>
+                </td>
               </tr>
             );
           })}

@@ -6,15 +6,14 @@ export default async (req, res) => {
   if (req.method === 'GET') {
     try {
       const property = await Property.getById(propertyId);
-      const propertyRents = await Rent.getByPropertyId(propertyId);
-      if (!propertyRents) {
-        return res.status(400).json({
-          message: "Pas d'historique de location pour cette propriété"
-        });
+      if (property.length) {
+        const propertyRents = await Rent.getByPropertyId(propertyId);
+        return res.status(200).json(propertyRents);
       }
-      return res.status(200).json(propertyRents[0]);
+      return res.status(400).json({ message: "Property doesn't exist" });
     } catch (error) {
       return res.status(400).json({ message: error.message });
     }
   }
+  return res.status(400).json({ message: 'Method not allowed' });
 };

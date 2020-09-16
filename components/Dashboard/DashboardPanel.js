@@ -18,15 +18,17 @@ const DashboardPanel = ({ role, tab, firstname }) => {
           </li>
           <li>
             <Link href="/dashboard/profile/modify">
-              <a className={tab === 'modify' ? 'is-active' : ''}>Modifier Profil</a>
+              <a className={tab === 'modify' ? 'is-active' : ''}>
+                Modifier Profil
+              </a>
             </Link>
           </li>
           <Link href="/dashboard/profile/agenda">
             <a className={tab === 'agenda' ? 'is-active' : ''}>Agenda</a>
           </Link>
           <li>
-            <Link href="/dashboard/rentals">
-              <a className={tab === 'rentals' ? 'is-active' : ''}>Locations</a>
+            <Link href="/dashboard/profile/rents">
+              <a className={tab === 'rents' ? 'is-active' : ''}>Locations</a>
             </Link>
           </li>
         </ul>
@@ -34,6 +36,13 @@ const DashboardPanel = ({ role, tab, firstname }) => {
           <>
             <p className="menu-label">Agent</p>
             <ul className="menu-list">
+              <li>
+                <Link href="/dashboard/agent/agenda">
+                  <a className={tab === 'agent/agenda' ? 'is-active' : ''}>
+                    Locations Agenda
+                  </a>
+                </Link>
+              </li>
               <li>
                 <Link href="/dashboard/agent/profiles">
                   <a className={tab === 'clients' ? 'is-active' : ''}>
@@ -49,6 +58,29 @@ const DashboardPanel = ({ role, tab, firstname }) => {
                 </Link>
               </li>
             </ul>{' '}
+          </>
+        ) : (
+          []
+        )}
+        {role === 'agent' || role === 'admin' || role === 'fieldworker' ? (
+          <>
+            <p className="menu-label">Agent de Terrain</p>
+            <ul className="menu-list">
+              <li>
+                <Link href="/dashboard/fieldworker/agenda">
+                  <a className={tab === 'fieldworker/agenda' ? 'is-active' : ''}>
+                    Agenda
+                  </a>
+                </Link>
+              </li>
+              <li>
+                <Link href="/dashboard/fieldworker/history">
+                  <a className={tab === 'fieldworker/history' ? 'is-active' : ''}>
+                    Historique
+                  </a>
+                </Link>
+              </li>
+            </ul>
           </>
         ) : (
           []
