@@ -1,4 +1,4 @@
-import CheckList from '../../../../../../lib/checklist';
+import CheckList from '../../../../../../../../lib/checklist';
 
 export default async (req, res) => {
   const { profileId, propertyId } = req.query;
