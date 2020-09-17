@@ -83,7 +83,7 @@ const DashboardPanel = ({ role, tab, firstname }) => {
         ) : (
           []
         )}
-        {role === 'agent' || role === 'admin' || role === 'fieldworker' ? (
+        {role === 'admin' || role === 'fieldworker' ? (
           <>
             <p className="menu-label has-text-weight-semibold has-text-dark">
               Agent de Terrain
