@@ -1,11 +1,15 @@
 import Router from 'next/router';
+import { useState } from 'react';
 import GoogleMapReact from 'google-map-react';
 import Header from '../../../components/Header';
 import DashboardPanel from '../../../components/Dashboard/DashboardPanel';
 import PropertyAgentMenu from '../../../components/PropertyAgentMenu';
 import PropertyFieldWorkerMenu from '../../../components/PropertyFieldWorkerMenu';
+import Modal from '../../../components/Modal';
 
 const Property = ({ authenticated, id, property, profile, role, jwt }) => {
+  const [modal, setModal] = useState(false);
+
   const handleApiLoaded = (map, maps, address) => {
     const geocoder = new maps.Geocoder();
     geocoder.geocode({ address }, (results, status) => {
@@ -35,6 +39,15 @@ const Property = ({ authenticated, id, property, profile, role, jwt }) => {
     <>
       <Header authenticated={authenticated} />
       <section className="section">
+        {modal ? (
+          <Modal
+            image="https://keyservices.s3.eu-west-3.amazonaws.com/pictures/371_5.jpg"
+            id={property.id}
+            remove={setModal}
+          />
+        ) : (
+          []
+        )}
         <div className="columns">
           <DashboardPanel
             role={role}
@@ -49,6 +62,7 @@ const Property = ({ authenticated, id, property, profile, role, jwt }) => {
                 alt="preview"
               />
             </figure>
+            <a onClick={()=>setModal(true)} className="has-text-primary">Afficher les photos</a>
             <div className="section columns">
               <div className="column">
                 <h1 className="title">{property.title}</h1>
