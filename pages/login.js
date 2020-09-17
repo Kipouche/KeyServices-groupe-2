@@ -93,7 +93,7 @@ const Login = ({ authenticated }) => {
                     <div className="control">
                       <div className="buttons">
                         <button
-                          className={`button is-link has-text-white is-fullwidth ${
+                          className={`button is-primary has-text-white is-fullwidth ${
                             loading ? 'is-loading' : ''
                           }`}
                           type="submit"

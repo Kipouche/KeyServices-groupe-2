@@ -81,19 +81,19 @@ const Header = (props) => {
                 {!props.authenticated ? (
                   <>
                     <Link href="/register">
-                      <a className="button is-link has-text-white">
+                      <a className="button is-primary has-text-white">
                         <strong>Inscription</strong>
                       </a>
                     </Link>
                     <Link href="/login">
-                      <a className="button is-link is-outlined">Connexion</a>
+                      <a className="button is-primary is-outlined">Connexion</a>
                     </Link>
                   </>
                 ) : (
                   []
                 )}
                 {props.authenticated ? (
-                  <a onClick={logout} className="button is-link is-outlined">
+                  <a onClick={logout} className="button is-primary is-outlined">
                     Déconnexion
                   </a>
                 ) : (

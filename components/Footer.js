@@ -5,8 +5,13 @@ const Footer = () => {
     <footer className="footer">
       <div className="container">
         <div className="columns">
-          <div className="column">
-            <h2>KeyServices</h2>
+          <div style={{ display: 'flex' }} className="column">
+            <figure
+              className="image"
+              style={{ margin: 'auto 0', width: '80%' }}
+            >
+              <img alt="logo white KeyServices" src="/logoblanc.png" />
+            </figure>
           </div>
           <div className="column">
             <h3>À propos de KeyServices</h3>
@@ -34,7 +39,9 @@ const Footer = () => {
           <div className="column">
             <h3>Contact</h3>
             <p>
-              <a href="mailto:keyservices.contact@keyservices.com">keyservices.contact@keyservices.com</a>
+              <a href="mailto:keyservices.contact@keyservices.com">
+                keyservices.contact@keyservices.com
+              </a>
             </p>
             <p>
               <a href="tel:+33199173032">01 99 17 30 32</a>

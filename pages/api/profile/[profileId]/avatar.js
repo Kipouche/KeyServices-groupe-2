@@ -1,8 +1,8 @@
 import { writeFile } from 'fs';
+import AWS from 'aws-sdk';
 import { authentification } from '../../../../lib/authentification';
 import User from '../../../../lib/user';
-import ConvertTime from '../../../../lib/convertTime';
-//import InputValidation from '../../../../lib/inputValidation';
+
 export const config = {
   api: {
     bodyParser: {
@@ -15,7 +15,7 @@ const saveAvatar = (data, id) => {
   const base64Data = data.replace(/^data:([A-Za-z-+/]+);base64,/, '');
   return new Promise((resolve) => {
     writeFile(
-      `${process.env.ROOOT}/public/avatar/${id}.jpg`,
+      `${process.env.ROOT}/public/avatar/${id}.jpg`,
       base64Data,
       'base64',
       (err) => {
@@ -25,26 +25,32 @@ const saveAvatar = (data, id) => {
   });
 };
 
+const uploadFileToAWS = (data, id) => {
+  const base64Data = data.replace(/^data:([A-Za-z-+/]+);base64,/, '');
+  const fileContent = Buffer.from(base64Data, 'base64');
+  const s3 = new AWS.S3({
+    accessKeyId: process.env.AWSAccessKeyId,
+    secretAccessKey: process.env.AWSSecretKey
+  });
+  // Setting up S3 upload parameters
+  const params = {
+    Bucket: process.env.S3_BUCKET,
+    Key: `avatar/${id}.jpg`, // File name you want to save as in S3
+    Body: fileContent,
+    ACL: 'public-read'
+  };
+
+  // Uploading files to the bucket
+  s3.upload(params, function (err, data) {
+    if (err) {
+      throw err;
+    }
+  });
+};
+
 export default authentification(async (req, res, jwt) => {
   const { profileId } = req.query;
 
-  if (req.method === 'GET') {
-    try {
-      if (jwt.sub !== parseInt(profileId, 10) && jwt.role === 'member') {
-        return res.status(401).json({ message: 'Not authorized' });
-      }
-      const profile = await User.getByIdClientSide(profileId);
-      [profile[0].dateofbirth] = ConvertTime.timeToGMT2(profile[0].dateofbirth)
-        .toISOString()
-        .split('T');
-      return res.status(200).json(profile);
-    } catch (error) {
-      return res.status(405).json({ message: error.message });
-    }
-  }
-  if (req.method === 'DELETE') {
-    return res.status(200).json({ profile: true });
-  }
   if (req.method === 'PUT') {
     const { avatar } = req.body;
     if (jwt.sub !== parseInt(profileId, 10)) {
@@ -53,10 +59,13 @@ export default authentification(async (req, res, jwt) => {
     if (!avatar) {
       return res.status(400).json({ message: 'A field is missing' });
     }
-    await saveAvatar(avatar, profileId);
+    //await saveAvatar(avatar, profileId);
+    uploadFileToAWS(avatar, profileId);
     try {
       await User.updateAvatar(profileId);
-      return res.status(200).json({ message: 'Successfull updating profile' });
+      return res.status(200).json({
+        message: `${process.env.ROOT}/public/avatar/${profileId}.jpg`
+      });
     } catch (error) {
       return res.status(400).json({ message: error.message });
     }

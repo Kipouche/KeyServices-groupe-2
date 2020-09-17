@@ -161,7 +161,7 @@ const Register = ({ authenticated }) => {
                             name="optinNewsletter"
                             required
                           />{' '}
-                          J'ai lu et j'accepte les <a href="/">termes et conditions</a>
+                          J'ai lu et j'accepte les <a className="has-text-primary" href="/" style={{textDecoration: "underline"}}>termes et conditions</a>
                         </label>
                       </div>
                     </div>
@@ -176,7 +176,7 @@ const Register = ({ authenticated }) => {
                       <div className="control">
                         <div className="buttons">
                           <button
-                            className={`button is-link has-text-white is-fullwidth ${
+                            className={`button is-primary has-text-white is-fullwidth ${
                               loading ? 'is-loading' : ''
                             }`}
                             type="submit"

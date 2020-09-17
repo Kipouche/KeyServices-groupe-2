@@ -29,12 +29,8 @@ const Explore = ({ authenticated, properties, role, jwt }) => {
       <Header authenticated={authenticated} />
       <section className="section">
         <div className="columns">
-            <DashboardPanel
-              role={role}
-              tab="explore"
-              firstname={jwt.firstname}
-            />
-            <FilterSearch handleSubmit={handleSubmit} />
+          <DashboardPanel role={role} tab="explore" firstname={jwt.firstname} />
+          <FilterSearch handleSubmit={handleSubmit} />
           <PropertyCards properties={propertiesState} />
         </div>
       </section>
@@ -88,7 +84,7 @@ Explore.getInitialProps = async (ctx) => {
       };
     }
   }
-  return { authenticated: false}
+  return { authenticated: false };
 };
 
 export default Explore;

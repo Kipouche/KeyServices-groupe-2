@@ -6,7 +6,7 @@ const PropertyProfileCard = ({ property }) => {
           {property.validated ? (
             <img
               style={{ objectFit: 'cover' }}
-              src={`/pictures/${property.id}_0.jpg`}
+              src={`https://keyservices.s3.eu-west-3.amazonaws.com/pictures/${property.id}_0.jpg`}
               alt="property"
             />
           ) : (

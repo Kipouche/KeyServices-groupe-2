@@ -17,7 +17,7 @@ const PropertyCard = ({
             {validated ? (
               <img
                 style={{ objectFit: 'cover' }}
-                src={`/pictures/${id}_0.jpg`}
+                src={`https://keyservices.s3.eu-west-3.amazonaws.com/pictures/${id}_0.jpg`}
                 alt="property"
               />
             ) : (
@@ -41,7 +41,7 @@ const PropertyCard = ({
         <div className="media-content">
           <p className="title is-5">{title || 'To be done'}</p>
           <p className="subtitle is-6">
-            Lien vers la
+            Lien vers la 
             <Link href={`/dashboard/property/${id}`}>
               <a>description</a>
             </Link>

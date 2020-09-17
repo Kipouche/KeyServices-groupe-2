@@ -1,6 +1,10 @@
+import Link from 'next/link';
 import ConvertTime from '../lib/convertTime';
 
 const ProfilesTable = ({ profiles }) => {
+  const firstLetterUpperCase = (string) => {
+    return string[0].toUpperCase() + string.slice(1);
+  };
   return (
     <div className="column">
       <table className="table is-fullwidth">
@@ -33,12 +37,32 @@ const ProfilesTable = ({ profiles }) => {
             return (
               <tr key={profile.id}>
                 <td>{profile.id}</td>
-                <td>{profile.email}</td>
-                <td>{profile.firstname}</td>
-                <td>{profile.lastname}</td>
-                <td>{ConvertTime.timeToGMT2(profile.dateofbirth).toISOString().split('T')[0]}</td>
+                <td style={{ textOverflow: 'ellipsis' }}>{profile.email}</td>
+                <td>{firstLetterUpperCase(profile.firstname)}</td>
+                <td>{firstLetterUpperCase(profile.lastname)}</td>
+                <td>
+                  {
+                    ConvertTime.timeToGMT2(profile.dateofbirth)
+                      .toISOString()
+                      .split('T')[0]
+                  }
+                </td>
                 <td>{profile.phonenumber}</td>
-                <td>{ConvertTime.timeToGMT2(profile.created_at).toISOString().split('T')[0]}</td>
+                <td>
+                  {
+                    ConvertTime.timeToGMT2(profile.created_at)
+                      .toISOString()
+                      .split('T')[0]
+                  }
+                </td>
+                <td>
+                  <Link
+                    href="/dashboard/profile/[profileId]"
+                    as={`/dashboard/profile/${profile.id}`}
+                  >
+                    <a className="button is-outlined is-primary">accéder</a>
+                  </Link>
+                </td>
               </tr>
             );
           })}

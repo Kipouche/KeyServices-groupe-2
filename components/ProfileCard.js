@@ -1,8 +1,13 @@
 import { useState } from 'react';
 
 const ProfileCard = ({ profile, displayChangePicture }) => {
+  const firstLetterUpperCase = (string) => {
+    return string[0].toUpperCase() + string.slice(1);
+  };
   const [source, setSource] = useState(
-    profile.avatar ? `/avatar/${profile.id}.jpg` : '/avatar.png'
+    profile.avatar
+      ? `https://keyservices.s3.eu-west-3.amazonaws.com/avatar/${profile.id}.jpg`
+      : '/avatar.png'
   );
 
   const handlePictureChange = async (data) => {
@@ -38,37 +43,36 @@ const ProfileCard = ({ profile, displayChangePicture }) => {
           <img src={source} alt="profile" style={{ objectFit: 'cover' }} />
         </figure>
       </div>
-      { displayChangePicture ? 
-          <div className="field mx-3 my-3">
-            <div className="file is-small is-primary">
-              <label className="file-label">
-                <input
-                  onChange={changeAvatar}
-                  className="file-input"
-                  type="file"
-                  name="avatar"
-                />
-                <span className="file-cta">
-                  <span className="file-label">Changer votre avatar</span>
-                </span>
-              </label>
-            </div>
-          </div> : [] }
+      {displayChangePicture ? (
+        <div className="field mx-3 my-3">
+          <div className="file is-small is-primary">
+            <label className="file-label">
+              <input
+                onChange={changeAvatar}
+                className="file-input"
+                type="file"
+                name="avatar"
+              />
+              <span className="file-cta">
+                <span className="file-label">Changer votre avatar</span>
+              </span>
+            </label>
+          </div>
+        </div>
+      ) : (
+        []
+      )}
       <div className="card-content">
         <div className="media">
           <div className="media-content">
-            <p className="title is-5">{`${profile.firstname} ${profile.lastname}`}</p>
+            <p className="title is-5">{`${firstLetterUpperCase(profile.firstname)} ${firstLetterUpperCase(profile.lastname)}`}</p>
             <p className=" is-6">
-              <a href={`mailto:${profile.email}`}>{profile.email}</a>
+              <a className="has-text-primary" href={`mailto:${profile.email}`}>
+                {profile.email}
+              </a>
             </p>
-            <p>
-              Date de naissance:
-              {profile.dateofbirth}
-            </p>
-            <p>
-              Téléphone:
-              {profile.phonenumber}
-            </p>
+            <p>Date de naissance: {profile.dateofbirth}</p>
+            <p>Téléphone: {profile.phonenumber}</p>
           </div>
         </div>
       </div>

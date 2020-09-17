@@ -91,8 +91,6 @@ Profile.getInitialProps = async (ctx) => {
         }
       );
       if (resProperties.status === 200) {
-        console.log(jwt);
-        
         const properties = await resProperties.json();
         return {
           authenticated: true,

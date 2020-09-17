@@ -13,15 +13,13 @@ const SelectRole = ({ id, role }) => {
         role: e.target.value
       })
     });
-    if (res.status === 200) {
-      console.log('profile updated');
-    }
   };
 
   return (
     <div className="select">
       <select name="role" value={roleState} onChange={handleSelect}>
         <option value="member">Membre</option>
+        <option value="fieldworker">Agent de Terrain</option>
         <option value="agent">Agent</option>
         <option value="admin">Admin</option>
       </select>

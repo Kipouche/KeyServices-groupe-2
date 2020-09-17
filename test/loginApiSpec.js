@@ -15,12 +15,7 @@ const { expect } = chai;
 const host = 'http://localhost:5000';
 
 describe('Test API login', async function () {
-  const email = `${
-    Math.random().toString(36).substring(2, 15) +
-    Math.random().toString(36).substring(2, 15) +
-    Math.random().toString(36).substring(2, 15) +
-    Math.random().toString(36).substring(2, 15)
-  }@mail.com`;
+  const email = `${Math.random().toString(36).substring(2, 9)}@mail.com`;
   const password = '123456789';
 
   before(function (done) {

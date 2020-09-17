@@ -21,7 +21,7 @@ const Profile = ({ authenticated, profile, id, role, jwt }) => {
     e.preventDefault();
     setLoading(true);
 
-    const res = await fetch(`/api/profile/${profile.id}`, {
+    const res = await fetch(`/api/profile/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
@@ -53,57 +53,65 @@ const Profile = ({ authenticated, profile, id, role, jwt }) => {
           <div className="column auto">
             <h1 className="title">Profil</h1>
             <form onSubmit={handleSubmit} className="is-centered">
-              <div className="field is-grouped">
+              <div className="field">
                 <div className="control">
-                  <label className="label">Prénom</label>
-                  <input
-                    onChange={(e) => setFirstname(e.target.value)}
-                    value={firstname}
-                    className="input"
-                    type="text"
-                    name="firstname"
-                    placeholder="Prénom"
-                    required
-                  />
+                  <label className="label">
+                    Prénom
+                    <input
+                      onChange={(e) => setFirstname(e.target.value)}
+                      value={firstname}
+                      className="input"
+                      type="text"
+                      name="firstname"
+                      placeholder="Prénom"
+                      required
+                    />
+                  </label>
                 </div>
                 <div className="control">
-                  <label className="label">Nom</label>
-                  <input
-                    onChange={(e) => setLastname(e.target.value)}
-                    value={lastname}
-                    className="input"
-                    type="text"
-                    name="lastname"
-                    placeholder="Nom"
-                    required
-                  />
+                  <label className="label">
+                    Nom
+                    <input
+                      onChange={(e) => setLastname(e.target.value)}
+                      value={lastname}
+                      className="input"
+                      type="text"
+                      name="lastname"
+                      placeholder="Nom"
+                      required
+                    />
+                  </label>
                 </div>
               </div>
-              <div className="field is-grouped">
+              <div className="field">
                 <div className="control">
-                  <label className="label">Date de naissance</label>
-                  <input
-                    onChange={(e) => setDateofbirth(e.target.value)}
-                    value={dateofbirth}
-                    className="input"
-                    type="date"
-                    name="dateofbirth"
-                    placeholder="jj/mm/aaaa"
-                    required
-                  />
+                  <label className="label">
+                    Date de naissance
+                    <input
+                      onChange={(e) => setDateofbirth(e.target.value)}
+                      value={dateofbirth}
+                      className="input"
+                      type="date"
+                      name="dateofbirth"
+                      placeholder="jj/mm/aaaa"
+                      required
+                    />
+                  </label>
                 </div>
                 <div className="control">
-                  <label className="label">Numéro de téléphone</label>
-                  <input
-                    onChange={(e) => setPhonenumber(e.target.value)}
-                    value={phonenumber}
-                    className="input"
-                    pattern="(0|\+33)[1-9]( *[0-9]{2}){4}"
-                    type="tel"
-                    name="phonenumber"
-                    placeholder="Numéro de téléphone"
-                    required
-                  />
+                  <label className="label">
+                    Numéro de téléphone
+                    <input
+                      onChange={(e) => setPhonenumber(e.target.value)}
+                      value={phonenumber}
+                      className="input"
+                      pattern="(0|\+33)[1-9]( *[0-9]{2}){4}"
+                      type="tel"
+                      name="phonenumber"
+                      placeholder="Numéro de téléphone"
+                      required
+                    />
+                  </label>
                 </div>
               </div>
               {error ? (
@@ -124,7 +132,7 @@ const Profile = ({ authenticated, profile, id, role, jwt }) => {
                 <div className="control">
                   <div className="buttons">
                     <button
-                      className={`button is-link has-text-white ${
+                      className={`button is-primary has-text-white ${
                         loading ? 'is-loading' : ''
                       }`}
                       type="submit"
@@ -134,7 +142,7 @@ const Profile = ({ authenticated, profile, id, role, jwt }) => {
                     <Link href="/dashboard/password">
                       <button
                         type="button"
-                        className="button is-link is-outlined"
+                        className="button is-primary is-outlined"
                       >
                         Modifier Mot de Passe
                       </button>
@@ -161,6 +169,7 @@ Profile.getInitialProps = async (ctx) => {
       cookie
     }
   });
+  const { profileId } = ctx.query;
   if (resAuth.status === 401 && !ctx.req) {
     Router.replace('/login');
   }
@@ -173,19 +182,26 @@ Profile.getInitialProps = async (ctx) => {
   }
   if (resAuth.status === 200) {
     const jwt = await resAuth.json();
-    if (!ctx.req && jwt.message.role !== 'admin') {
+    if (
+      jwt.message.role !== 'admin' &&
+      jwt.message.role !== 'agent' &&
+      jwt.message.sub !== profileId &&
+      !ctx.req
+    ) {
       Router.replace('/dashboard');
-      return { authenticated: false };
     }
 
-    if (ctx.req && jwt.message.role !== 'admin') {
+    if (
+      jwt.message.role !== 'admin' &&
+      jwt.message.role !== 'agent' &&
+      jwt.message.sub !== profileId &&
+      ctx.req
+    ) {
       ctx.res.writeHead(302, {
-        Location: '/dashboard'
+        Location: '/login'
       });
       ctx.res.end();
-      return { authenticated: false };
     }
-    const { profileId } = ctx.query;
     const resProfile = await fetch(`${host}/api/profile/${profileId}`, {
       headers: {
         cookie

@@ -36,8 +36,8 @@ const WhoAreWe = ({ authenticated }) => {
         </div>
       </section>
       <section>
-        <div className="hero is-link columns is-vcentered has-text-white">
-          <nav className="columns column is-half">
+        <div className="hero is-link columns is-vcentered has-text-white py-5">
+          <nav className="columns column is-9">
             <div className="column is-multiline is-centered has-text-centered is-mobile">
               <figure className="image is-128x128 is-inline-block">
                 <img
@@ -48,7 +48,7 @@ const WhoAreWe = ({ authenticated }) => {
               </figure>
               <div className="column is-full">
                 <p className="title is-6">Pierrick Humbert</p>
-                <p>
+                <p className="has-text-black">
                   Pierrick a 21 ans, il est le PDG de KeyServices, depuis tout petit il a la chance de voyager, de par ses parents puis de lui même. Il a deux passions dans sa vie, KeyServices et sa famille.
                 </p>
               </div>
@@ -63,7 +63,7 @@ const WhoAreWe = ({ authenticated }) => {
               </figure>
               <div className="column is-full">
                 <p className="title is-6">Arnaud Solange</p>
-                <p>
+                <p className="has-text-black">
                   Arnaud est le directeur de la communication chez KeyServices, dans la vie c'est un homme dynamique et travailleur.
                   Il a travaillé pour de prestigieuses agences de communication et a choisi de rejoindre KeyServices pour se lancer un nouveau défi.
                 </p>
@@ -79,7 +79,7 @@ const WhoAreWe = ({ authenticated }) => {
               </figure>
               <div className="column is-full">
                 <p className="title is-6">Marinette Micheline</p>
-                <p>Marinette est notre responsable marketing, cette mère de deux enfants est aussi la maman poule de KeyServices, toujours souriante et serviable elle est un des meilleurs atouts de KeyServices.</p>
+                <p className="has-text-black">Marinette est notre responsable marketing, cette mère de deux enfants est aussi la maman poule de KeyServices, toujours souriante et serviable elle est un des meilleurs atouts de KeyServices.</p>
               </div>
             </div>
           </nav>
