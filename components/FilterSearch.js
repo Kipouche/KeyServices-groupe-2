@@ -108,7 +108,7 @@ const FilterSearch = ({ handleSubmit }) => {
         <div className="field">
           <div className="control">
             <label className="label">
-              Prix minimum: {priceMin}
+              Prix minimum par nuit: {priceMin}
               <input
                 style={{ width: '100%' }}
                 type="range"
@@ -116,7 +116,7 @@ const FilterSearch = ({ handleSubmit }) => {
                 value={priceMin}
                 onChange={(e) => setPriceMin(parseInt(e.target.value, 10))}
                 min="0"
-                max="15"
+                max="200"
               />
             </label>
           </div>
@@ -124,7 +124,7 @@ const FilterSearch = ({ handleSubmit }) => {
         <div className="field">
           <div className="control">
             <label className="label">
-              Prix maximum: {priceMax}
+              Prix maximum par nuit: {priceMax}
               <input
                 style={{ width: '100%' }}
                 type="range"
@@ -132,7 +132,7 @@ const FilterSearch = ({ handleSubmit }) => {
                 value={priceMax}
                 onChange={(e) => setPriceMax(parseInt(e.target.value, 10))}
                 min="0"
-                max="15"
+                max="200"
               />
             </label>
           </div>

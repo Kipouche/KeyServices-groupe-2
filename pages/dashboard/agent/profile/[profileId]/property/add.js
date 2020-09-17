@@ -92,7 +92,7 @@ const Add = ({ authenticated, id, role, jwt }) => {
                   />
                 </div>
                 <div className="control">
-                  <label className="label">Prix</label>
+                  <label className="label">Prix par nuit</label>
                   <input
                     onChange={(e) => setPrice(e.target.value)}
                     value={price}
