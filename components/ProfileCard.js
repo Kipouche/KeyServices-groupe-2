@@ -1,6 +1,9 @@
 import { useState } from 'react';
 
 const ProfileCard = ({ profile, displayChangePicture }) => {
+  const firstLetterUpperCase = (string) => {
+    return string[0].toUpperCase() + string.slice(1);
+  };
   const [source, setSource] = useState(
     profile.avatar
       ? `https://keyservices.s3.eu-west-3.amazonaws.com/avatar/${profile.id}.jpg`
@@ -62,18 +65,14 @@ const ProfileCard = ({ profile, displayChangePicture }) => {
       <div className="card-content">
         <div className="media">
           <div className="media-content">
-            <p className="title is-5">{`${profile.firstname} ${profile.lastname}`}</p>
+            <p className="title is-5">{`${firstLetterUpperCase(profile.firstname)} ${firstLetterUpperCase(profile.lastname)}`}</p>
             <p className=" is-6">
-              <a className="has-text-primary" href={`mailto:${profile.email}`}>{profile.email}</a>
+              <a className="has-text-primary" href={`mailto:${profile.email}`}>
+                {profile.email}
+              </a>
             </p>
-            <p>
-              Date de naissance:
-              {profile.dateofbirth}
-            </p>
-            <p>
-              Téléphone:
-              {profile.phonenumber}
-            </p>
+            <p>Date de naissance: {profile.dateofbirth}</p>
+            <p>Téléphone: {profile.phonenumber}</p>
           </div>
         </div>
       </div>
