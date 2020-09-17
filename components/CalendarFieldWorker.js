@@ -470,12 +470,6 @@ class Demo extends React.PureComponent {
   }
 
   async commitDeletedAppointment() {
-    const propertyId = this.props.todos.find(
-      (period) => period.id === this.state.deletedAppointmentId
-    ).property_id;
-    const profileId = this.props.properties.find(
-      (property) => property.id === propertyId
-    ).user_id;
     this.setState((state) => {
       const { data, deletedAppointmentId } = state;
       const nextData = data.filter(
@@ -485,7 +479,7 @@ class Demo extends React.PureComponent {
       return { data: nextData, deletedAppointmentId: null };
     });
     const res = await fetch(
-      `/api/fieldworker/profile/${this.props.profileId}/todo/${this.state.deletedAppointmentId}`,
+      `/api/fieldworker/profile/1/todo/${this.state.deletedAppointmentId}`,
       {
         method: 'DELETE',
         headers: {

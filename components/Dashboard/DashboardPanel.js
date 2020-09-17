@@ -58,6 +58,13 @@ const DashboardPanel = ({ role, tab, firstname }) => {
                 </Link>
               </li>
               <li>
+                <Link href="/dashboard/agent/fieldworkers">
+                  <a className={tab === 'fieldworkers' ? 'is-active' : ''}>
+                    Agents de terrain
+                  </a>
+                </Link>
+              </li>
+              <li>
                 <Link href="/dashboard/agent/profiles">
                   <a className={tab === 'clients' ? 'is-active' : ''}>
                     Clients
