@@ -3,6 +3,9 @@ import ConvertTime from '../lib/convertTime';
 import SelectRole from './SelectRole';
 
 const ProfilesAdminTable = ({ profiles }) => {
+  const firstLetterUpperCase = (string) => {
+    return string[0].toUpperCase() + string.slice(1);
+  };
   const [profilesState, setProfilesState] = useState(profiles);
   const deleteProfile = (id) => {
     const res = fetch(`/api/admin/profile/${id}`, {
@@ -51,8 +54,8 @@ const ProfilesAdminTable = ({ profiles }) => {
               <tr key={profile.id}>
                 <td>{profile.id}</td>
                 <td>{profile.email}</td>
-                <td>{profile.firstname}</td>
-                <td>{profile.lastname}</td>
+                <td>{firstLetterUpperCase(profile.firstname)}</td>
+                <td>{firstLetterUpperCase(profile.lastname)}</td>
                 <td>
                   {ConvertTime.timeToGMT2(profile.created_at)
                     .toISOString()

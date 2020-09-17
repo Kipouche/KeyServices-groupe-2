@@ -2,6 +2,9 @@ import Link from 'next/link';
 import ConvertTime from '../lib/convertTime';
 
 const ProfilesTable = ({ profiles }) => {
+  const firstLetterUpperCase = (string) => {
+    return string[0].toUpperCase() + string.slice(1);
+  };
   return (
     <div className="column">
       <table className="table is-fullwidth">
@@ -35,8 +38,8 @@ const ProfilesTable = ({ profiles }) => {
               <tr key={profile.id}>
                 <td>{profile.id}</td>
                 <td style={{ textOverflow: 'ellipsis' }}>{profile.email}</td>
-                <td>{profile.firstname}</td>
-                <td>{profile.lastname}</td>
+                <td>{firstLetterUpperCase(profile.firstname)}</td>
+                <td>{firstLetterUpperCase(profile.lastname)}</td>
                 <td>
                   {
                     ConvertTime.timeToGMT2(profile.dateofbirth)
