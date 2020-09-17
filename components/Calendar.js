@@ -447,7 +447,6 @@ class Demo extends React.PureComponent {
   }
 
   async commitDeletedAppointment() {
-    console.log('prop');
     const propertyId = this.props.periods.find(
       (period) => period.id === this.state.deletedAppointmentId
     ).property_id;
