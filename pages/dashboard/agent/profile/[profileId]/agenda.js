@@ -77,8 +77,6 @@ Agenda.getInitialProps = async (ctx) => {
       );
       if (resRents.status === 200) {
         const rents = await resRents.json();
-        console.log(rents);
-        
         return {
           authenticated: true,
           properties,

@@ -4,7 +4,6 @@ import DashboardPanel from '../../../../components/Dashboard/DashboardPanel';
 import RentsTable from '../../../../components/RentsTable';
 
 const Profiles = ({ authenticated, rents, id, role, jwt }) => {
-  console.log(rents);
   return (
     <>
       <Header authenticated={authenticated} />

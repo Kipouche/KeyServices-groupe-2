@@ -169,8 +169,6 @@ class AppointmentFormContainerBasic extends React.PureComponent {
       );
       const result = await res.json();
       appointment.rentId = result.success;
-      console.log('a', appointment);
-      
       appointment.title = this.props.properties.find(
         (property) => property.id === this.state.selectedProperty
       ).address;
@@ -337,8 +335,6 @@ const styles = (theme) => ({
 class Demo extends React.PureComponent {
   constructor(props) {
     super(props);
-    console.log(props.rents);
-
     const rentsMap = props.rents.map((rent) => {
       return {
         title: props.properties.find(
@@ -464,8 +460,6 @@ class Demo extends React.PureComponent {
       );
       return { data: nextData, deletedAppointmentId: null };
     });
-    console.log(appointment);
-    
     const res = await fetch(
       `/api/agent/profile/${this.props.profileId}/rent/${
         appointment.rentId

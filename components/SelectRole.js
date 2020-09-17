@@ -13,9 +13,6 @@ const SelectRole = ({ id, role }) => {
         role: e.target.value
       })
     });
-    if (res.status === 200) {
-      console.log('profile updated');
-    }
   };
 
   return (
