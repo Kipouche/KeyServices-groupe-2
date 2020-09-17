@@ -9,7 +9,9 @@ const DashboardPanel = ({ role, tab, firstname }) => {
   return (
     <div className="column is-2">
       <aside className="menu">
-        <p className="menu-label has-text-weight-semibold has-text-dark">General</p>
+        <p className="menu-label has-text-weight-semibold has-text-dark">
+          General
+        </p>
         <ul className="menu-list">
           <li>
             <Link href="/dashboard/profile">
@@ -23,20 +25,30 @@ const DashboardPanel = ({ role, tab, firstname }) => {
               </a>
             </Link>
           </li>
-          <li>
-            <Link href="/dashboard/profile/agenda">
-              <a className={tab === 'agenda' ? 'is-active' : ''}>Agenda</a>
-            </Link>
-          </li>
-          <li>
-            <Link href="/dashboard/profile/rents">
-              <a className={tab === 'rents' ? 'is-active' : ''}>Locations</a>
-            </Link>
-          </li>
+          {role === 'member' ? (
+            <>
+              <li>
+                <Link href="/dashboard/profile/agenda">
+                  <a className={tab === 'agenda' ? 'is-active' : ''}>Agenda</a>
+                </Link>
+              </li>
+              <li>
+                <Link href="/dashboard/profile/rents">
+                  <a className={tab === 'rents' ? 'is-active' : ''}>
+                    Locations
+                  </a>
+                </Link>
+              </li>
+            </>
+          ) : (
+            []
+          )}
         </ul>
         {role === 'agent' || role === 'admin' ? (
           <>
-            <p className="menu-label has-text-weight-semibold has-text-dark">Agent</p>
+            <p className="menu-label has-text-weight-semibold has-text-dark">
+              Agent
+            </p>
             <ul className="menu-list">
               <li>
                 <Link href="/dashboard/agent/agenda">
@@ -66,7 +78,9 @@ const DashboardPanel = ({ role, tab, firstname }) => {
         )}
         {role === 'agent' || role === 'admin' || role === 'fieldworker' ? (
           <>
-            <p className="menu-label has-text-weight-semibold has-text-dark">Agent de Terrain</p>
+            <p className="menu-label has-text-weight-semibold has-text-dark">
+              Agent de Terrain
+            </p>
             <ul className="menu-list">
               <li>
                 <Link href="/dashboard/fieldworker/agenda">
@@ -93,7 +107,9 @@ const DashboardPanel = ({ role, tab, firstname }) => {
         )}
         {role === 'admin' ? (
           <>
-            <p className="menu-label has-text-weight-semibold has-text-dark">Administration</p>
+            <p className="menu-label has-text-weight-semibold has-text-dark">
+              Administration
+            </p>
             <ul className="menu-list">
               <li>
                 <Link href="/dashboard/admin/profiles">
