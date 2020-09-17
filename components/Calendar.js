@@ -98,7 +98,7 @@ class AppointmentFormContainerBasic extends React.PureComponent {
     super(props);
 
     this.state = {
-      selectedProperty: props.properties[0].id,
+      selectedProperty: props.properties.length ? props.properties[0].id : 0,
       appointmentChanges: {}
     };
 
