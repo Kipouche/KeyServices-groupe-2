@@ -34,7 +34,7 @@ const ProfilesTable = ({ profiles }) => {
             return (
               <tr key={profile.id}>
                 <td>{profile.id}</td>
-                <td>{profile.email}</td>
+                <td style={{ textOverflow: 'ellipsis' }}>{profile.email}</td>
                 <td>{profile.firstname}</td>
                 <td>{profile.lastname}</td>
                 <td>
@@ -57,7 +57,7 @@ const ProfilesTable = ({ profiles }) => {
                     href="/dashboard/profile/[profileId]"
                     as={`/dashboard/profile/${profile.id}`}
                   >
-                    <a>accéder</a>
+                    <a className="button is-outlined is-primary">accéder</a>
                   </Link>
                 </td>
               </tr>

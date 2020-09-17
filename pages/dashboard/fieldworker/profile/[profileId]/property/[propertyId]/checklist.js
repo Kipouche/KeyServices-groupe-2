@@ -51,7 +51,7 @@ const CheckList = ({ authenticated, profileId, propertyId, role, jwt }) => {
         <div className="columns">
           <DashboardPanel role={role} tab="profil" firstname={jwt.firstname} />
           <div className="column columns auto">
-            <form onSubmit={handleSubmit} className="is-centered">
+            <form onSubmit={handleSubmit} style={{width: '75%', margin: '0 auto'}} className="is-centered">
               <h1 className="title">Etat des lieux</h1>
               <label className="label">
                 Entrée
@@ -239,7 +239,7 @@ const CheckList = ({ authenticated, profileId, propertyId, role, jwt }) => {
                   />
                 </div>
                 <div className="control">
-                  <button className="button is-link">Envoyer</button>
+                  <button className="button is-primary">Envoyer</button>
                 </div>
               </label>
             </form>

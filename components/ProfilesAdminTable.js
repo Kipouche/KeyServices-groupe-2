@@ -27,11 +27,8 @@ const ProfilesAdminTable = ({ profiles }) => {
           <tr>
             <th>Id</th>
             <th>Email</th>
-            <th>Rôle</th>
             <th>Prénom</th>
             <th>Nom</th>
-            <th>Date de naissance</th>
-            <th>Numéro de téléphone</th>
             <th>Créé le</th>
             <th>Modifier rôle</th>
             <th></th>
@@ -41,11 +38,8 @@ const ProfilesAdminTable = ({ profiles }) => {
           <tr>
             <th>Id</th>
             <th>Email</th>
-            <th>Rôle</th>
             <th>Prénom</th>
             <th>Nom</th>
-            <th>Date de naissance</th>
-            <th>Numéro de téléphone</th>
             <th>Créé le</th>
             <th>Modifier rôle</th>
             <th></th>
@@ -57,23 +51,13 @@ const ProfilesAdminTable = ({ profiles }) => {
               <tr key={profile.id}>
                 <td>{profile.id}</td>
                 <td>{profile.email}</td>
-                <td>{profile.role}</td>
                 <td>{profile.firstname}</td>
                 <td>{profile.lastname}</td>
                 <td>
-                  {
-                    ConvertTime.timeToGMT2(profile.dateofbirth)
-                      .toISOString()
-                      .split('T')[0]
-                  }
-                </td>
-                <td>{profile.phonenumber}</td>
-                <td>
-                  {
-                    ConvertTime.timeToGMT2(profile.created_at)
-                      .toISOString()
-                      .split('T')[0]
-                  }
+                  {ConvertTime.timeToGMT2(profile.created_at)
+                    .toISOString()
+                    .split('.')[0]
+                    .replace('T', ' ')}
                 </td>
                 <td>
                   <SelectRole id={profile.id} role={profile.role} />

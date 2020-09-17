@@ -33,12 +33,14 @@ const PropertyFieldWorkerMenu = ({ id, property, profile }) => {
         <a
           href="mailto:keyservices.contact@keyservices.com"
           className="button is-fullwidth is-primary"
+          style={{height: 'fit-content', whiteSpace: 'pre-wrap'}}
         >
-          Envoyer un rapport à l'agent immobilier
+          Envoyer un rapport à l&apos;agent immobilier
         </a>
         <a
           href={`tel:${profile.phonenumber}`}
           className="button is-fullwidth is-link"
+          style={{height: 'fit-content', whiteSpace: 'pre-wrap'}}
         >
           Contacter le propriétaire
         </a>

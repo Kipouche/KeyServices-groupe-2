@@ -43,7 +43,7 @@ const PropertyCard = ({
           <p className="subtitle is-6">
             Lien vers
             <Link href={`/dashboard/property/${id}`}>
-              <a> description</a>
+              <a className="has-text-primary" style={{textDecoration: "underline"}}> description</a>
             </Link>
           </p>
         </div>

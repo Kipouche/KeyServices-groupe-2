@@ -64,7 +64,7 @@ const ProfileCard = ({ profile, displayChangePicture }) => {
           <div className="media-content">
             <p className="title is-5">{`${profile.firstname} ${profile.lastname}`}</p>
             <p className=" is-6">
-              <a href={`mailto:${profile.email}`}>{profile.email}</a>
+              <a className="has-text-primary" href={`mailto:${profile.email}`}>{profile.email}</a>
             </p>
             <p>
               Date de naissance:

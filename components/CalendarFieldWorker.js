@@ -8,6 +8,7 @@ import {
   Toolbar,
   MonthView,
   WeekView,
+  DayView,
   ViewSwitcher,
   Appointments,
   AppointmentTooltip,
@@ -484,7 +485,6 @@ class Demo extends React.PureComponent {
   }
 
   async commitDeletedAppointment() {
-    console.log('prop');
     const propertyId = this.props.todos.find(
       (period) => period.id === this.state.deletedAppointmentId
     ).property_id;
@@ -559,6 +559,7 @@ class Demo extends React.PureComponent {
             onEditingAppointmentChange={this.onEditingAppointmentChange}
             onAddedAppointmentChange={this.onAddedAppointmentChange}
           />
+          <DayView startDayHour={8} endDayHour={19} />
           <WeekView startDayHour={startDayHour} endDayHour={endDayHour} />
           <MonthView />
           <AllDayPanel />
@@ -616,20 +617,24 @@ class Demo extends React.PureComponent {
           </DialogActions>
         </Dialog>
 
-        <Fab
-          color="secondary"
-          className={classes.addButton}
-          onClick={() => {
-            this.setState({ editingFormVisible: true });
-            this.onEditingAppointmentChange(undefined);
-            this.onAddedAppointmentChange({
-              startDate: new Date(currentDate).setHours(startDayHour),
-              endDate: new Date(currentDate).setHours(startDayHour + 1)
-            });
-          }}
-        >
-          <AddIcon />
-        </Fab>
+        {this.props.role === 'fieldworker' ? (
+          []
+        ) : (
+          <Fab
+            color="secondary"
+            className={classes.addButton}
+            onClick={() => {
+              this.setState({ editingFormVisible: true });
+              this.onEditingAppointmentChange(undefined);
+              this.onAddedAppointmentChange({
+                startDate: new Date(currentDate).setHours(startDayHour),
+                endDate: new Date(currentDate).setHours(startDayHour + 1)
+              });
+            }}
+          >
+            <AddIcon />
+          </Fab>
+        )}
       </Paper>
     );
   }

@@ -20,7 +20,7 @@ const Index = ({ authenticated }) => {
         </div>
       </section>
       <section>
-        <div className="hero is-link columns is-vcentered has-text-white py-5">
+        <div className="hero is-primary columns is-vcentered has-text-white py-5">
           <nav className="columns column is-three-quarters">
             <div className="column is-multiline is-centered has-text-centered is-mobile">
               <figure className="image is-64x64 is-inline-block">

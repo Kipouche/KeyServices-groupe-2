@@ -8,6 +8,7 @@ import {
   Toolbar,
   MonthView,
   WeekView,
+  DayView,
   ViewSwitcher,
   Appointments,
   AppointmentTooltip,
@@ -529,6 +530,7 @@ class Demo extends React.PureComponent {
           />
           <MonthView />
           <WeekView startDayHour={startDayHour} endDayHour={endDayHour} />
+          <DayView startDayHour={8} endDayHour={19} />
           <AllDayPanel />
           <EditRecurrenceMenu />
           <Appointments />

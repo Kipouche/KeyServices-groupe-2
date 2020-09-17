@@ -12,7 +12,7 @@ export default authentification(async (req, res) => {
     if (!role) {
       return res.status(400).json({ message: 'Role field is missing' });
     }
-    if (role !== 'agent' && role !== 'member' && role !== 'admin') {
+    if (role !== 'agent' && role !== 'member' && role !== 'admin' && role !== 'fieldworker') {
       return res.status(400).json({ message: 'Invalid role' });
     }
     try {
