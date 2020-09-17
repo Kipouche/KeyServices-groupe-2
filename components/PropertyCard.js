@@ -41,9 +41,9 @@ const PropertyCard = ({
         <div className="media-content">
           <p className="title is-5">{title || 'To be done'}</p>
           <p className="subtitle is-6">
-            Lien vers la 
+            Lien vers la&nbsp;
             <Link href={`/dashboard/property/${id}`}>
-              <a>description</a>
+              <a className="has-text-primary" style={{textDecoration: "underline"}}>description</a>
             </Link>
           </p>
         </div>

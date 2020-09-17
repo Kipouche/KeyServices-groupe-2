@@ -239,7 +239,7 @@ const Add = ({ authenticated, id, role, jwt }) => {
                 <div className="control">
                   <div className="buttons">
                     <button
-                      className={`button is-link has-text-white ${loading ? 'is-loading' : ''}`}
+                      className={`button is-primary has-text-white ${loading ? 'is-loading' : ''}`}
                       type="submit"
                     >
                       Créer
