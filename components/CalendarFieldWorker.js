@@ -129,8 +129,6 @@ class AppointmentFormContainerBasic extends React.PureComponent {
       ...this.getAppointmentData(),
       ...this.getAppointmentChanges()
     };
-    console.log(this.props);
-
     const profileId = this.props.properties.find(
       (property) => property.id === this.state.selectedProperty
     ).user_id;
@@ -338,9 +336,6 @@ const styles = (theme) => ({
 class Demo extends React.PureComponent {
   constructor(props) {
     super(props);
-    console.log('todouz', props.todos);
-    console.log('role', props.role);
-
     const todosMap = props.todos.map((todo) => {
       return {
         title: todo.task,
@@ -357,8 +352,6 @@ class Demo extends React.PureComponent {
         ).user_id
       };
     });
-
-    console.log('todosmap', todosMap);
 
     this.state = {
       data: todosMap,
@@ -388,14 +381,6 @@ class Demo extends React.PureComponent {
         }
       ]
     };
-    console.log(
-      props.properties.map((property) => {
-        return {
-          id: property.id,
-          text: property.address
-        };
-      })
-    );
 
     this.toggleConfirmationVisible = this.toggleConfirmationVisible.bind(this);
     this.commitDeletedAppointment = this.commitDeletedAppointment.bind(this);
