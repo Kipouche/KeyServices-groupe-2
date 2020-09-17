@@ -41,9 +41,9 @@ const PropertyCard = ({
         <div className="media-content">
           <p className="title is-5">{title || 'To be done'}</p>
           <p className="subtitle is-6">
-            Lien vers
+            Lien vers la
             <Link href={`/dashboard/property/${id}`}>
-              <a> description</a>
+              <a>description</a>
             </Link>
           </p>
         </div>
