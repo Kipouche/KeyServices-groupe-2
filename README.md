@@ -27,4 +27,4 @@ npm run dev
 
 Allez sur [http://localhost:5000](http://localhost:5000) avec votre navigateur pour découvrir le site.
 
-Pour accéder au site en version PROD: [http://f2i-dev18-km-jl-js-gg.herokuapp.com/](http://f2i-dev18-km-jl-js-gg.herokuapp.com/)
+Pour accéder au site en version PROD: [https://f2i-dev18-km-jl-js-gg.herokuapp.com/](https://f2i-dev18-km-jl-js-gg.herokuapp.com/)
