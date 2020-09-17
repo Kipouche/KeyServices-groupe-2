@@ -41,7 +41,7 @@ const DashboardPanel = ({ role, tab, firstname }) => {
               <li>
                 <Link href="/dashboard/agent/agenda">
                   <a className={tab === 'agent/agenda' ? 'is-active' : ''}>
-                    Locations Agenda
+                    Agenda Airbnb
                   </a>
                 </Link>
               </li>
