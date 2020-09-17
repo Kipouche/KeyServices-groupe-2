@@ -25,6 +25,28 @@ Ensuite, lancer le serveur en local
 npm run dev
 ```
 
+## Identifiants
+Admin 
+```bash
+admin@keyservices.fr
+mdp: adminkeyservices
+```
+Agent
+```bash
+agent@keyservices.fr
+mdp: agentkeyservices
+```
+Agent de terrain
+```bash
+agentterrain@keyservices.fr
+mdp: agentterrainkeyservices
+```
+Membre
+```bash
+membre@keyservices.fr
+mdp: membrekeyservices
+```
+
 Allez sur [http://localhost:5000](http://localhost:5000) avec votre navigateur pour découvrir le site.
 
 Pour accéder au site en version PROD: [https://f2i-dev18-km-jl-js-gg.herokuapp.com/](https://f2i-dev18-km-jl-js-gg.herokuapp.com/)
