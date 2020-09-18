@@ -25,6 +25,17 @@ Ensuite, lancer le serveur en local
 npm run dev
 ```
 
+## Test
+Lancer le serveur en local, puis
+```bash
+npm test
+```
+Pour récupérer le résultat au format JUnit
+```bash
+mocha test --reporter mocha-junit-reporter
+```
+Ça créera un fichier test-results.xml à la racine du projet.
+
 ## Identifiants
 Admin 
 ```bash
