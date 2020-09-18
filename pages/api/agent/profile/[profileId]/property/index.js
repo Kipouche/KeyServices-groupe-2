@@ -107,7 +107,11 @@ export default authentification(async (req, res) => {
     }
     try {
       const jwt = await verifyJWT(req);
-      if (jwt.sub !== parseInt(profileId, 10)) {
+      if (
+        jwt.sub !== parseInt(profileId, 10) &&
+        jwt.role !== 'agent' &&
+        jwt.role !== 'admin'
+      ) {
         return res.status(401).json({ message: 'Not authorized' });
       }
       const result = await Property.create(

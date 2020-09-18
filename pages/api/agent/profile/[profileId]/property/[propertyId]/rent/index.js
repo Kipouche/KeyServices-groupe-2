@@ -1,5 +1,9 @@
 import Rent from '../../../../../../../../lib/rent';
+import User from '../../../../../../../../lib/user';
 import Property from '../../../../../../../../lib/property';
+import Mailer from '../../../../../../../../lib/mailer/mailer';
+import bookingMail from '../../../../../../../../lib/mailer/bookingMail';
+import { useReducer } from 'react';
 
 export default async (req, res) => {
   const { profileId, propertyId } = req.query;
@@ -7,12 +11,20 @@ export default async (req, res) => {
     try {
       const { startDate, endDate } = req.body;
       const property = await Property.getById(propertyId);
+      const profile = await User.getById(profileId);
       if (property.length) {
         const result = await Rent.create(
           startDate,
           endDate,
           profileId,
           propertyId
+        );
+        const mailBody = bookingMail(startDate, endDate, profile.firstname);
+        Mailer.sendMail(
+          profile.email,
+          'Confirmation de votre inscription chez KeyServices',
+          mailBody.html,
+          mailBody.text
         );
         return res.status(200).json({ success: result.insertId });
       }

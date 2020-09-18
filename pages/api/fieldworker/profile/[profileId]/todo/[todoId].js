@@ -1,4 +1,4 @@
-import Todo from '../../../../../../lib/rent';
+import Todo from '../../../../../../lib/todo';
 import { verifyJWT } from '../../../../../../lib/authentification';
 
 export default async (req, res) => {

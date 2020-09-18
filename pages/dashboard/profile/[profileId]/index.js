@@ -34,7 +34,7 @@ const Profile = ({ authenticated, profile, properties, id, role, jwt }) => {
                 );
               })}
               {role === 'agent' || role === 'admin' ? (
-                <Link href={`/dashboard/agent/profile/${id}/property/add`}>
+                <Link href={`/dashboard/agent/profile/${profile.id}/property/add`}>
                   <a className="button is-primary is-outlined">
                     Ajouter une propriété
                   </a>

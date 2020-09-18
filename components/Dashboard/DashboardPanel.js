@@ -58,6 +58,13 @@ const DashboardPanel = ({ role, tab, firstname }) => {
                 </Link>
               </li>
               <li>
+                <Link href="/dashboard/agent/fieldworkers">
+                  <a className={tab === 'fieldworkers' ? 'is-active' : ''}>
+                    Agents de terrain
+                  </a>
+                </Link>
+              </li>
+              <li>
                 <Link href="/dashboard/agent/profiles">
                   <a className={tab === 'clients' ? 'is-active' : ''}>
                     Clients
@@ -76,7 +83,7 @@ const DashboardPanel = ({ role, tab, firstname }) => {
         ) : (
           []
         )}
-        {role === 'agent' || role === 'admin' || role === 'fieldworker' ? (
+        {role === 'admin' || role === 'fieldworker' ? (
           <>
             <p className="menu-label has-text-weight-semibold has-text-dark">
               Agent de Terrain
