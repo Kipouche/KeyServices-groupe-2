@@ -11,7 +11,7 @@ export default async (req, res) => {
     try {
       const { startDate, endDate } = req.body;
       const property = await Property.getById(propertyId);
-      const profile = await User.getById(profileId);
+      const profile = await User.getById(property.user_id);
       if (property.length) {
         const result = await Rent.create(
           startDate,
