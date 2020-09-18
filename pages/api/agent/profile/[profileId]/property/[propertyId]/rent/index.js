@@ -22,7 +22,7 @@ export default async (req, res) => {
         const mailBody = bookingMail(startDate, endDate, profile.firstname);
         Mailer.sendMail(
           profile.email,
-          'Confirmation de votre inscription chez KeyServices',
+          `Il y a du nouveau, ${profile.firstname} !`,
           mailBody.html,
           mailBody.text
         );
