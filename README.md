@@ -36,7 +36,7 @@ mocha test --reporter mocha-junit-reporter
 ```
 Ça créera un fichier test-results.xml à la racine du projet.
 
-## Identifiants
+## Identifiants Keyservices
 Admin 
 ```bash
 admin@keyservices.fr
@@ -56,6 +56,13 @@ Membre
 ```bash
 membre@keyservices.fr
 mdp: membrekeyservices
+```
+
+## Identifiants Heroku
+```bash
+[https://id.heroku.com/login](https://id.heroku.com/login}
+keyserviceshosting@gmail.com
+mdp: Azerty123;
 ```
 
 Allez sur [http://localhost:5000](http://localhost:5000) avec votre navigateur pour découvrir le site.
